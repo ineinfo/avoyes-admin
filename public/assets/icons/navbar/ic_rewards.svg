@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Medal Circle -->
+  <circle cx="32" cy="32" r="20" fill="#FFD700"/>
+  
+  <!-- Medal Ribbon -->
+  <path d="M22 12L16 32h10l6-20h-4zM42 12L48 32H38l-6-20h4z" fill="#6A60A9"/>
+  
+  <!-- Star in the center of the Medal -->
+  <path d="M32 22l2.4 4.8L40 28l-4 3.9 1 5.8-5.2-2.7L26 37.7l1-5.8L23 28l5.6-.2L32 22z" fill="#FFD700"/>
+  
+  <!-- Decorative Outer Circle -->
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#6A60A9" stroke-width="2"/>
+
+  <!-- Medal Hanging String -->
+  <path d="M22 10h20v2H22z" fill="#6A60A9"/>
+</svg>

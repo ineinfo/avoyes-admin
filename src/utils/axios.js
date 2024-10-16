@@ -1,0 +1,309 @@
+import axios from 'axios';
+
+import { HOST_API } from 'src/config-global';
+
+import {
+  USER_ROUTE,
+  ROLES_ROUTE,
+  LEADS_ROUTE,
+  CLIENTS_ROUTE,
+  AMENITIES_ROUTE,
+  PROPERTY_TYPE_ROUTE,
+  PROPERTIES_ROUTE,
+  CATEGORY_ROUTE,
+  SUBCATEGORY_ROUTE,
+  BRANDS_ROUTE,
+  CITY_ROUTE,
+  STATE_ROUTE,
+  COUTNRY_ROUTE,
+  PRODUCT_ROUTE,
+  SOCIAL_MEDIA,
+  PAGES_ROUTE,
+  HOME_ROUTE,
+  REVIEW_ROUTE,
+  ADVERTISEMENT_ROUTE,
+  ADVERTISEMENT_RECORD_STATUS,
+  USERS_ROUTE,
+  REWARDS_ROUTE,
+  COLOR_ROUTE,
+  SIZE_ROUTE,
+  MATERIAL_ROUTE,
+  TYPE_ROUTE,
+  BLOG_ROUTE,
+  BLOG_CATEGORY_ROUTE,
+  BLOG_TAGS_ROUTE,
+  BLOG_COMMENT_ROUTE,
+  CONTACT_INQUIRY,
+  FAQ_ROUTE,
+  CONTACT_US,
+  ABOUTUS_ROUTE,
+  TAG_ROUTE,
+  BRAND_PARTNER,
+  DELIVERABLE_ROUTE,
+  DELIVERY_DETAILS,
+} from './apiendpoints';
+
+// ----------------------------------------------------------------------
+
+const axiosInstance = axios.create({ baseURL: HOST_API });
+
+axiosInstance.interceptors.response.use(
+  (res) => res,
+  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+);
+
+export default axiosInstance;
+
+// ----------------------------------------------------------------------
+
+export const fetcher = async (args) => {
+  const [url, config] = Array.isArray(args) ? args : [args];
+
+  const res = await axiosInstance.get(url, { ...config });
+
+  return res.data;
+};
+
+// ----------------------------------------------------------------------
+
+export const endpoints = {
+  chat: '/api/chat',
+  kanban: '/api/kanban',
+  calendar: '/api/calendar',
+  auth: {
+    me: '/api/auth/me',
+    login: '/api/auth/login',
+    register: '/api/auth/register',
+  },
+  mail: {
+    list: '/api/mail/list',
+    details: '/api/mail/details',
+    labels: '/api/mail/labels',
+  },
+  post: {
+    list: '/api/post/list',
+    details: '/api/post/details',
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+  // product: {
+  //   list: '/api/product/list',
+  //   details: '/api/product/details',
+  //   search: '/api/product/search',
+  // },
+  roles: {
+    list: ROLES_ROUTE,
+    create: ROLES_ROUTE,
+    details: (id) => `${ROLES_ROUTE}/${id}`,
+  },
+  amenity: {
+    list: AMENITIES_ROUTE,
+    create: AMENITIES_ROUTE,
+    details: (id) => `${AMENITIES_ROUTE}/${id}`,
+  },
+  propertytype: {
+    list: PROPERTY_TYPE_ROUTE,
+    create: PROPERTY_TYPE_ROUTE,
+    details: (id) => `${PROPERTY_TYPE_ROUTE}/${id}`,
+  },
+  users: {
+    list: USER_ROUTE,
+    create: USER_ROUTE,
+    details: (id) => `${USER_ROUTE}/${id}`,
+  },
+  clients: {
+    list: CLIENTS_ROUTE,
+    create: CLIENTS_ROUTE,
+    details: (id) => `${CLIENTS_ROUTE}/${id}`,
+  },
+  leads: {
+    list: LEADS_ROUTE,
+    create: LEADS_ROUTE,
+    details: (id) => `${LEADS_ROUTE}/${id}`,
+  },
+  category: {
+    list: CATEGORY_ROUTE,
+    create: CATEGORY_ROUTE,
+    details: (id) => `${CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${CATEGORY_ROUTE}/${id}`,
+  },
+  subcategory: {
+    list: SUBCATEGORY_ROUTE,
+    create: SUBCATEGORY_ROUTE,
+    details: (id) => `${SUBCATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${SUBCATEGORY_ROUTE}/${id}`,
+  },
+  product: {
+    list: PRODUCT_ROUTE,
+    create: PRODUCT_ROUTE,
+    details: (id) => `${PRODUCT_ROUTE}/${id}`,
+    deletes: (id) => `${PRODUCT_ROUTE}/${id}`,
+  },
+  color: {
+    list: COLOR_ROUTE,
+    create: COLOR_ROUTE,
+    details: (id) => `${COLOR_ROUTE}/${id}`,
+    deletes: (id) => `${COLOR_ROUTE}/${id}`,
+  },
+  material: {
+    list: MATERIAL_ROUTE,
+    create: MATERIAL_ROUTE,
+    details: (id) => `${MATERIAL_ROUTE}/${id}`,
+    deletes: (id) => `${MATERIAL_ROUTE}/${id}`,
+  },
+  type: {
+    list: TYPE_ROUTE,
+    create: TYPE_ROUTE,
+    details: (id) => `${TYPE_ROUTE}/${id}`,
+    deletes: (id) => `${TYPE_ROUTE}/${id}`,
+  },
+  tag: {
+    list: TAG_ROUTE,
+    create: TAG_ROUTE,
+    details: (id) => `${TAG_ROUTE}/${id}`,
+    deletes: (id) => `${TAG_ROUTE}/${id}`,
+  },
+  socialmedia: {
+    list: SOCIAL_MEDIA,
+    create: SOCIAL_MEDIA,
+    details: (id) => `${SOCIAL_MEDIA}/${id}`,
+    deletes: (id) => `${SOCIAL_MEDIA}/${id}`,
+  },
+  faq: {
+    list: FAQ_ROUTE,
+    create: FAQ_ROUTE,
+    details: (id) => `${FAQ_ROUTE}/${id}`,
+    deletes: (id) => `${FAQ_ROUTE}/${id}`,
+  },
+  inquiry: {
+    list: CONTACT_INQUIRY,
+    create: CONTACT_INQUIRY,
+    details: (id) => `${CONTACT_INQUIRY}/${id}`,
+    deletes: (id) => `${CONTACT_INQUIRY}/${id}`,
+  },
+  contact: {
+    list: CONTACT_US,
+    create: CONTACT_US,
+    details: CONTACT_US,
+  },
+  brandpartner: {
+    list: BRAND_PARTNER,
+    create: BRAND_PARTNER,
+    details: BRAND_PARTNER,
+  },
+  deliverydetails: {
+    list: DELIVERY_DETAILS,
+    create: DELIVERY_DETAILS,
+    details: DELIVERY_DETAILS,
+  },
+  blog: {
+    list: BLOG_ROUTE,
+    create: BLOG_ROUTE,
+    details: (id) => `${BLOG_ROUTE}/${id}`,
+    deletes: (id) => `${BLOG_ROUTE}/${id}`,
+  },
+  blogcategory: {
+    list: BLOG_CATEGORY_ROUTE,
+    create: BLOG_CATEGORY_ROUTE,
+    details: (id) => `${BLOG_CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${BLOG_CATEGORY_ROUTE}/${id}`,
+  },
+  blogtags: {
+    list: BLOG_TAGS_ROUTE,
+    create: BLOG_TAGS_ROUTE,
+    details: (id) => `${BLOG_TAGS_ROUTE}/${id}`,
+    deletes: (id) => `${BLOG_TAGS_ROUTE}/${id}`,
+  },
+  blogcomment: {
+    list: BLOG_COMMENT_ROUTE,
+    create: BLOG_COMMENT_ROUTE,
+    details: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
+    deletes: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
+  },
+  brand: {
+    list: BRANDS_ROUTE,
+    create: BRANDS_ROUTE,
+    details: (id) => `${BRANDS_ROUTE}/?id=${id}`,
+    deletes: (id) => `${BRANDS_ROUTE}?ids=${id}`,
+  },
+  // product: {
+  //   list: PRODUCT_ROUTE,
+  //   create: PRODUCT_ROUTE,
+  //   details: (id) => `${PRODUCT_ROUTE}/${id}`,
+  //   deletes: (id) => `${PRODUCT_ROUTE}?ids=${id}`,
+  // },
+  pages: {
+    list: PAGES_ROUTE,
+    create: PAGES_ROUTE,
+    details: (id) => `${PAGES_ROUTE}/${id}`,
+  },
+  aboutus: {
+    list: ABOUTUS_ROUTE,
+    create: ABOUTUS_ROUTE,
+    details: ABOUTUS_ROUTE,
+  },
+  deliverable: {
+    list: DELIVERABLE_ROUTE,
+    create: DELIVERABLE_ROUTE,
+    details: DELIVERABLE_ROUTE,
+  },
+  homepage: {
+    list: HOME_ROUTE,
+    create: HOME_ROUTE,
+    details: (id) => `${HOME_ROUTE}/?id=${id}`,
+    deletes: (id) => `${HOME_ROUTE}?ids=${id}`,
+  },
+  review: {
+    list: REVIEW_ROUTE,
+    create: REVIEW_ROUTE,
+    details: (id) => `${REVIEW_ROUTE}/?id=${id}`,
+    deletes: (id) => `${REVIEW_ROUTE}?ids=${id}`,
+  },
+  advertisement: {
+    list: ADVERTISEMENT_ROUTE,
+    create: ADVERTISEMENT_ROUTE,
+    edit: (id) => `${ADVERTISEMENT_ROUTE}/${id}`,
+    details: (id) => `${ADVERTISEMENT_ROUTE}/?id=${id}`,
+    deletes: (id) => `${ADVERTISEMENT_ROUTE}?ids=${id}`,
+    view: (id) => `${ADVERTISEMENT_RECORD_STATUS}/${id}`,
+  },
+  rewards: {
+    list: REWARDS_ROUTE,
+    create: REWARDS_ROUTE,
+    details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
+    deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
+  },
+  Others: {
+    city: {
+      list: CITY_ROUTE,
+      create: CITY_ROUTE,
+      details: (id) => `${CITY_ROUTE}/?id=${id}`,
+    },
+    state: {
+      list: STATE_ROUTE,
+      create: STATE_ROUTE,
+      details: (id) => `${STATE_ROUTE}/?id=${id}`,
+    },
+    country: {
+      list: COUTNRY_ROUTE,
+      create: COUTNRY_ROUTE,
+      details: (id) => `${COUTNRY_ROUTE}/?id=${id}`,
+    },
+  },
+  propertypage: {
+    list: PROPERTIES_ROUTE,
+    create: PROPERTIES_ROUTE,
+    details: (id) => `${PROPERTIES_ROUTE}/${id}`,
+  },
+  Review: {
+    list: PROPERTIES_ROUTE,
+    create: PROPERTIES_ROUTE,
+    details: (id) => `${PROPERTIES_ROUTE}/${id}`,
+  },
+  size: {
+    list: SIZE_ROUTE,
+    create: SIZE_ROUTE,
+    details: (id) => `${SIZE_ROUTE}/${id}`,
+    deletes: (id) => `${SIZE_ROUTE}/${id}`,
+  },
+};
