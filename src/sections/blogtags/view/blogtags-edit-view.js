@@ -27,7 +27,7 @@ export default function UserEditView({ id }) {
             href: paths.dashboard.list,
           },
           {
-            name: 'Category',
+            name: 'Blog Tag',
             href: paths.dashboard.blog.blogtags.list,
           },
           { name: `Edit` },

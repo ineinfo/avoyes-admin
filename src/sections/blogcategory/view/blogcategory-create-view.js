@@ -24,7 +24,7 @@ export default function UserCreateView() {
             href: paths.dashboard.root,
           },
           {
-            name: 'Category',
+            name: 'Blog Category',
             href: paths.dashboard.blog.blogcategory.list,
           },
           { name: 'New blog category' },

@@ -17,7 +17,7 @@ export default function UserCreateView() {
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create Contact Inquiry"
+        heading="Create a new Inquiry"
         links={[
           {
             name: 'Dashboard',
@@ -27,7 +27,7 @@ export default function UserCreateView() {
             name: 'Inquiry',
             href: paths.dashboard.inquiry.list,
           },
-          { name: 'New Contact Inquiry' },
+          { name: 'New Inquiry' },
         ]}
         sx={{
           mb: { xs: 3, md: 5 },

@@ -3,7 +3,7 @@ import { UserCreateView } from 'src/sections/color/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Color',
+  title: 'Avoyes: Create Color',
 };
 
 export default function UserCreatePage() {

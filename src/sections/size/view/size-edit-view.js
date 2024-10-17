@@ -30,7 +30,7 @@ export default function UserEditView({ id }) {
             name: 'Size',
             href: paths.dashboard.size.list,
           },
-          { name: `size` },
+          { name: `Edit` },
         ]}
         sx={{
           mb: { xs: 3, md: 5 },

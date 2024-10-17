@@ -3,7 +3,7 @@ import { UserCreateView } from 'src/sections/size/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Size',
+  title: 'Avoyes: Create Size',
 };
 
 export default function UserCreatePage() {

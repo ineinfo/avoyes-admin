@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/blogcomment/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Comment List',
+  title: 'Avoyes: Comment List',
 };
 
 export default function UserListPage() {

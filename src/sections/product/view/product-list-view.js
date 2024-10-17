@@ -49,6 +49,7 @@ import { DeleteMultipleProduct, DeleteProduct } from 'src/api/product';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
+  { id: 'amount', label: 'Amount' },
   { id: '', width: 88 },
 ];
 

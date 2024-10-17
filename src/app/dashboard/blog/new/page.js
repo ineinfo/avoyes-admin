@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/blog/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Blog',
+  title: 'Avoyes: Create Blog',
 };
 
 export default function UserCreatePage() {

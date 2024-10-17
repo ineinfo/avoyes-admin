@@ -3,7 +3,7 @@ import { UserListView } from 'src/sections/type/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Type List',
+  title: 'Avoyes: Type List',
 };
 
 export default function UserListPage() {

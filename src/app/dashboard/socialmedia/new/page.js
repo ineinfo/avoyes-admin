@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/socialmedia/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new SocialMedia',
+  title: 'Avoyes: Create Social links',
 };
 
 export default function UserCreatePage() {

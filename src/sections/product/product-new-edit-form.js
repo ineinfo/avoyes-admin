@@ -1,10 +1,8 @@
 import * as Yup from 'yup';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useMemo, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -12,28 +10,23 @@ import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
   Select,
-  Checkbox,
   MenuItem,
   InputLabel,
   FormControl,
   FormHelperText,
   Typography,
   CircularProgress,
+  Chip,
 } from '@mui/material';
-
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
-
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFAutocomplete,
   RHFEditor,
   RHFTextField,
   RHFUpload,
-  RHFUploadAvatar,
 } from 'src/components/hook-form';
-import { fData } from 'src/utils/format-number';
-import { assetsPath } from 'src/utils/apiendpoints';
 import { useAuthContext } from 'src/auth/hooks';
 import { CreateProduct, UpdateProduct } from 'src/api/product';
 import { UsegetCategories } from 'src/api/category';
@@ -42,23 +35,25 @@ import { UsegetTags } from 'src/api/tag';
 import { UsegetTypes } from 'src/api/type';
 import { UsegetSizes } from 'src/api/size';
 import { UsegetMaterials } from 'src/api/material';
+import { UsegetSubCategories } from 'src/api/subcategory';
 
 // ----------------------------------------------------------------------
 
 export default function ClientNewEditForm({ currentProduct }) {
   const Product = Array.isArray(currentProduct) ? currentProduct[0] : currentProduct;
-  const user = useAuthContext();
-  const token = user.user.accessToken;
 
   const { products: propertyTypes, productsLoading: propertyTypesLoading } = UsegetCategories();
+  const { products: Subcategory, productsLoading: SubcategoryTypesLoading } = UsegetSubCategories();
   const { products: Colors, productsLoading: ColorTypesLoadings } = UsegetColors();
   const { products: Tags, productsLoading: TagTypesLoadings } = UsegetTags();
   const { products: Type, productsLoading: TypeTypesLoadings } = UsegetTypes();
   const { products: Size, productsLoading: SizeTypesLoadings } = UsegetSizes();
   const { products: Material, productsLoading: MaterialTypesLoadings } = UsegetMaterials();
 
-  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
+  const user = useAuthContext();
+  const token = user.user.accessToken;
+  const router = useRouter();
 
   const fetchimages1 = Product?.image_url1 ? `${Product.image_url1}` : '';
   const fetchimages2 = Product?.image_url2 ? `${Product.image_url2}` : '';
@@ -75,11 +70,12 @@ export default function ClientNewEditForm({ currentProduct }) {
     weight: Yup.string().required('Weight is required'),
     stock_status: Yup.string().required('Stock Status is required'),
     category_id: Yup.string().required('Category is required'),
-    color_id: Yup.array().min(1, 'At least one color must be selected').required('Category name is required'),
-    tag_id: Yup.string().required('Category name is required'),
-    type_id: Yup.string().required('Category name is required'),
-    size_id: Yup.string().required('Category name is required'),
-    material_id: Yup.string().required('Category name is required'),
+    subcategory_id: Yup.string().required('SubCategory is required'),
+    // colors: Yup.array().min(1, 'Must have at least 1 color'),
+    // tags: Yup.array().min(1, 'Must have at least 1 tag'),
+    // size: Yup.array().min(1, 'Must have at least 1 size'),
+    type_id: Yup.string().required('Type name is required'),
+    material_id: Yup.string().required('material name is required'),
     description: Yup.string().required('Description is required'),
     image_url1: Yup.mixed().nullable().required('Image is required'),
     image_url2: Yup.mixed().nullable().required('Image is required'),
@@ -98,11 +94,11 @@ export default function ClientNewEditForm({ currentProduct }) {
       weight: Product?.weight || '',
       stock_status: Product?.stock_status || '',
       category_id: Product?.category_id || '',
-      color_id: Product?.color_id ? Array.isArray(Product.color_id) ? Product.color_id : [Product.color_id] : [],
-
-      tag_id: Product?.tag_id || '',
+      subcategory_id: Product?.subcategory_id || '',
+      colors: Product?.color_ids || [],
+      tags: Product?.tag_ids || '',
+      size: Product?.size_ids || [],
       type_id: Product?.type_id || '',
-      size_id: Product?.size_id || '',
       material_id: Product?.material_id || '',
       description: Product?.description || '',
       image_url1: fetchimages1 || null,
@@ -148,8 +144,6 @@ export default function ClientNewEditForm({ currentProduct }) {
           formData.append(key, value[0]);
         } else if (key === 'image_url5' && value[0]) {
           formData.append(key, value[0]);
-        } else if (Array.isArray(value)) {
-          value.forEach((val) => formData.append(`${key}[]`, val));
         } else {
           formData.append(key, value);
         }
@@ -291,21 +285,65 @@ export default function ClientNewEditForm({ currentProduct }) {
               <RHFTextField name="short_description" label="Short Description" />
               <RHFTextField name="amount" label="Amount" type="number" />
               <RHFTextField name="discount_amount" label="Discount Amount" type="number" />
-              <RHFAutocomplete
-                name="product_label"
-                label="Product label"
-                fullWidth
-                options={ProductLabel.map((option) => option.label)}
-                getOptionLabel={(option) => option}
-              />
-              <RHFTextField name="weight" label="Weight" type="number" />
-              <RHFAutocomplete
-                name="stock_status"
-                label="Stock Status"
-                fullWidth
-                options={StockType.map((option) => option.label)}
-                getOptionLabel={(option) => option}
-              />
+              {/* Stock status */}
+              <FormControl fullWidth>
+                <InputLabel>Stock Status</InputLabel>
+                <Controller
+                  name="stock_status"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        error={!!fieldState.error}
+                        disabled={propertyTypesLoading}
+                        label="Stock Status"
+                      >
+                        {StockType.map((type) => (
+                          <MenuItem key={type.id} value={type.id}>
+                            {type.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl>
+              {/* Product label */}
+              <FormControl fullWidth>
+                <InputLabel>Product label</InputLabel>
+                <Controller
+                  name="product_label"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        error={!!fieldState.error}
+                        disabled={propertyTypesLoading}
+                        label="Product label"
+                      >
+                        {ProductLabel.map((type) => (
+                          <MenuItem key={type.id} value={type.id}>
+                            {type.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl>
+              {/* Category name */}
               <FormControl fullWidth>
                 <InputLabel>Category name</InputLabel>
                 <Controller
@@ -340,116 +378,26 @@ export default function ClientNewEditForm({ currentProduct }) {
                   )}
                 />
               </FormControl>
-
-              {/* <FormControl fullWidth>
-                <InputLabel>Color name</InputLabel>
+              {/* SubCategory name */}
+              <FormControl fullWidth>
+                <InputLabel>SubCategory name</InputLabel>
                 <Controller
-                  name="color_id"
+                  name="subcategory_id"
                   control={control}
                   render={({ field, fieldState }) => (
                     <>
                       <Select
                         {...field}
-                        label="Color name"
-                        multiple 
-                        value={field.value || []}
+                        label="SubCategory name"
                         error={!!fieldState.error}
-                        disabled={ColorTypesLoadings}
-                        renderValue={(selected) =>
-                          Colors
-                            .filter((type) => selected.includes(type.id))
-                            .map((type) => type.title)
-                            .join(', ')
-                        }
+                        disabled={SubcategoryTypesLoading}
                       >
-                        {ColorTypesLoadings ? (
+                        {SubcategoryTypesLoading ? (
                           <MenuItem disabled>
                             <CircularProgress size={24} />
                           </MenuItem>
                         ) : (
-                          Colors.map((type) => (
-                            <MenuItem key={type.id} value={type.id}>
-                              <Checkbox checked={field?.value?.includes(type?.id)} />
-                              {type.title}
-                            </MenuItem>
-                          ))
-                        )}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl> */}
-              <FormControl fullWidth>
-                <InputLabel>Color name</InputLabel>
-                <Controller
-                  name="color_id"
-                  control={control}
-                  render={({ field, fieldState }) => {
-                    const selectedValues = Array.isArray(field.value) ? field.value : []; // Ensure value is always an array
-                    return (
-                      <>
-                        <Select
-                          {...field}
-                          label="Color name"
-                          multiple // Enable multiple selection
-                          value={selectedValues} // Ensure value is an array
-                          error={!!fieldState.error}
-                          disabled={ColorTypesLoadings}
-                          renderValue={(selected) =>
-                            Colors.filter((type) => selected.includes(type.id))
-                              .map((type) => type.title)
-                              .join(', ')
-                          }
-                        >
-                          {ColorTypesLoadings ? (
-                            <MenuItem disabled>
-                              <CircularProgress size={24} />
-                            </MenuItem>
-                          ) : (
-                            Colors.map((type) => (
-                              <MenuItem key={type.id} value={type.id}>
-                                <Checkbox checked={selectedValues.includes(type.id)} />{' '}
-                                {/* Ensure `selectedValues` is an array */}
-                                {type.title}
-                              </MenuItem>
-                            ))
-                          )}
-                        </Select>
-                        {fieldState.error && (
-                          <FormHelperText style={{ color: '#FF5630' }}>
-                            {fieldState.error.message}
-                          </FormHelperText>
-                        )}
-                      </>
-                    );
-                  }}
-                />
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel>Tag name</InputLabel>
-                <Controller
-                  name="tag_id"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        label="Tag name"
-                        error={!!fieldState.error}
-                        disabled={TagTypesLoadings}
-                      >
-                        {TagTypesLoadings ? (
-                          <MenuItem disabled>
-                            <CircularProgress size={24} />
-                          </MenuItem>
-                        ) : (
-                          Tags.map((type) => (
+                          Subcategory?.map((type) => (
                             <MenuItem key={type.id} value={type.id}>
                               {type.title}
                             </MenuItem>
@@ -465,6 +413,8 @@ export default function ClientNewEditForm({ currentProduct }) {
                   )}
                 />
               </FormControl>
+              <RHFTextField name="weight" label="Weight" type="number" />
+              {/* Type name */}
               <FormControl fullWidth>
                 <InputLabel>Type name</InputLabel>
                 <Controller
@@ -499,40 +449,120 @@ export default function ClientNewEditForm({ currentProduct }) {
                   )}
                 />
               </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Size name</InputLabel>
-                <Controller
-                  name="size_id"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        label="Size name"
-                        error={!!fieldState.error}
-                        disabled={SizeTypesLoadings}
-                      >
-                        {SizeTypesLoadings ? (
-                          <MenuItem disabled>
-                            <CircularProgress size={24} />
-                          </MenuItem>
-                        ) : (
-                          Size.map((type) => (
-                            <MenuItem key={type.id} value={type.id}>
-                              {type.title}
-                            </MenuItem>
-                          ))
-                        )}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl>
+              {/* Color name */}
+              <Controller
+                name="colors"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <RHFAutocomplete
+                    {...field}
+                    label="Colors"
+                    multiple
+                    freeSolo
+                    options={Colors}
+                    getOptionLabel={(option) => option.title}
+                    renderOption={(props, option) => (
+                      <li {...props} key={option.id}>
+                        {option.title}
+                      </li>
+                    )}
+                    value={
+                      field.value ? Colors.filter((color) => field.value.includes(color.id)) : []
+                    }
+                    onChange={(event, newValue) => {
+                      const selectedValues = newValue.map((color) => color.id);
+                      field.onChange(selectedValues);
+                    }}
+                    renderTags={(selected, getTagProps) =>
+                      selected.map((option, index) => (
+                        <Chip
+                          {...getTagProps({ index })}
+                          key={option.id}
+                          label={option.title}
+                          size="small"
+                          color="info"
+                          variant="soft"
+                        />
+                      ))
+                    }
+                  />
+                )}
+              />
+              {/* Tag Name */}
+              <Controller
+                name="tags"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <RHFAutocomplete
+                    {...field}
+                    label="Tags"
+                    multiple
+                    freeSolo
+                    options={Tags}
+                    getOptionLabel={(option) => option.title}
+                    renderOption={(props, option) => (
+                      <li {...props} key={option.id}>
+                        {option.title}
+                      </li>
+                    )}
+                    value={field.value ? Tags.filter((tag) => field.value.includes(tag.id)) : []}
+                    onChange={(event, newValue) => {
+                      const selectedValues = newValue.map((tag) => tag.id);
+                      field.onChange(selectedValues);
+                    }}
+                    renderTags={(selected, getTagProps) =>
+                      selected.map((option, index) => (
+                        <Chip
+                          {...getTagProps({ index })}
+                          key={option.id}
+                          label={option.title}
+                          size="small"
+                          color="info"
+                          variant="soft"
+                        />
+                      ))
+                    }
+                  />
+                )}
+              />
+              {/* Size name */}
+              <Controller
+                name="size"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <RHFAutocomplete
+                    {...field}
+                    label="Size"
+                    multiple
+                    freeSolo
+                    options={Size}
+                    getOptionLabel={(option) => option.title}
+                    renderOption={(props, option) => (
+                      <li {...props} key={option.id}>
+                        {option.title}
+                      </li>
+                    )}
+                    value={field.value ? Size.filter((size) => field.value.includes(size.id)) : []}
+                    onChange={(event, newValue) => {
+                      const selectedValues = newValue.map((size) => size.id);
+                      field.onChange(selectedValues);
+                    }}
+                    renderTags={(selected, getTagProps) =>
+                      selected.map((option, index) => (
+                        <Chip
+                          {...getTagProps({ index })}
+                          key={option.id}
+                          label={option.title}
+                          size="small"
+                          color="info"
+                          variant="soft"
+                        />
+                      ))
+                    }
+                  />
+                )}
+              />
+              {/* Material name */}
               <FormControl fullWidth>
                 <InputLabel>Material name</InputLabel>
                 <Controller
@@ -574,6 +604,7 @@ export default function ClientNewEditForm({ currentProduct }) {
                 </Stack>
               </Box>
             </Box>
+            {/* Images */}
             <Box
               sx={{
                 mt: 3,
@@ -667,7 +698,7 @@ export default function ClientNewEditForm({ currentProduct }) {
                 </Typography>
               </Box>
             </Box>
-
+            {/* Button */}
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
                 {!Product ? 'Create' : 'Update'}

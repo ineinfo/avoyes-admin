@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/color/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Color Edit',
+  title: 'Avoyes: Color Edit',
 };
 
 export default function UserEditPage({ params }) {

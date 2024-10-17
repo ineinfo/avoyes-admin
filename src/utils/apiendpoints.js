@@ -130,12 +130,22 @@ export const ChangePassword = async (data,token) => {
 
 
 
-export const UpdateProfile = async (data) => {
-  const response = await axios.put(`${PROFILE_UPDATE}?id=${3}`, data);
+export const UpdateProfile = async (data,token) => {
+  const response = await axios.put(`${PROFILE_UPDATE}/${15}`, data,{
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response?.data;
 };
 
-export const FetchProfile = async () => {
-  const response = await axios.get(`${FETCH_PROFILE}?id=${3}`);
+export const FetchProfile = async (token) => {
+  const response = await axios.get(`${FETCH_PROFILE}/${15}`,{
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response?.data;
 };

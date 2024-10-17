@@ -17,7 +17,7 @@ export default function UserCreateView() {
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create a new Social media"
+        heading="Create a new Social Links"
         links={[
           {
             name: 'Dashboard',

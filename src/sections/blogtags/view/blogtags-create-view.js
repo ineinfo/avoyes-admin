@@ -24,10 +24,10 @@ export default function UserCreateView() {
             href: paths.dashboard.root,
           },
           {
-            name: 'Category',
+            name: 'Blog Tag',
             href: paths.dashboard.blog.blogtags.list,
           },
-          { name: 'New tags' },
+          { name: 'New tag' },
         ]}
         sx={{
           mb: { xs: 3, md: 5 },

@@ -51,6 +51,9 @@ export default function ProfileNewEditForm() {
 
   const router = useRouter();
 
+  const user = useAuthContext();
+  const token = user.user.accessToken;
+
   const GENDER = [
     { value: '1', label: 'Male' },
     { value: '2', label: 'Female' },
@@ -62,10 +65,10 @@ export default function ProfileNewEditForm() {
     first_name: Yup.string().required('First name is required'),
     last_name: Yup.string().required('Last name is required'),
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    mobile: Yup.string().required('Phone number is required'),
+    phone: Yup.string().required('Phone number is required'),
     gender: Yup.string().required('Gender is required'),
-    dob: Yup.string().required('DOB is required'),
-    profile_url: Yup.mixed().nullable().required('Image is required'),
+    // dob: Yup.string().required('DOB is required'),
+    // profile_url: Yup.mixed().nullable().required('Image is required'),
   });
 
   const defaultValues = useMemo(
@@ -73,11 +76,11 @@ export default function ProfileNewEditForm() {
       first_name: tableData?.first_name || '',
       last_name: tableData?.last_name || '',
       email: tableData?.email || '',
-      mobile: tableData?.mobile || '',
+      phone: tableData?.phone || '',
       gender: tableData?.gender || '',
-      dob: tableData?.dob ? format(new Date(tableData.dob), 'yyyy-MM-dd') : null,
+      // dob: tableData?.dob ? format(new Date(tableData.dob), 'yyyy-MM-dd') : null,
 
-      profile_url: fetchimages || null,
+      // profile_url: fetchimages || null,
     }),
     [tableData]
   );
@@ -105,7 +108,7 @@ export default function ProfileNewEditForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await FetchProfile();
+        const response = await FetchProfile(token);
         setTableData(response.data);
       } catch (err) {
         console.log(err);
@@ -129,9 +132,11 @@ export default function ProfileNewEditForm() {
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      const response = await UpdateProfile(formData);
+      const response = await UpdateProfile(formData,token);
       if (response.status) {
         enqueueSnackbar(response.message);
+        const updatedProfile = await FetchProfile(token);
+        setTableData(updatedProfile.data);
       } else {
         enqueueSnackbar(response.message, { variant: 'error' });
       }
@@ -158,7 +163,7 @@ export default function ProfileNewEditForm() {
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid container spacing={3}>
-        <Grid xs={12} md={4}>
+        {/* <Grid xs={12} md={4}>
           <Card sx={{ pt: 10, pb: 5, px: 3 }}>
             <Box sx={{ mb: 5 }}>
               <RHFUploadAvatar
@@ -183,9 +188,9 @@ export default function ProfileNewEditForm() {
               />
             </Box>
           </Card>
-        </Grid>
+        </Grid> */}
 
-        <Grid xs={12} md={8}>
+        <Grid xs={12} md={12}>
           <Card sx={{ p: 3 }}>
             <Box
               rowGap={3}
@@ -199,10 +204,10 @@ export default function ProfileNewEditForm() {
               <RHFTextField name="first_name" label="First name" />
               <RHFTextField name="last_name" label="Last name" />
               <RHFTextField name="email" label="Email address" />
-              <RHFTextField name="mobile" label="Phone number" />
+              <RHFTextField name="phone" label="Phone number" />
               <RHFRadioGroup row spacing={8} name="gender" options={GENDER} label="Gender" />
 
-              <Controller
+              {/* <Controller
                 name="dob"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
@@ -223,7 +228,7 @@ export default function ProfileNewEditForm() {
                     }}
                   />
                 )}
-              />
+              /> */}
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>

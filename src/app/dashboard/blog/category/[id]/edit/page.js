@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/blogcategory/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Category Edit',
+  title: 'Avoyes: Blog Category Edit',
 };
 
 export default function UserEditPage({ params }) {
