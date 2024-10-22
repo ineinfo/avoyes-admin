@@ -18,8 +18,23 @@ export const PROPERTY_TYPE_ROUTE = `${apiUrlCRM}/propertytype`;
 // CATEGORY MODULE
 export const CATEGORY_ROUTE = `${apiUrl}/product-category`;
 
+// FOOD PLACE MODULE
+export const FOOD_PLACE_ROUTE = `${apiUrl}/food-place`;
+
+// FOOD Type MODULE
+export const FOOD_TYPE_ROUTE = `${apiUrl}/food-type`;
+
+// POPULAR DISHES MODULE
+export const POPULAR_DISHES_ROUTE = `${apiUrl}/popular-dishes`;
+
+// CHALLANGES MODULE
+export const CHALLANGES_ROUTE = `${apiUrl}/challenges`;
+
 // PRODUCT MODULE
 export const PRODUCT_ROUTE = `${apiUrl}/products`
+
+// ACTIVITY MODULE
+export const ACTIVITY_ROUTE = `${apiUrl}/activities`;
 
 // BLOG MODULE
 export const BLOG_ROUTE = `${apiUrl}/blog`;
@@ -53,6 +68,12 @@ export const TAG_ROUTE = `${apiUrl}/product-tag`;
 
 // SOCIALMEDIA MODULE
 export const SOCIAL_MEDIA = `${apiUrl}/socials`;
+
+// EVENT MODULE
+export const EVENT_ROUTE = `${apiUrl}/events`;
+
+// EVENT VIDEO MODULE
+export const EVENT_VIDEO_ROUTE = `${apiUrl}/events/eventvideo`;
 
 // FAQ MODULE
 export const FAQ_ROUTE = `${apiUrl}/faqs`;

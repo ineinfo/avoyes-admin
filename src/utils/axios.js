@@ -41,6 +41,13 @@ import {
   BRAND_PARTNER,
   DELIVERABLE_ROUTE,
   DELIVERY_DETAILS,
+  EVENT_ROUTE,
+  FOOD_PLACE_ROUTE,
+  FOOD_TYPE_ROUTE,
+  POPULAR_DISHES_ROUTE,
+  CHALLANGES_ROUTE,
+  EVENT_VIDEO_ROUTE,
+  ACTIVITY_ROUTE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -168,6 +175,47 @@ export const endpoints = {
     create: SOCIAL_MEDIA,
     details: (id) => `${SOCIAL_MEDIA}/${id}`,
     deletes: (id) => `${SOCIAL_MEDIA}/${id}`,
+  },
+  event: {
+    list: EVENT_ROUTE,
+    create: EVENT_ROUTE,
+    details: (id) => `${EVENT_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_ROUTE}/${id}`,
+  },
+  eventvideo: {
+    list: EVENT_VIDEO_ROUTE,
+    create: EVENT_VIDEO_ROUTE,
+    details: (id) => `${EVENT_VIDEO_ROUTE}/${id}`,
+  },
+  activity: {
+    list: ACTIVITY_ROUTE,
+    create: ACTIVITY_ROUTE,
+    details: (id) => `${ACTIVITY_ROUTE}/${id}`,
+    deletes: (id) => `${ACTIVITY_ROUTE}/${id}`,
+  },
+  foodplace: {
+    list: FOOD_PLACE_ROUTE,
+    create: FOOD_PLACE_ROUTE,
+    details: (id) => `${FOOD_PLACE_ROUTE}/${id}`,
+    deletes: (id) => `${FOOD_PLACE_ROUTE}/${id}`,
+  },
+  foodtype: {
+    list: FOOD_TYPE_ROUTE,
+    create: FOOD_TYPE_ROUTE,
+    details: (id) => `${FOOD_TYPE_ROUTE}/${id}`,
+    deletes: (id) => `${FOOD_TYPE_ROUTE}/${id}`,
+  },
+  populardishes: {
+    list: POPULAR_DISHES_ROUTE,
+    create: POPULAR_DISHES_ROUTE,
+    details: (id) => `${POPULAR_DISHES_ROUTE}/${id}`,
+    deletes: (id) => `${POPULAR_DISHES_ROUTE}/${id}`,
+  },
+  challenges: {
+    list: CHALLANGES_ROUTE,
+    create: CHALLANGES_ROUTE,
+    details: (id) => `${CHALLANGES_ROUTE}/${id}`,
+    deletes: (id) => `${CHALLANGES_ROUTE}/${id}`,
   },
   faq: {
     list: FAQ_ROUTE,

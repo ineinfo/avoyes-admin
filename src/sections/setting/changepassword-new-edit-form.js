@@ -99,7 +99,6 @@ export default function UserNewEditForm() {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
       const response = await ChangePassword(data,token);
-      console.log(response,"RESPONSE")
       if (response.status) {
         enqueueSnackbar(response.message);
         handleLogout();

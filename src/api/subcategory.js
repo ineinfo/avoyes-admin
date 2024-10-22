@@ -100,7 +100,6 @@ export const DeleteSubCategory = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.subcategory.details(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -115,7 +114,6 @@ export const DeleteMultipleSub = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.subcategory.deletes(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });

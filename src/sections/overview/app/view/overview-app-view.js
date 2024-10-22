@@ -30,7 +30,7 @@ export default function OverviewAppView() {
   const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
   const users = useAuthContext();
-  const token = users.user.accessToken;
+  const token = users?.user?.accessToken;
 
   const settings = useSettingsContext();
 

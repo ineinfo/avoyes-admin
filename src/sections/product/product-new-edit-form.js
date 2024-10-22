@@ -257,15 +257,9 @@ export default function ClientNewEditForm({ currentProduct }) {
     setValue('image_url5', null);
   }, [setValue]);
 
-  const StockType = [
-    { label: 'Out of Stock', id: 0 },
-    { label: 'In Stock', id: 1 },
-  ];
+  const StockType = [{ label: 'out_of_stock' }, { label: 'in_stock' }];
 
-  const ProductLabel = [
-    { label: 'Sale', id: 0 },
-    { label: 'New', id: 1 },
-  ];
+  const ProductLabel = [{ label: 'Sell' }, { label: 'New' }];
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
@@ -283,66 +277,6 @@ export default function ClientNewEditForm({ currentProduct }) {
             >
               <RHFTextField name="title" label="Title" />
               <RHFTextField name="short_description" label="Short Description" />
-              <RHFTextField name="amount" label="Amount" type="number" />
-              <RHFTextField name="discount_amount" label="Discount Amount" type="number" />
-              {/* Stock status */}
-              <FormControl fullWidth>
-                <InputLabel>Stock Status</InputLabel>
-                <Controller
-                  name="stock_status"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        error={!!fieldState.error}
-                        disabled={propertyTypesLoading}
-                        label="Stock Status"
-                      >
-                        {StockType.map((type) => (
-                          <MenuItem key={type.id} value={type.id}>
-                            {type.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl>
-              {/* Product label */}
-              <FormControl fullWidth>
-                <InputLabel>Product label</InputLabel>
-                <Controller
-                  name="product_label"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        error={!!fieldState.error}
-                        disabled={propertyTypesLoading}
-                        label="Product label"
-                      >
-                        {ProductLabel.map((type) => (
-                          <MenuItem key={type.id} value={type.id}>
-                            {type.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl>
               {/* Category name */}
               <FormControl fullWidth>
                 <InputLabel>Category name</InputLabel>
@@ -413,6 +347,78 @@ export default function ClientNewEditForm({ currentProduct }) {
                   )}
                 />
               </FormControl>
+              <RHFTextField name="amount" label="Amount" type="number" />
+              <RHFTextField name="discount_amount" label="Discount Amount" type="number" />
+              {/* Stock status */}
+              {/* <FormControl fullWidth>
+                <InputLabel>Stock Status</InputLabel>
+                <Controller
+                  name="stock_status"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        error={!!fieldState.error}
+                        disabled={propertyTypesLoading}
+                        label="Stock Status"
+                      >
+                        {StockType.map((type) => (
+                          <MenuItem key={type.id} value={type.id}>
+                            {type.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl> */}
+              <RHFAutocomplete
+                name="stock_status"
+                label="Stock Status"
+                options={StockType.map((option) => option.label)}
+                getOptionLabel={(option) => option}
+              />
+              {/* Product label */}
+              {/* <FormControl fullWidth>
+                <InputLabel>Product label</InputLabel>
+                <Controller
+                  name="product_label"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        error={!!fieldState.error}
+                        disabled={propertyTypesLoading}
+                        label="Product label"
+                      >
+                        {ProductLabel.map((type) => (
+                          <MenuItem key={type.id} value={type.id}>
+                            {type.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl> */}
+              <RHFAutocomplete
+                name="product_label"
+                label="Product Label"
+                options={ProductLabel.map((option) => option.label)}
+                getOptionLabel={(option) => option}
+              />
               <RHFTextField name="weight" label="Weight" type="number" />
               {/* Type name */}
               <FormControl fullWidth>
@@ -597,6 +603,7 @@ export default function ClientNewEditForm({ currentProduct }) {
                   )}
                 />
               </FormControl>
+              {/* Description */}
               <Box sx={{ gridColumn: 'span 2' }}>
                 <Stack spacing={1.5}>
                   <Typography variant="subtitle1">Description</Typography>

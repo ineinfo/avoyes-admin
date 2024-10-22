@@ -193,6 +193,47 @@ export const paths = {
       list: `${ROOTS.DASHBOARD}/socialmedia/list`,
       edit: (id) => `${ROOTS.DASHBOARD}/socialmedia/${id}/edit`,
     },
+    event: {
+      root: `${ROOTS.DASHBOARD}/event`,
+      new: `${ROOTS.DASHBOARD}/event/new`,
+      list: `${ROOTS.DASHBOARD}/event/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/event/${id}/edit`,
+    },
+    eventvideo: {
+      root: `${ROOTS.DASHBOARD}/eventvideo`,
+      list: `${ROOTS.DASHBOARD}/eventvideo/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/eventvideo/${id}/edit`,
+    },
+    foodplace: {
+      root: `${ROOTS.DASHBOARD}/foodplace`,
+      new: `${ROOTS.DASHBOARD}/foodplace/new`,
+      list: `${ROOTS.DASHBOARD}/foodplace/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/foodplace/${id}/edit`,
+    },
+    foodtype: {
+      root: `${ROOTS.DASHBOARD}/foodtype`,
+      new: `${ROOTS.DASHBOARD}/foodtype/new`,
+      list: `${ROOTS.DASHBOARD}/foodtype/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/foodtype/${id}/edit`,
+    },
+    populardishes: {
+      root: `${ROOTS.DASHBOARD}/populardishes`,
+      new: `${ROOTS.DASHBOARD}/populardishes/new`,
+      list: `${ROOTS.DASHBOARD}/populardishes/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/populardishes/${id}/edit`,
+    },
+    challenges: {
+      root: `${ROOTS.DASHBOARD}/challenges`,
+      new: `${ROOTS.DASHBOARD}/challenges/new`,
+      list: `${ROOTS.DASHBOARD}/challenges/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/challenges/${id}/edit`,
+    },
+    activity: {
+      root: `${ROOTS.DASHBOARD}/activity`,
+      new: `${ROOTS.DASHBOARD}/activity/new`,
+      list: `${ROOTS.DASHBOARD}/activity/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/activity/${id}/edit`,
+    },
     pages: {
       root: `${ROOTS.DASHBOARD}/pages`,
       list: `${ROOTS.DASHBOARD}/pages/list`,
