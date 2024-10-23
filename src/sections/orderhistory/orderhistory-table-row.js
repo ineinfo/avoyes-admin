@@ -15,11 +15,12 @@ import { fDate } from 'src/utils/format-time';
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
+import Label from 'src/components/label';
 
 // ----------------------------------------------------------------------
 
 export default function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
-  const { video_title, video_url } = row;
+  const { order_number, order_amount, order_status } = row;
   const confirm = useBoolean();
   const popover = usePopover();
 
@@ -28,7 +29,7 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
       <TableRow hover selected={selected}>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>
           <ListItemText
-            primary={`${video_title || ''}`}
+            primary={`${order_number || ''}`}
             primaryTypographyProps={{ typography: 'body2' }}
             secondaryTypographyProps={{
               component: 'span',
@@ -36,7 +37,20 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
             }}
           />
         </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{video_url || '--'}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{order_amount || ''}</TableCell>
+        <TableCell>
+        <Label
+          variant="soft"
+          color={
+            (order_status === 'Completed' && 'success') ||
+            (order_status === 'Pending' && 'error') ||
+            (order_status === 'In Progress' && 'warning') ||
+            'default'
+          }
+        >
+          {order_status}
+        </Label>
+      </TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
@@ -56,7 +70,7 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
           }}
         >
           <Iconify icon="solar:pen-bold" />
-          Edit
+          View
         </MenuItem>
         {/* <MenuItem
           onClick={() => {

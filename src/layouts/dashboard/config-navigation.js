@@ -66,7 +66,11 @@ const ICONS = {
   event: icon('ic_event'),
   foodplace: icon('ic_foodplace'),
   foodtype: icon('ic_foodtype'),
-  populardishes: icon('ic_populardishes')
+  populardishes: icon('ic_populardishes'),
+  challanges: icon('ic_challanges'),
+  eventspeakar: icon('ic_eventspeakar'),
+  eventcategory: icon('ic_eventcategory'),
+  activity: icon('ic_activity'),
 };
 
 // ----------------------------------------------------------------------
@@ -222,14 +226,30 @@ export function useNavData() {
               { title: t('create'), path: paths.dashboard.product.new },
             ],
           },
+
           {
-            title: t('Social links'),
-            path: paths.dashboard.socialmedia.root,
-            icon: ICONS.sociallinks,
+            title: t('Event Category'),
+            path: paths.dashboard.eventcategory.root,
+            icon: ICONS.eventcategory,
             children: [
-              { title: t('list'), path: paths.dashboard.socialmedia.list },
-              { title: t('create'), path: paths.dashboard.socialmedia.new },
+              { title: t('list'), path: paths.dashboard.eventcategory.list },
+              { title: t('create'), path: paths.dashboard.eventcategory.new },
             ],
+          },
+          {
+            title: t('Event Speaker'),
+            path: paths.dashboard.eventspeaker.root,
+            icon: ICONS.eventspeakar,
+            children: [
+              { title: t('list'), path: paths.dashboard.eventspeaker.list },
+              { title: t('create'), path: paths.dashboard.eventspeaker.new },
+            ],
+          },
+          {
+            title: t('Event Video'),
+            path: paths.dashboard.eventvideo.root,
+            icon: ICONS.tour,
+            children: [{ title: t('list'), path: paths.dashboard.eventvideo.list }],
           },
           {
             title: t('Event'),
@@ -240,13 +260,13 @@ export function useNavData() {
               { title: t('create'), path: paths.dashboard.event.new },
             ],
           },
+
           {
-            title: t('Event Video'),
-            path: paths.dashboard.eventvideo.root,
-            icon: ICONS.pages,
-            children: [{ title: t('list'), path: paths.dashboard.eventvideo.list }],
+            title: t('Order Details'),
+            path: paths.dashboard.orderhistory.root,
+            icon: ICONS.order,
+            children: [{ title: t('list'), path: paths.dashboard.orderhistory.list }],
           },
-          
           {
             title: t('Food Type'),
             path: paths.dashboard.foodtype.root,
@@ -277,7 +297,7 @@ export function useNavData() {
           {
             title: t('Challanges'),
             path: paths.dashboard.challenges.root,
-            icon: ICONS.populardishes,
+            icon: ICONS.blog,
             children: [
               { title: t('list'), path: paths.dashboard.challenges.list },
               { title: t('create'), path: paths.dashboard.challenges.new },
@@ -286,7 +306,7 @@ export function useNavData() {
           {
             title: t('Activity'),
             path: paths.dashboard.activity.root,
-            icon: ICONS.populardishes,
+            icon: ICONS.property,
             children: [
               { title: t('list'), path: paths.dashboard.activity.list },
               { title: t('create'), path: paths.dashboard.activity.new },
@@ -297,6 +317,15 @@ export function useNavData() {
             path: paths.dashboard.pages.root,
             icon: ICONS.pages,
             children: [{ title: t('list'), path: paths.dashboard.pages.list }],
+          },
+          {
+            title: t('Social links'),
+            path: paths.dashboard.socialmedia.root,
+            icon: ICONS.sociallinks,
+            children: [
+              { title: t('list'), path: paths.dashboard.socialmedia.list },
+              { title: t('create'), path: paths.dashboard.socialmedia.new },
+            ],
           },
           {
             title: t('FAQ'),

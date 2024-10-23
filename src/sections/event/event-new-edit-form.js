@@ -9,7 +9,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Typography } from '@mui/material';
+import { CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { useSnackbar } from 'src/components/snackbar';
@@ -23,6 +23,8 @@ import FormProvider, {
 import { useAuthContext } from 'src/auth/hooks';
 import { CreateEvent, UpdateEvent } from 'src/api/event';
 import { DatePicker } from '@mui/x-date-pickers';
+import { UsegetEventCategories } from 'src/api/eventcategory';
+import { UsegetEventSpeakers } from 'src/api/eventspeaker';
 
 // ----------------------------------------------------------------------
 
@@ -30,6 +32,9 @@ export default function ClientNewEditForm({ currentEvent }) {
   const Event = Array.isArray(currentEvent) ? currentEvent[0] : currentEvent;
   const user = useAuthContext();
   const token = user.user.accessToken;
+
+  const { products: EventCategory, productsLoading: EventCategoryLoading } = UsegetEventCategories();
+  const { products: EventSpeaker, productsLoading: EventSpeakerLoading } = UsegetEventSpeakers();
 
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
@@ -39,6 +44,8 @@ export default function ClientNewEditForm({ currentEvent }) {
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     short_description: Yup.string().required('Title is required'),
+    event_category_id: Yup.string().required('Event Category is required'),
+    event_speaker_id: Yup.string().required('Event Speaker is required'),
     start_date: Yup.string()
       .required('Start date is required')
       .test('is-valid-date', 'Start date is not valid', (value) => !isNaN(Date.parse(value))),
@@ -57,10 +64,11 @@ export default function ClientNewEditForm({ currentEvent }) {
     () => ({
       title: Event?.title || '',
       short_description: Event?.short_description || '',
+      event_category_id: Event?.event_category_id || '',
+      event_speaker_id: Event?.event_speaker_id || '',
       description: Event?.description || '',
       start_date: Event?.start_date ? format(new Date(Event.start_date), 'yyyy-MM-dd') : '',
       end_date: Event?.end_date ? format(new Date(Event.end_date), 'yyyy-MM-dd') : '',
-      // isFeatured: Event?.is_featured  || '',
       isFeatured: Event?.is_featured !== undefined ? String(Event.is_featured) : '', 
       image_url: fetchimages || null,
     }),
@@ -151,6 +159,74 @@ export default function ClientNewEditForm({ currentEvent }) {
             >
               <RHFTextField name="title" label="Title" />
               <RHFTextField name="short_description" label="Short Description" />
+              <FormControl fullWidth>
+                <InputLabel>Event Category</InputLabel>
+                <Controller
+                  name="event_category_id"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        label="Event Category"
+                        error={!!fieldState.error}
+                        disabled={EventCategoryLoading}
+                      >
+                        {EventCategoryLoading ? (
+                          <MenuItem disabled>
+                            <CircularProgress size={24} />
+                          </MenuItem>
+                        ) : (
+                          EventCategory.map((type) => (
+                            <MenuItem key={type.id} value={type.id}>
+                              {type.title}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Event Speaker</InputLabel>
+                <Controller
+                  name="event_speaker_id"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Select
+                        {...field}
+                        label="Event Speaker"
+                        error={!!fieldState.error}
+                        disabled={EventSpeakerLoading}
+                      >
+                        {EventSpeakerLoading ? (
+                          <MenuItem disabled>
+                            <CircularProgress size={24} />
+                          </MenuItem>
+                        ) : (
+                          EventSpeaker.map((type) => (
+                            <MenuItem key={type.id} value={type.id}>
+                              {type.title}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                      {fieldState.error && (
+                        <FormHelperText style={{ color: '#FF5630' }}>
+                          {fieldState.error.message}
+                        </FormHelperText>
+                      )}
+                    </>
+                  )}
+                />
+              </FormControl>
               <Controller
                 name="start_date"
                 control={control}

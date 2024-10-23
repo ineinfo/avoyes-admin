@@ -12,17 +12,13 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import IconButton from '@mui/material/IconButton';
 import TableContainer from '@mui/material/TableContainer';
-
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
-
 import { useBoolean } from 'src/hooks/use-boolean';
-
 import { endpoints } from 'src/utils/axios';
-
 import { _roles } from 'src/_mock';
-
+import { DeleteCategory, DeleteMultiple } from 'src/api/category';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import { useSnackbar } from 'src/components/snackbar';
@@ -40,14 +36,16 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import UserTableRow from '../eventvideo-table-row';
-import UserTableToolbar from '../eventvideo-table-toolbar';
-import UserTableFiltersResult from '../eventvideo-table-filters-result';
-import { DeletePages } from 'src/api/pages';
+import UserTableRow from '../eventspeaker-table-row';
+import UserTableToolbar from '../eventspeaker-table-toolbar';
+import UserTableFiltersResult from '../eventspeaker-table-filters-result';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteEvent, DeleteMultipleEvent } from 'src/api/event';
+import { DeleteEventCategory, DeleteMultipleEventCategory } from 'src/api/eventcategory';
+import { DeleteEventSpeaker, DeleteMultipleEventSpeaker } from 'src/api/eventspeaker';
 
 const TABLE_HEAD = [
-  { id: 'video_title', label: 'Title' },
-  { id: 'video_url', label: 'Video Url' },
+  { id: 'title', label: 'Title' },
   { id: '', width: 88 },
 ];
 
@@ -55,7 +53,7 @@ const defaultFilters = {
   name: '',
   role: [],
   status: 'all',
-  video_title: '',
+  title: '',
 };
 
 // ----------------------------------------------------------------------
@@ -63,6 +61,8 @@ const defaultFilters = {
 export default function UserListView() {
   const { enqueueSnackbar } = useSnackbar();
   const table = useTable();
+  const user = useAuthContext();
+  const token = user?.user?.accessToken;
 
   const settings = useSettingsContext();
 
@@ -105,7 +105,7 @@ export default function UserListView() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(endpoints.eventvideo.list);
+        const response = await axios.get(endpoints.eventspeaker.list);
         setTableData(response.data.data);
       } catch (err) {
         console.log(err);
@@ -119,39 +119,43 @@ export default function UserListView() {
     setFilters(defaultFilters);
   }, []);
 
-  // const handleDeleteRow = useCallback(
-  //   async (id) => {
-  //     try {
-  //       await DeletePages(id);
-  //       const deleteRow = tableData.filter((row) => row.id !== id);
+  const handleDeleteRow = useCallback(
+    async (id) => {
+      try {
+        await DeleteEventSpeaker(id, token);
+        const deleteRow = tableData.filter((row) => row.id !== id);
 
-  //       enqueueSnackbar('Delete success!');
+        enqueueSnackbar('Delete success!');
 
-  //       setTableData(deleteRow);
-  //     } catch (error) {
-  //       enqueueSnackbar('Delete failed!', { variant: 'error' });
-  //       console.error(error);
-  //     }
-  //   },
-  //   [enqueueSnackbar, tableData]
-  // );
+        setTableData(deleteRow);
+      } catch (error) {
+        enqueueSnackbar('Delete failed!', { variant: 'error' });
+        console.error(error);
+      }
+    },
+    [enqueueSnackbar, tableData]
+  );
 
-  // const handleDeleteRows = useCallback(() => {
-  //   const deleteRows = tableData.filter((row) => !table.selected.includes(row.id));
-
-  //   enqueueSnackbar('Delete success!');
-
-  //   setTableData(deleteRows);
-
-  //   table.onUpdatePageDeleteRows({
-  //     totalRowsInPage: dataInPage.length,
-  //     totalRowsFiltered: dataFiltered.length,
-  //   });
-  // }, [dataFiltered.length, dataInPage.length, enqueueSnackbar, table, tableData]);
+  const handleDeleteRows = useCallback(async () => {
+    try {
+      const selectedIds = table.selected;
+      await DeleteMultipleEventSpeaker(selectedIds, token);
+      const updatedTableData = tableData.filter((row) => !selectedIds.includes(row.id));
+      enqueueSnackbar('Delete success!');
+      setTableData(updatedTableData);
+      table.onUpdatePageDeleteRows({
+        totalRowsInPage: dataInPage.length,
+        totalRowsFiltered: dataFiltered.length,
+      });
+    } catch (error) {
+      enqueueSnackbar('Delete failed!', { variant: 'error' });
+      console.error(error);
+    }
+  }, [dataFiltered.length, dataInPage.length, enqueueSnackbar, table, tableData]);
 
   const handleEditRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.eventvideo.edit(id));
+      router.push(paths.dashboard.eventspeaker.edit(id));
     },
     [router]
   );
@@ -163,19 +167,19 @@ export default function UserListView() {
           heading="List"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'Event Video', href: paths.dashboard.eventvideo.list },
+            { name: 'Event Speaker', href: paths.dashboard.eventspeaker.list },
             { name: 'List' },
           ]}
-          // action={
-          //   <Button
-          //     component={RouterLink}
-          //     href={paths.dashboard.pages.new}
-          //     variant="contained"
-          //     startIcon={<Iconify icon="mingcute:add-line" />}
-          //   >
-          //     Create
-          //   </Button>
-          // }
+          action={
+            <Button
+              component={RouterLink}
+              href={paths.dashboard.eventspeaker.new}
+              variant="contained"
+              startIcon={<Iconify icon="mingcute:add-line" />}
+            >
+              Create
+            </Button>
+          }
           sx={{
             mb: { xs: 3, md: 5 },
           }}
@@ -194,21 +198,21 @@ export default function UserListView() {
           <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
             <TableSelectedAction
               dense={table.dense}
-              // numSelected={table.selected.length}
+              numSelected={table.selected.length}
               rowCount={dataFiltered.length}
-              // onSelectAllRows={(checked) =>
-              //   table.onSelectAllRows(
-              //     checked,
-              //     dataFiltered.map((row) => row.id)
-              //   )
-              // }
-              // action={
-              //   <Tooltip title="Delete">
-              //     <IconButton color="primary" onClick={confirm.onTrue}>
-              //       <Iconify icon="solar:trash-bin-trash-bold" />
-              //     </IconButton>
-              //   </Tooltip>
-              // }
+              onSelectAllRows={(checked) =>
+                table.onSelectAllRows(
+                  checked,
+                  dataFiltered.map((row) => row.id)
+                )
+              }
+              action={
+                <Tooltip title="Delete">
+                  <IconButton color="primary" onClick={confirm.onTrue}>
+                    <Iconify icon="solar:trash-bin-trash-bold" />
+                  </IconButton>
+                </Tooltip>
+              }
             />
             <Scrollbar>
               <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -219,12 +223,12 @@ export default function UserListView() {
                   rowCount={dataFiltered.length}
                   numSelected={table.selected.length}
                   onSort={table.onSort}
-                  // onSelectAllRows={(checked) =>
-                  //   table.onSelectAllRows(
-                  //     checked,
-                  //     dataFiltered.map((row) => row.id)
-                  //   )
-                  // }
+                  onSelectAllRows={(checked) =>
+                    table.onSelectAllRows(
+                      checked,
+                      dataFiltered.map((row) => row.id)
+                    )
+                  }
                 />
                 <TableBody>
                   {dataFiltered
@@ -238,6 +242,7 @@ export default function UserListView() {
                         row={row}
                         selected={table.selected.includes(row.id)}
                         onSelectRow={() => table.onSelectRow(row.id)}
+                        onDeleteRow={() => handleDeleteRow(row.id)}
                         onEditRow={() => handleEditRow(row.id)}
                       />
                     ))}
@@ -261,7 +266,7 @@ export default function UserListView() {
           />
         </Card>
       </Container>
-      {/* <ConfirmDialog
+      <ConfirmDialog
         open={confirm.value}
         onClose={confirm.onFalse}
         title="Delete"
@@ -282,7 +287,7 @@ export default function UserListView() {
             Delete
           </Button>
         }
-      /> */}
+      />
     </>
   );
 }
@@ -290,7 +295,7 @@ export default function UserListView() {
 // ----------------------------------------------------------------------
 
 function applyFilter({ inputData, comparator, filters }) {
-  const { video_title, description, status, role } = filters;
+  const { title, description, status, role } = filters;
 
   const stabilizedThis = inputData.map((el, index) => [el, index]);
 
@@ -303,8 +308,8 @@ function applyFilter({ inputData, comparator, filters }) {
   inputData = stabilizedThis.map((el) => el[0]);
 
   // Filter by first name or last name
-  if (video_title) {
-    inputData = inputData.filter((user) => user.video_title.toLowerCase().includes(video_title.toLowerCase()));
+  if (title) {
+    inputData = inputData.filter((user) => user.title.toLowerCase().includes(title.toLowerCase()));
   }
   if (description) {
     inputData = inputData.filter((user) =>
@@ -324,18 +329,3 @@ function applyFilter({ inputData, comparator, filters }) {
 
   return inputData;
 }
-
-// function applyFilter({ inputData, comparator, filters }) {
-//   if (!inputData || typeof inputData !== 'object') {
-//     console.error("inputData is not a valid object:", inputData);
-//     return [];
-//   }
-//   const { video_title, description } = filters;
-//   if (video_title && !inputData.video_title.toLowerCase().includes(video_title.toLowerCase())) {
-//     return [];
-//   }
-//   if (description && !inputData.description.toLowerCase().includes(description.toLowerCase())) {
-//     return [];
-//   }
-//   return [inputData];
-// }

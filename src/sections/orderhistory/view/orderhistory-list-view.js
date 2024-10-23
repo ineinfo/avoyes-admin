@@ -40,14 +40,15 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import UserTableRow from '../eventvideo-table-row';
-import UserTableToolbar from '../eventvideo-table-toolbar';
-import UserTableFiltersResult from '../eventvideo-table-filters-result';
+import UserTableRow from '../orderhistory-table-row';
+import UserTableToolbar from '../orderhistory-table-toolbar';
+import UserTableFiltersResult from '../orderhistory-table-filters-result';
 import { DeletePages } from 'src/api/pages';
 
 const TABLE_HEAD = [
-  { id: 'video_title', label: 'Title' },
-  { id: 'video_url', label: 'Video Url' },
+  { id: 'order_number', label: 'Order Number' },
+  { id: 'order_amount', label: 'Order Amount' },
+  { id: 'order_status', label: 'Order Status' },
   { id: '', width: 88 },
 ];
 
@@ -55,7 +56,7 @@ const defaultFilters = {
   name: '',
   role: [],
   status: 'all',
-  video_title: '',
+  order_number: '',
 };
 
 // ----------------------------------------------------------------------
@@ -105,7 +106,7 @@ export default function UserListView() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(endpoints.eventvideo.list);
+        const response = await axios.get(endpoints.orderhistory.list);
         setTableData(response.data.data);
       } catch (err) {
         console.log(err);
@@ -151,7 +152,7 @@ export default function UserListView() {
 
   const handleEditRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.eventvideo.edit(id));
+      router.push(paths.dashboard.orderhistory.view(id));
     },
     [router]
   );
@@ -163,7 +164,7 @@ export default function UserListView() {
           heading="List"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'Event Video', href: paths.dashboard.eventvideo.list },
+            { name: 'Order Details', href: paths.dashboard.orderhistory.list },
             { name: 'List' },
           ]}
           // action={
@@ -290,7 +291,7 @@ export default function UserListView() {
 // ----------------------------------------------------------------------
 
 function applyFilter({ inputData, comparator, filters }) {
-  const { video_title, description, status, role } = filters;
+  const { order_number, description, status, role } = filters;
 
   const stabilizedThis = inputData.map((el, index) => [el, index]);
 
@@ -303,8 +304,8 @@ function applyFilter({ inputData, comparator, filters }) {
   inputData = stabilizedThis.map((el) => el[0]);
 
   // Filter by first name or last name
-  if (video_title) {
-    inputData = inputData.filter((user) => user.video_title.toLowerCase().includes(video_title.toLowerCase()));
+  if (order_number) {
+    inputData = inputData.filter((user) => user.order_number.toLowerCase().includes(order_number.toLowerCase()));
   }
   if (description) {
     inputData = inputData.filter((user) =>

@@ -75,6 +75,16 @@ export const EVENT_ROUTE = `${apiUrl}/events`;
 // EVENT VIDEO MODULE
 export const EVENT_VIDEO_ROUTE = `${apiUrl}/events/eventvideo`;
 
+// EVENT CATEGORY MODULE
+export const EVENT_CATEGORY_ROUTE = `${apiUrl}/eventcategory`;
+
+// EVENT SPEAKER MODULE
+export const EVENT_SPEAKER_ROUTE = `${apiUrl}/eventspeaker`;
+
+// ORDER HISTORY MODULE
+export const ORDER_HISTORY_ROUTE = `${apiUrl}/orders`;
+export const ORDER_STATUS_ROUTE = `${apiUrl}/orders`
+
 // FAQ MODULE
 export const FAQ_ROUTE = `${apiUrl}/faqs`;
 

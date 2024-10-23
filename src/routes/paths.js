@@ -204,6 +204,23 @@ export const paths = {
       list: `${ROOTS.DASHBOARD}/eventvideo/list`,
       edit: (id) => `${ROOTS.DASHBOARD}/eventvideo/${id}/edit`,
     },
+    eventcategory: {
+      root: `${ROOTS.DASHBOARD}/eventcategory`,
+      new: `${ROOTS.DASHBOARD}/eventcategory/new`,
+      list: `${ROOTS.DASHBOARD}/eventcategory/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/eventcategory/${id}/edit`,
+    },
+    eventspeaker: {
+      root: `${ROOTS.DASHBOARD}/eventspeaker`,
+      new: `${ROOTS.DASHBOARD}/eventspeaker/new`,
+      list: `${ROOTS.DASHBOARD}/eventspeaker/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/eventspeaker/${id}/edit`,
+    },
+    orderhistory: {
+      root: `${ROOTS.DASHBOARD}/orderhistory`,
+      list: `${ROOTS.DASHBOARD}/orderhistory/list`,
+      view: (id) => `${ROOTS.DASHBOARD}/orderhistory/${id}/view`,
+    },
     foodplace: {
       root: `${ROOTS.DASHBOARD}/foodplace`,
       new: `${ROOTS.DASHBOARD}/foodplace/new`,

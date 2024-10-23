@@ -45,12 +45,16 @@ export default function ClientNewEditForm({ currentEventVideo }) {
 
   const NewClientSchema = Yup.object().shape({
     video_title: Yup.string().required('Title is required'),
+    top_sub_heading: Yup.string().required('Top Sub Heading is required'),
+    video_sub_heading: Yup.string().required('Video Sub Heading is required'),
     video_url: Yup.string().url('Invalid URL format').required('Video link is required'),
   });
 
   const defaultValues = useMemo(
     () => ({
       video_title: currentEventVideo?.video_title || '',
+      top_sub_heading: currentEventVideo?.top_sub_heading || '',
+      video_sub_heading: currentEventVideo?.video_sub_heading || '',
       video_url: currentEventVideo?.video_url || '',
     }),
     [currentEventVideo]
@@ -83,7 +87,7 @@ export default function ClientNewEditForm({ currentEventVideo }) {
     try {
       if (currentEventVideo) {
         await UpdateEventVideo(currentEventVideo.id, data, token);
-        enqueueSnackbar('Pages updated successfully!', { variant: 'success' });
+        enqueueSnackbar('Event Video updated successfully!', { variant: 'success' });
       }
       // else {
       //   await CreatePages(data);
@@ -100,15 +104,25 @@ export default function ClientNewEditForm({ currentEventVideo }) {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid xs={12} md={8}>
         <Card sx={{ p: 3 }}>
-          <Stack spacing={3} sx={{ p: 3 }}>
+        <Box
+              rowGap={3}
+              columnGap={2}
+              display="grid"
+              gridTemplateColumns={{
+                xs: 'repeat(1, 1fr)',
+                sm: 'repeat(2, 1fr)',
+              }}
+            >
             <RHFTextField name="video_title" label="Title" />
+            <RHFTextField name="top_sub_heading" label="Top Sub Heading" />
+            <RHFTextField name="video_sub_heading" label="Video Sub Heading" />
             <RHFTextField name="video_url" label="Video Link" />
+          </Box>
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
                 {'Update'}
               </LoadingButton>
             </Stack>
-          </Stack>
         </Card>
       </Grid>
     </FormProvider>

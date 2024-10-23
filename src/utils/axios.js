@@ -48,6 +48,10 @@ import {
   CHALLANGES_ROUTE,
   EVENT_VIDEO_ROUTE,
   ACTIVITY_ROUTE,
+  EVENT_CATEGORY_ROUTE,
+  EVENT_SPEAKER_ROUTE,
+  ORDER_HISTORY_ROUTE,
+  ORDER_STATUS_ROUTE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -186,6 +190,24 @@ export const endpoints = {
     list: EVENT_VIDEO_ROUTE,
     create: EVENT_VIDEO_ROUTE,
     details: (id) => `${EVENT_VIDEO_ROUTE}/${id}`,
+  },
+  eventcategory: {
+    list: EVENT_CATEGORY_ROUTE,
+    create: EVENT_CATEGORY_ROUTE,
+    details: (id) => `${EVENT_CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_CATEGORY_ROUTE}/${id}`,
+  },
+  eventspeaker: {
+    list: EVENT_SPEAKER_ROUTE,
+    create: EVENT_SPEAKER_ROUTE,
+    details: (id) => `${EVENT_SPEAKER_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_SPEAKER_ROUTE}/${id}`,
+  },
+  orderhistory: {
+    list: ORDER_HISTORY_ROUTE,
+    create: ORDER_HISTORY_ROUTE,
+    details: (id) => `${ORDER_HISTORY_ROUTE}/${id}`,
+    view: (id) => `${ORDER_STATUS_ROUTE}/${id}/status`,
   },
   activity: {
     list: ACTIVITY_ROUTE,
