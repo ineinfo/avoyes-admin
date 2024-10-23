@@ -70,7 +70,6 @@ export default function UserListView() {
   const confirm = useBoolean();
 
   const [tableData, setTableData] = useState([]);
-  console.log(tableData,"DATA")
 
   const [filters, setFilters] = useState(defaultFilters);
 

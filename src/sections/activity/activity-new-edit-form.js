@@ -47,7 +47,6 @@ export default function ClientNewEditForm({ currentActivity }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchimages = Activity?.image_url ? `${Activity.image_url}` : '';
-  console.log(fetchimages,"IMAGEs")
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),

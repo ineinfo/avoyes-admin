@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import TableRow from '@mui/material/TableRow';
@@ -7,11 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
-
 import { useBoolean } from 'src/hooks/use-boolean';
-
-import { fDate } from 'src/utils/format-time';
-
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
@@ -19,7 +14,7 @@ import CustomPopover, { usePopover } from 'src/components/custom-popover';
 // ----------------------------------------------------------------------
 
 export default function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
-  const { title } = row;
+  const { title, rating, reviews } = row;
   const confirm = useBoolean();
   const popover = usePopover();
 
@@ -39,6 +34,8 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
             }}
           />
         </TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{rating || ''}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{reviews || ''}</TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />

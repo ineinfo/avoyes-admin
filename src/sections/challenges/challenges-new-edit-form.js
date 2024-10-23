@@ -47,7 +47,6 @@ export default function ClientNewEditForm({ currentChallenges }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchimages = Challenges?.image_url ? `${Challenges.image_url}` : '';
-  console.log(fetchimages,"Images")
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
