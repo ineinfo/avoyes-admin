@@ -71,6 +71,7 @@ const ICONS = {
   eventspeakar: icon('ic_eventspeakar'),
   eventcategory: icon('ic_eventcategory'),
   activity: icon('ic_activity'),
+  activitycategory: icon('ic_activitycategory'),
 };
 
 // ----------------------------------------------------------------------
@@ -306,10 +307,19 @@ export function useNavData() {
           {
             title: t('Activity'),
             path: paths.dashboard.activity.root,
-            icon: ICONS.property,
+            icon: ICONS.activity,
             children: [
               { title: t('list'), path: paths.dashboard.activity.list },
               { title: t('create'), path: paths.dashboard.activity.new },
+            ],
+          },
+          {
+            title: t('Activity Category'),
+            path: paths.dashboard.activitycategory.root,
+            icon: ICONS.activitycategory,
+            children: [
+              { title: t('list'), path: paths.dashboard.activitycategory.list },
+              { title: t('create'), path: paths.dashboard.activitycategory.new },
             ],
           },
           {

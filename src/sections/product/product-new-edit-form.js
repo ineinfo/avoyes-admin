@@ -350,69 +350,13 @@ export default function ClientNewEditForm({ currentProduct }) {
               <RHFTextField name="amount" label="Amount" type="number" />
               <RHFTextField name="discount_amount" label="Discount Amount" type="number" />
               {/* Stock status */}
-              {/* <FormControl fullWidth>
-                <InputLabel>Stock Status</InputLabel>
-                <Controller
-                  name="stock_status"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        error={!!fieldState.error}
-                        disabled={propertyTypesLoading}
-                        label="Stock Status"
-                      >
-                        {StockType.map((type) => (
-                          <MenuItem key={type.id} value={type.id}>
-                            {type.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl> */}
               <RHFAutocomplete
                 name="stock_status"
                 label="Stock Status"
                 options={StockType.map((option) => option.label)}
                 getOptionLabel={(option) => option}
               />
-              {/* Product label */}
-              {/* <FormControl fullWidth>
-                <InputLabel>Product label</InputLabel>
-                <Controller
-                  name="product_label"
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <>
-                      <Select
-                        {...field}
-                        error={!!fieldState.error}
-                        disabled={propertyTypesLoading}
-                        label="Product label"
-                      >
-                        {ProductLabel.map((type) => (
-                          <MenuItem key={type.id} value={type.id}>
-                            {type.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                      {fieldState.error && (
-                        <FormHelperText style={{ color: '#FF5630' }}>
-                          {fieldState.error.message}
-                        </FormHelperText>
-                      )}
-                    </>
-                  )}
-                />
-              </FormControl> */}
+              {/* Product Label */}
               <RHFAutocomplete
                 name="product_label"
                 label="Product Label"

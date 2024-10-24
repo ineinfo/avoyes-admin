@@ -57,7 +57,7 @@ export default function ClientNewEditForm({ currentOrder }) {
 
   const defaultValues = useMemo(
     () => ({
-      newStatus: currentOrder?.newStatus || '',
+      newStatus: currentOrder?.order_status || '',
     }),
     [currentOrder]
   );
@@ -115,42 +115,39 @@ export default function ClientNewEditForm({ currentOrder }) {
           <TableHead>
             <TableRow>
               <TableCell sx={{ typography: 'subtitle2' }}>S.No</TableCell>
-              <TableCell sx={{ typography: 'subtitle2' }}>First Name</TableCell>
-              <TableCell sx={{ typography: 'subtitle2' }}>Last Name</TableCell>
-              <TableCell sx={{ typography: 'subtitle2' }}>Coupon Name</TableCell>
-              <TableCell>Apply At</TableCell>
+              <TableCell sx={{ typography: 'subtitle2' }}>Product Name</TableCell>
+              <TableCell sx={{ typography: 'subtitle2' }}>Rate</TableCell>
+              <TableCell sx={{ typography: 'subtitle2' }}>Quantity</TableCell>
+              <TableCell sx={{ typography: 'subtitle2' }}>Amount</TableCell>
             </TableRow>
           </TableHead>
-
+  
           <TableBody>
-            {/* {currentOrder?.length > 0 ? (
-              currentOrder?.map((coupon, index) => ( */}
-                <TableRow key={currentOrder?.id}>
-                  <TableCell>{currentOrder + 1}</TableCell>
-                  <TableCell>{currentOrder?.first_name || '--'}</TableCell>
-                  <TableCell>{currentOrder?.last_name || '--'}</TableCell>
-                  <TableCell>
-                    <Box sx={{ maxWidth: 560 }}>
-                      <Typography variant="subtitle2">{currentOrder?.coupon_name || '--'}</Typography>
-                    </Box>
-                  </TableCell>
-                  <TableCell>{formatDate(currentOrder?.apply_at)}</TableCell>
+            {currentOrder?.order_items?.length > 0 ? (
+              currentOrder.order_items.map((item, index) => (
+                <TableRow key={item.order_item_id}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{item.item_name || '--'}</TableCell>
+                  <TableCell>{item.rate || '--'}</TableCell>
+                  <TableCell>{item.quantity || '--'}</TableCell>
+                  <TableCell>{item.amount || '--'}</TableCell>
                 </TableRow>
-              {/* ))
-            ) : ( */}
-              {/* <TableRow>
-                <TableCell colSpan={6}>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5}>
                   <Typography variant="body2" align="center">
                     No data found
                   </Typography>
                 </TableCell>
-              </TableRow> */}
-            {/* )} */}
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </Scrollbar>
     </TableContainer>
   );
+  
 
   return (
     // <Box sx={{ p: 3 }}>
@@ -232,7 +229,7 @@ export default function ClientNewEditForm({ currentOrder }) {
                 <Typography variant="subtitle2">Order Status:</Typography>
               </Grid>
               <Grid item xs={4}>
-                <Typography variant="body1">{currentOrder?.order_status || '--'}</Typography>
+                <Typography variant="body1">{currentOrder?.status || '--'}</Typography>
               </Grid>
             </Grid>
             <Grid container spacing={2}>
@@ -290,12 +287,13 @@ export default function ClientNewEditForm({ currentOrder }) {
 
         <Grid item xs={12} md={12}>
           <Card sx={{ p: 3 }}>
-            <Typography variant="h6">Product Details</Typography>
+            <Typography variant="h6">PRODUCT DETAILS:-</Typography>
             <Divider sx={{ my: 2 }} />
             {renderList}
+            <Divider sx={{ my: 2 }} />
             <FormProvider methods={methods} onSubmit={onSubmit} >
               <Grid item xs={12} md={12} sx={{ mt: 3 }}>
-              <Box
+              {/* <Box
               rowGap={3}
               columnGap={2}
               display="grid"
@@ -303,7 +301,8 @@ export default function ClientNewEditForm({ currentOrder }) {
                 xs: 'repeat(1, 1fr)',
                 sm: 'repeat(2, 1fr)',
               }}
-            >
+            > */}
+            <Box sx={{ gridColumn: 'span 2', mt : 3}}>
                   <Stack spacing={3}>
                     <Stack spacing={1.5}>
                       <FormControl fullWidth>

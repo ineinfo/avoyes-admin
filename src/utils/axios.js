@@ -52,6 +52,8 @@ import {
   EVENT_SPEAKER_ROUTE,
   ORDER_HISTORY_ROUTE,
   ORDER_STATUS_ROUTE,
+  ACTIVITY_CATEGORY_ROUTE,
+  ACTIVITY_IMG_REMOVE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -117,21 +119,21 @@ export const endpoints = {
     create: PROPERTY_TYPE_ROUTE,
     details: (id) => `${PROPERTY_TYPE_ROUTE}/${id}`,
   },
-  users: {
-    list: USER_ROUTE,
-    create: USER_ROUTE,
-    details: (id) => `${USER_ROUTE}/${id}`,
-  },
-  clients: {
-    list: CLIENTS_ROUTE,
-    create: CLIENTS_ROUTE,
-    details: (id) => `${CLIENTS_ROUTE}/${id}`,
-  },
-  leads: {
-    list: LEADS_ROUTE,
-    create: LEADS_ROUTE,
-    details: (id) => `${LEADS_ROUTE}/${id}`,
-  },
+  // users: {
+  //   list: USER_ROUTE,
+  //   create: USER_ROUTE,
+  //   details: (id) => `${USER_ROUTE}/${id}`,
+  // },
+  // clients: {
+  //   list: CLIENTS_ROUTE,
+  //   create: CLIENTS_ROUTE,
+  //   details: (id) => `${CLIENTS_ROUTE}/${id}`,
+  // },
+  // leads: {
+  //   list: LEADS_ROUTE,
+  //   create: LEADS_ROUTE,
+  //   details: (id) => `${LEADS_ROUTE}/${id}`,
+  // },
   category: {
     list: CATEGORY_ROUTE,
     create: CATEGORY_ROUTE,
@@ -214,6 +216,13 @@ export const endpoints = {
     create: ACTIVITY_ROUTE,
     details: (id) => `${ACTIVITY_ROUTE}/${id}`,
     deletes: (id) => `${ACTIVITY_ROUTE}/${id}`,
+    imgdlt : (iid) => `${ACTIVITY_IMG_REMOVE}/${iid}`
+  },
+  activitycategory: {
+    list: ACTIVITY_CATEGORY_ROUTE,
+    create: ACTIVITY_CATEGORY_ROUTE,
+    details: (id) => `${ACTIVITY_CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${ACTIVITY_CATEGORY_ROUTE}/${id}`,
   },
   foodplace: {
     list: FOOD_PLACE_ROUTE,
@@ -290,12 +299,12 @@ export const endpoints = {
     details: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
     deletes: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
   },
-  brand: {
-    list: BRANDS_ROUTE,
-    create: BRANDS_ROUTE,
-    details: (id) => `${BRANDS_ROUTE}/?id=${id}`,
-    deletes: (id) => `${BRANDS_ROUTE}?ids=${id}`,
-  },
+  // brand: {
+  //   list: BRANDS_ROUTE,
+  //   create: BRANDS_ROUTE,
+  //   details: (id) => `${BRANDS_ROUTE}/?id=${id}`,
+  //   deletes: (id) => `${BRANDS_ROUTE}?ids=${id}`,
+  // },
   // product: {
   //   list: PRODUCT_ROUTE,
   //   create: PRODUCT_ROUTE,
@@ -323,26 +332,12 @@ export const endpoints = {
     details: (id) => `${HOME_ROUTE}/?id=${id}`,
     deletes: (id) => `${HOME_ROUTE}?ids=${id}`,
   },
-  review: {
-    list: REVIEW_ROUTE,
-    create: REVIEW_ROUTE,
-    details: (id) => `${REVIEW_ROUTE}/?id=${id}`,
-    deletes: (id) => `${REVIEW_ROUTE}?ids=${id}`,
-  },
-  advertisement: {
-    list: ADVERTISEMENT_ROUTE,
-    create: ADVERTISEMENT_ROUTE,
-    edit: (id) => `${ADVERTISEMENT_ROUTE}/${id}`,
-    details: (id) => `${ADVERTISEMENT_ROUTE}/?id=${id}`,
-    deletes: (id) => `${ADVERTISEMENT_ROUTE}?ids=${id}`,
-    view: (id) => `${ADVERTISEMENT_RECORD_STATUS}/${id}`,
-  },
-  rewards: {
-    list: REWARDS_ROUTE,
-    create: REWARDS_ROUTE,
-    details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
-    deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
-  },
+  // rewards: {
+  //   list: REWARDS_ROUTE,
+  //   create: REWARDS_ROUTE,
+  //   details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
+  //   deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
+  // },
   Others: {
     city: {
       list: CITY_ROUTE,

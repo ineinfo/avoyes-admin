@@ -251,6 +251,12 @@ export const paths = {
       list: `${ROOTS.DASHBOARD}/activity/list`,
       edit: (id) => `${ROOTS.DASHBOARD}/activity/${id}/edit`,
     },
+    activitycategory: {
+      root: `${ROOTS.DASHBOARD}/activitycategory`,
+      new: `${ROOTS.DASHBOARD}/activitycategory/new`,
+      list: `${ROOTS.DASHBOARD}/activitycategory/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/activitycategory/${id}/edit`,
+    },
     pages: {
       root: `${ROOTS.DASHBOARD}/pages`,
       list: `${ROOTS.DASHBOARD}/pages/list`,

@@ -81,3 +81,16 @@ export const UpdateOrderStatus = async (id, data, token) => {
 };
 
 
+export const FetchOrderDetails = async (token) => {
+  try {
+    const response = await axios.get(endpoints.orderhistory.list, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error update property:', error);
+    return null;
+  }
+};

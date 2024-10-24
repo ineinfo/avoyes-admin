@@ -31,10 +31,14 @@ export const POPULAR_DISHES_ROUTE = `${apiUrl}/popular-dishes`;
 export const CHALLANGES_ROUTE = `${apiUrl}/challenges`;
 
 // PRODUCT MODULE
-export const PRODUCT_ROUTE = `${apiUrl}/products`
+export const PRODUCT_ROUTE = `${apiUrl}/products`;
 
 // ACTIVITY MODULE
 export const ACTIVITY_ROUTE = `${apiUrl}/activities`;
+export const ACTIVITY_IMG_REMOVE = `${apiUrl}/activities/image`
+
+// ACTIVITY CATEGORY MODULE
+export const ACTIVITY_CATEGORY_ROUTE = `${apiUrl}/activitycategory`;
 
 // BLOG MODULE
 export const BLOG_ROUTE = `${apiUrl}/blog`;
@@ -83,25 +87,25 @@ export const EVENT_SPEAKER_ROUTE = `${apiUrl}/eventspeaker`;
 
 // ORDER HISTORY MODULE
 export const ORDER_HISTORY_ROUTE = `${apiUrl}/orders`;
-export const ORDER_STATUS_ROUTE = `${apiUrl}/orders`
+export const ORDER_STATUS_ROUTE = `${apiUrl}/orders`;
 
 // FAQ MODULE
 export const FAQ_ROUTE = `${apiUrl}/faqs`;
 
 // DASHBOARD MODULE
-export const DASHBOARD_ROUTE = `${apiUrl}/admin/count`
+export const DASHBOARD_ROUTE = `${apiUrl}/admin/count`;
 
 // CONTACT INQUIRY MODULE
 export const CONTACT_INQUIRY = `${apiUrl}/contact-inquiry`;
 
 // CONTACT US
-export const CONTACT_US = `${apiUrl}/contactus`
+export const CONTACT_US = `${apiUrl}/contactus`;
 
 // DETAILS US
-export const DELIVERY_DETAILS = `${apiUrl}/deliverydetails`
+export const DELIVERY_DETAILS = `${apiUrl}/deliverydetails`;
 
 // BRAND PARNTER US
-export const BRAND_PARTNER = `${apiUrl}/brandpartner`
+export const BRAND_PARTNER = `${apiUrl}/brandpartner`;
 
 // PAGES MODULE
 export const PAGES_ROUTE = `${apiUrl}/pages`;
@@ -115,15 +119,11 @@ export const DELIVERABLE_ROUTE = `${apiUrl}/deliverable`;
 // HOME MODULE
 export const HOME_ROUTE = `${apiUrl}/home`;
 
-// REVIEW MODULE
-export const REVIEW_ROUTE = `${apiUrl}/reviews`;
-
 // USER MODULE
 export const USERS_ROUTE = `${apiUrl}/users`;
 
-// ADVERTISEMENT MODULE
-export const ADVERTISEMENT_ROUTE = `${apiUrl}/advertisements`;
-export const ADVERTISEMENT_RECORD_STATUS = `${apiUrl}/advertisements/record_status`;
+// COUNTRY MODULE
+export const COUNTRY_ROUTE = `${apiUrl}/countries`
 
 // OTHERS MODULE
 export const CITY_ROUTE = `${apiUrl}/others/cities`;
@@ -142,27 +142,23 @@ export const PROFILE_UPDATE = `${apiUrl}/users`;
 // FETCH PROFILE
 export const FETCH_PROFILE = `${apiUrl}/users`;
 
-
-export const ChangePassword = async (data,token) => {
+export const ChangePassword = async (data, token) => {
   try {
-  const response = await axios.put(`${CHANGE_PASSWORD}`, data,{
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-} catch (error) {
-  console.error('Error update property:', error);
-  return null;
-}
+    const response = await axios.put(`${CHANGE_PASSWORD}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error update property:', error);
+    return null;
+  }
 };
 
-
-
-
-export const UpdateProfile = async (data,token) => {
-  const response = await axios.put(`${PROFILE_UPDATE}/${15}`, data,{
+export const UpdateProfile = async (data, token) => {
+  const response = await axios.put(`${PROFILE_UPDATE}/${15}`, data, {
     headers: {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
@@ -172,7 +168,7 @@ export const UpdateProfile = async (data,token) => {
 };
 
 export const FetchProfile = async (token) => {
-  const response = await axios.get(`${FETCH_PROFILE}/${15}`,{
+  const response = await axios.get(`${FETCH_PROFILE}/${15}`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
