@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/inquiry/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Contact inquiry',
+  title: 'Avoyes: Create Inquiry',
 };
 
 export default function UserCreatePage() {

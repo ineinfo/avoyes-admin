@@ -100,7 +100,6 @@ export const DeleteCategory = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.category.details(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -115,7 +114,6 @@ export const DeleteMultiple = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.category.deletes(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });

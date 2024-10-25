@@ -3,7 +3,7 @@ import { UserCreateView } from 'src/sections/blogtags/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Tags',
+  title: 'Avoyes: Create Blog Tag',
 };
 
 export default function UserCreatePage() {

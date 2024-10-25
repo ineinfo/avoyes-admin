@@ -66,7 +66,7 @@ export default function ClientNewEditForm({ currentBlog }) {
     title: Yup.string().required('Title is required'),
     description: Yup.string().required('Description is required'),
     short_description: Yup.string().required('Short description is required'),
-    tags: Yup.array().min(1, 'Must have at least 1 tags'),
+    // tags: Yup.array().min(1, 'Must have at least 1 tags'),
     category_id: Yup.string().required('Category name is required'),
     blog_date: Yup.string()
       .required('Start date is required')
@@ -228,7 +228,7 @@ export default function ClientNewEditForm({ currentBlog }) {
               />
               <RHFTextField name="short_description" label="Short description" />
               <Box sx={{ gridColumn: 'span 2' }}>
-                <RHFAutocomplete
+                {/* <RHFAutocomplete
                   name="tags"
                   label="Tags"
                   multiple
@@ -240,6 +240,38 @@ export default function ClientNewEditForm({ currentBlog }) {
                       {option.title}
                     </li>
                   )}
+                  renderTags={(selected, getTagProps) =>
+                    selected.map((option, index) => (
+                      <Chip
+                        {...getTagProps({ index })}
+                        key={option?.id}
+                        label={option?.title}
+                        size="small"
+                        color="info"
+                        variant="soft"
+                      />
+                    ))
+                  }
+                /> */}
+                <RHFAutocomplete
+                  name="tags"
+                  label="Tags"
+                  multiple
+                  freeSolo
+                  options={propertyTypess.map((option) => option)}
+                  getOptionLabel={(option) => option?.title || ''}
+                  isOptionEqualToValue={(option, value) => option?.id === value?.id}
+                  renderOption={(props, option) => (
+                    <li {...props} key={option?.id}>
+                      {option.title}
+                    </li>
+                  )}
+                  onChange={(event, value) => {
+                    const uniqueValues = value.filter(
+                      (v, index, self) => index === self.findIndex((t) => t?.id === v?.id)
+                    );
+                    setValue('tags', uniqueValues);
+                  }}
                   renderTags={(selected, getTagProps) =>
                     selected.map((option, index) => (
                       <Chip

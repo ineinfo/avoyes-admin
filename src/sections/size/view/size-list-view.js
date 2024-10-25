@@ -170,7 +170,7 @@ export default function UserListView() {
           heading="List"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'Size', href: paths.dashboard.size.list },
+            { name: 'Product Size', href: paths.dashboard.size.list },
             { name: 'List' },
           ]}
           action={

@@ -94,21 +94,40 @@ export default function UserNewEditForm() {
 
   const values = watch();
 
+  // const onSubmit = handleSubmit(async (data) => {
+  //   try {
+  //     await new Promise((resolve) => setTimeout(resolve, 500));
+  //     reset();
+  //     const response = await ChangePassword(data,token);
+  //     if (response.status) {
+  //       enqueueSnackbar(response.message);
+  //       handleLogout();
+  //     } 
+  //   } catch (error) {
+  //     enqueueSnackbar(error.response?.data?.error || 'Unknown error', { variant: 'error' });
+  //   }
+  // });
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      reset();
-      const response = await ChangePassword(data,token);
-      console.log(response,"RESPONSE")
-      if (response.status) {
-        enqueueSnackbar(response.message);
+      
+      const response = await ChangePassword(data, token);
+      if (response?.status === true) {
+        enqueueSnackbar(response.message, { variant: 'success' });
+        reset();
         handleLogout();
-      } 
+      } else {
+        enqueueSnackbar(response.error || 'An error occurred', { variant: 'error' });
+      }
     } catch (error) {
-      const errorMessage = error.response?.data?.error || 'Unknown error occurred';
+      console.log(error, "ERROR");
+      const errorMessage = error?.response?.data?.error || 'Unknown error';
       enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   });
+  
+  
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>

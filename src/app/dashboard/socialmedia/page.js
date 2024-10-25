@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/socialmedia/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Socialmedia List',
+  title: 'Avoyes: Social links List',
 };
 
 export default function UserListPage() {

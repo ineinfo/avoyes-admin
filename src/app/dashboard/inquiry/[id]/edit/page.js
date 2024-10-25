@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/inquiry/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Contact Inquiry Edit',
+  title: 'Avoyes: Inquiry Edit',
 };
 
 export default function UserEditPage({ params }) {

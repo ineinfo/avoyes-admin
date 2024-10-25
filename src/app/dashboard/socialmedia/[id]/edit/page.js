@@ -8,7 +8,7 @@ import { UserEditView } from 'src/sections/socialmedia/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Socialmedia Edit',
+  title: 'Avoyes: Social links Edit',
 };
 
 export default function UserEditPage({ params }) {

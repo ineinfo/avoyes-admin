@@ -29,7 +29,7 @@ export default function UserEditView({ id }) {
             href: paths.dashboard.list,
           },
           {
-            name: 'SubCategory',
+            name: 'Product SubCategory',
             href: paths.dashboard.subcategory.list,
           },
           { name: `Edit` },

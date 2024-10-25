@@ -17,17 +17,17 @@ export default function UserCreateView() {
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create a new category"
+        heading="Create a new product category"
         links={[
           {
             name: 'Dashboard',
             href: paths.dashboard.root,
           },
           {
-            name: 'Category',
+            name: 'Product Category',
             href: paths.dashboard.category.list,
           },
-          { name: 'New category' },
+          { name: 'New product category' },
         ]}
         sx={{
           mb: { xs: 3, md: 5 },

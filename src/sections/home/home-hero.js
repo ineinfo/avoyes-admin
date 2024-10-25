@@ -135,7 +135,9 @@ export default function HomeHero() {
 
   const router = useRouter();
 
-  router.push('/dashboard');
+  useEffect(() => {
+    router.push('/dashboard');
+  }, [router]);
 
   const getScroll = useCallback(() => {
     let heroHeight = 0;

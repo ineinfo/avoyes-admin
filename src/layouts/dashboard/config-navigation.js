@@ -59,6 +59,19 @@ const ICONS = {
   type: icon('ic_type'),
   tags: icon('ic_tags'),
   comment: icon('ic_comment'),
+  inquiry: icon('ic_inquiry'),
+  about: icon('ic_about'),
+  contact: icon('ic_contact'),
+  faq: icon('ic_faq'),
+  event: icon('ic_event'),
+  foodplace: icon('ic_foodplace'),
+  foodtype: icon('ic_foodtype'),
+  populardishes: icon('ic_populardishes'),
+  challanges: icon('ic_challanges'),
+  eventspeakar: icon('ic_eventspeakar'),
+  eventcategory: icon('ic_eventcategory'),
+  activity: icon('ic_activity'),
+  activitycategory: icon('ic_activitycategory'),
 };
 
 // ----------------------------------------------------------------------
@@ -98,63 +111,63 @@ export function useNavData() {
             ],
             children: [
               {
-                title: t('Category'),
+                title: t('Product Category'),
                 path: paths.dashboard.category.root,
-                icon: ICONS.category,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.category.list },
                   { title: t('create'), path: paths.dashboard.category.new },
                 ],
               },
               {
-                title: t('SubCategory'),
+                title: t('Product SubCategory'),
                 path: paths.dashboard.subcategory.root,
-                icon: ICONS.subcategory,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.subcategory.list },
                   { title: t('create'), path: paths.dashboard.subcategory.new },
                 ],
               },
               {
-                title: t('Color'),
+                title: t('Product Color'),
                 path: paths.dashboard.color.root,
-                icon: ICONS.color,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.color.list },
                   { title: t('create'), path: paths.dashboard.color.new },
                 ],
               },
               {
-                title: t('Size'),
+                title: t('Product Size'),
                 path: paths.dashboard.size.root,
-                icon: ICONS.size,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.size.list },
                   { title: t('create'), path: paths.dashboard.size.new },
                 ],
               },
               {
-                title: t('Material'),
+                title: t('Product Material'),
                 path: paths.dashboard.material.root,
-                icon: ICONS.material,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.material.list },
                   { title: t('create'), path: paths.dashboard.material.new },
                 ],
               },
               {
-                title: t('Type'),
+                title: t('Product Type'),
                 path: paths.dashboard.type.root,
-                icon: ICONS.type,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.type.list },
                   { title: t('create'), path: paths.dashboard.type.new },
                 ],
               },
               {
-                title: t('Tag'),
+                title: t('Product Tag'),
                 path: paths.dashboard.tag.root,
-                icon: ICONS.type,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.tag.list },
                   { title: t('create'), path: paths.dashboard.tag.new },
@@ -171,7 +184,7 @@ export function useNavData() {
               {
                 title: t('Category'),
                 path: paths.dashboard.blog.blogcategory.root,
-                icon: ICONS.category,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.blog.blogcategory.list },
                   { title: t('create'), path: paths.dashboard.blog.blogcategory.new },
@@ -180,7 +193,7 @@ export function useNavData() {
               {
                 title: t('Tags'),
                 path: paths.dashboard.blog.blogtags.root,
-                icon: ICONS.tags,
+                icon: ICONS.amenity,
                 children: [
                   { title: t('list'), path: paths.dashboard.blog.blogtags.list },
                   { title: t('create'), path: paths.dashboard.blog.blogtags.new },
@@ -214,6 +227,107 @@ export function useNavData() {
               { title: t('create'), path: paths.dashboard.product.new },
             ],
           },
+
+          {
+            title: t('Event Category'),
+            path: paths.dashboard.eventcategory.root,
+            icon: ICONS.eventcategory,
+            children: [
+              { title: t('list'), path: paths.dashboard.eventcategory.list },
+              { title: t('create'), path: paths.dashboard.eventcategory.new },
+            ],
+          },
+          {
+            title: t('Event Speaker'),
+            path: paths.dashboard.eventspeaker.root,
+            icon: ICONS.eventspeakar,
+            children: [
+              { title: t('list'), path: paths.dashboard.eventspeaker.list },
+              { title: t('create'), path: paths.dashboard.eventspeaker.new },
+            ],
+          },
+          {
+            title: t('Event Video'),
+            path: paths.dashboard.eventvideo.root,
+            icon: ICONS.tour,
+            children: [{ title: t('list'), path: paths.dashboard.eventvideo.list }],
+          },
+          {
+            title: t('Event'),
+            path: paths.dashboard.event.root,
+            icon: ICONS.event,
+            children: [
+              { title: t('list'), path: paths.dashboard.event.list },
+              { title: t('create'), path: paths.dashboard.event.new },
+            ],
+          },
+
+          {
+            title: t('Order Details'),
+            path: paths.dashboard.orderhistory.root,
+            icon: ICONS.order,
+            children: [{ title: t('list'), path: paths.dashboard.orderhistory.list }],
+          },
+          {
+            title: t('Food Type'),
+            path: paths.dashboard.foodtype.root,
+            icon: ICONS.foodtype,
+            children: [
+              { title: t('list'), path: paths.dashboard.foodtype.list },
+              { title: t('create'), path: paths.dashboard.foodtype.new },
+            ],
+          },
+          {
+            title: t('Food place'),
+            path: paths.dashboard.foodplace.root,
+            icon: ICONS.foodplace,
+            children: [
+              { title: t('list'), path: paths.dashboard.foodplace.list },
+              { title: t('create'), path: paths.dashboard.foodplace.new },
+            ],
+          },
+          {
+            title: t('Popular dishes'),
+            path: paths.dashboard.populardishes.root,
+            icon: ICONS.populardishes,
+            children: [
+              { title: t('list'), path: paths.dashboard.populardishes.list },
+              { title: t('create'), path: paths.dashboard.populardishes.new },
+            ],
+          },
+          {
+            title: t('Challanges'),
+            path: paths.dashboard.challenges.root,
+            icon: ICONS.blog,
+            children: [
+              { title: t('list'), path: paths.dashboard.challenges.list },
+              { title: t('create'), path: paths.dashboard.challenges.new },
+            ],
+          },
+          {
+            title: t('Activity'),
+            path: paths.dashboard.activity.root,
+            icon: ICONS.activity,
+            children: [
+              { title: t('list'), path: paths.dashboard.activity.list },
+              { title: t('create'), path: paths.dashboard.activity.new },
+            ],
+          },
+          {
+            title: t('Activity Category'),
+            path: paths.dashboard.activitycategory.root,
+            icon: ICONS.activitycategory,
+            children: [
+              { title: t('list'), path: paths.dashboard.activitycategory.list },
+              { title: t('create'), path: paths.dashboard.activitycategory.new },
+            ],
+          },
+          {
+            title: t('Pages'),
+            path: paths.dashboard.pages.root,
+            icon: ICONS.pages,
+            children: [{ title: t('list'), path: paths.dashboard.pages.list }],
+          },
           {
             title: t('Social links'),
             path: paths.dashboard.socialmedia.root,
@@ -224,15 +338,9 @@ export function useNavData() {
             ],
           },
           {
-            title: t('Pages'),
-            path: paths.dashboard.pages.root,
-            icon: ICONS.pages,
-            children: [{ title: t('list'), path: paths.dashboard.pages.list }],
-          },
-          {
             title: t('FAQ'),
             path: paths.dashboard.faq.root,
-            icon: ICONS.sociallinks,
+            icon: ICONS.faq,
             children: [
               { title: t('list'), path: paths.dashboard.faq.list },
               { title: t('create'), path: paths.dashboard.faq.new },
@@ -241,7 +349,7 @@ export function useNavData() {
           {
             title: t('Contact Inquiry'),
             path: paths.dashboard.inquiry.root,
-            icon: ICONS.sociallinks,
+            icon: ICONS.inquiry,
             children: [
               { title: t('list'), path: paths.dashboard.inquiry.list },
               { title: t('create'), path: paths.dashboard.inquiry.new },
@@ -250,32 +358,14 @@ export function useNavData() {
           {
             title: t('Contact Us'),
             path: paths.dashboard.contact.root,
-            icon: ICONS.pages,
+            icon: ICONS.contact,
             children: [{ title: t('list'), path: paths.dashboard.contact.list }],
           },
           {
             title: t('About Us'),
             path: paths.dashboard.aboutus.root,
-            icon: ICONS.pages,
+            icon: ICONS.about,
             children: [{ title: t('list'), path: paths.dashboard.aboutus.list }],
-          },
-          {
-            title: t('brands partner'),
-            path: paths.dashboard.brandpartner.root,
-            icon: ICONS.pages,
-            children: [{ title: t('list'), path: paths.dashboard.brandpartner.list }],
-          },
-          {
-            title: t('Manage deliverables'),
-            path: paths.dashboard.deliverable.root,
-            icon: ICONS.pages,
-            children: [{ title: t('list'), path: paths.dashboard.deliverable.list }],
-          },
-          {
-            title: t('Delivery Details'),
-            path: paths.dashboard.deliverydetails.root,
-            icon: ICONS.pages,
-            children: [{ title: t('list'), path: paths.dashboard.deliverydetails.list }],
           },
           {
             title: t('Setting'),

@@ -4,7 +4,7 @@
 import UserCreateProfile from 'src/sections/setting/view/profile-create-view';
 
 export const metadata = {
-  title: 'Dashboard: Profile',
+  title: 'Avoyes: Profile',
 };
 
 export default function UserCreatePage() {

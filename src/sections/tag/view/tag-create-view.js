@@ -17,14 +17,14 @@ export default function UserCreateView() {
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create tag"
+        heading="Create Product tag"
         links={[
           {
             name: 'Dashboard',
             href: paths.dashboard.root,
           },
           {
-            name: 'Tag',
+            name: 'Product Tag',
             href: paths.dashboard.tag.list,
           },
           { name: 'New tag' },

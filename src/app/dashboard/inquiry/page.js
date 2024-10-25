@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/inquiry/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Contact inquiry List',
+  title: 'Avoyes: Inquiry List',
 };
 
 export default function UserListPage() {

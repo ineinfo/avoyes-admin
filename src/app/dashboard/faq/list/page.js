@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/faq/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: FAQ List',
+  title: 'Avoyes: FAQ List',
 };
 
 export default function UserListPage() {

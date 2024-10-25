@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/tag/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Tag',
+  title: 'Avoyes: Create Product Tag',
 };
 
 export default function UserCreatePage() {

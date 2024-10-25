@@ -41,6 +41,19 @@ import {
   BRAND_PARTNER,
   DELIVERABLE_ROUTE,
   DELIVERY_DETAILS,
+  EVENT_ROUTE,
+  FOOD_PLACE_ROUTE,
+  FOOD_TYPE_ROUTE,
+  POPULAR_DISHES_ROUTE,
+  CHALLANGES_ROUTE,
+  EVENT_VIDEO_ROUTE,
+  ACTIVITY_ROUTE,
+  EVENT_CATEGORY_ROUTE,
+  EVENT_SPEAKER_ROUTE,
+  ORDER_HISTORY_ROUTE,
+  ORDER_STATUS_ROUTE,
+  ACTIVITY_CATEGORY_ROUTE,
+  ACTIVITY_IMG_REMOVE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -106,21 +119,21 @@ export const endpoints = {
     create: PROPERTY_TYPE_ROUTE,
     details: (id) => `${PROPERTY_TYPE_ROUTE}/${id}`,
   },
-  users: {
-    list: USER_ROUTE,
-    create: USER_ROUTE,
-    details: (id) => `${USER_ROUTE}/${id}`,
-  },
-  clients: {
-    list: CLIENTS_ROUTE,
-    create: CLIENTS_ROUTE,
-    details: (id) => `${CLIENTS_ROUTE}/${id}`,
-  },
-  leads: {
-    list: LEADS_ROUTE,
-    create: LEADS_ROUTE,
-    details: (id) => `${LEADS_ROUTE}/${id}`,
-  },
+  // users: {
+  //   list: USER_ROUTE,
+  //   create: USER_ROUTE,
+  //   details: (id) => `${USER_ROUTE}/${id}`,
+  // },
+  // clients: {
+  //   list: CLIENTS_ROUTE,
+  //   create: CLIENTS_ROUTE,
+  //   details: (id) => `${CLIENTS_ROUTE}/${id}`,
+  // },
+  // leads: {
+  //   list: LEADS_ROUTE,
+  //   create: LEADS_ROUTE,
+  //   details: (id) => `${LEADS_ROUTE}/${id}`,
+  // },
   category: {
     list: CATEGORY_ROUTE,
     create: CATEGORY_ROUTE,
@@ -168,6 +181,72 @@ export const endpoints = {
     create: SOCIAL_MEDIA,
     details: (id) => `${SOCIAL_MEDIA}/${id}`,
     deletes: (id) => `${SOCIAL_MEDIA}/${id}`,
+  },
+  event: {
+    list: EVENT_ROUTE,
+    create: EVENT_ROUTE,
+    details: (id) => `${EVENT_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_ROUTE}/${id}`,
+  },
+  eventvideo: {
+    list: EVENT_VIDEO_ROUTE,
+    create: EVENT_VIDEO_ROUTE,
+    details: (id) => `${EVENT_VIDEO_ROUTE}/${id}`,
+  },
+  eventcategory: {
+    list: EVENT_CATEGORY_ROUTE,
+    create: EVENT_CATEGORY_ROUTE,
+    details: (id) => `${EVENT_CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_CATEGORY_ROUTE}/${id}`,
+  },
+  eventspeaker: {
+    list: EVENT_SPEAKER_ROUTE,
+    create: EVENT_SPEAKER_ROUTE,
+    details: (id) => `${EVENT_SPEAKER_ROUTE}/${id}`,
+    deletes: (id) => `${EVENT_SPEAKER_ROUTE}/${id}`,
+  },
+  orderhistory: {
+    list: ORDER_HISTORY_ROUTE,
+    create: ORDER_HISTORY_ROUTE,
+    details: (id) => `${ORDER_HISTORY_ROUTE}/${id}`,
+    view: (id) => `${ORDER_STATUS_ROUTE}/${id}/status`,
+  },
+  activity: {
+    list: ACTIVITY_ROUTE,
+    create: ACTIVITY_ROUTE,
+    details: (id) => `${ACTIVITY_ROUTE}/${id}`,
+    deletes: (id) => `${ACTIVITY_ROUTE}/${id}`,
+    imgdlt : (iid) => `${ACTIVITY_IMG_REMOVE}/${iid}`
+  },
+  activitycategory: {
+    list: ACTIVITY_CATEGORY_ROUTE,
+    create: ACTIVITY_CATEGORY_ROUTE,
+    details: (id) => `${ACTIVITY_CATEGORY_ROUTE}/${id}`,
+    deletes: (id) => `${ACTIVITY_CATEGORY_ROUTE}/${id}`,
+  },
+  foodplace: {
+    list: FOOD_PLACE_ROUTE,
+    create: FOOD_PLACE_ROUTE,
+    details: (id) => `${FOOD_PLACE_ROUTE}/${id}`,
+    deletes: (id) => `${FOOD_PLACE_ROUTE}/${id}`,
+  },
+  foodtype: {
+    list: FOOD_TYPE_ROUTE,
+    create: FOOD_TYPE_ROUTE,
+    details: (id) => `${FOOD_TYPE_ROUTE}/${id}`,
+    deletes: (id) => `${FOOD_TYPE_ROUTE}/${id}`,
+  },
+  populardishes: {
+    list: POPULAR_DISHES_ROUTE,
+    create: POPULAR_DISHES_ROUTE,
+    details: (id) => `${POPULAR_DISHES_ROUTE}/${id}`,
+    deletes: (id) => `${POPULAR_DISHES_ROUTE}/${id}`,
+  },
+  challenges: {
+    list: CHALLANGES_ROUTE,
+    create: CHALLANGES_ROUTE,
+    details: (id) => `${CHALLANGES_ROUTE}/${id}`,
+    deletes: (id) => `${CHALLANGES_ROUTE}/${id}`,
   },
   faq: {
     list: FAQ_ROUTE,
@@ -220,12 +299,12 @@ export const endpoints = {
     details: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
     deletes: (id) => `${BLOG_COMMENT_ROUTE}/${id}`,
   },
-  brand: {
-    list: BRANDS_ROUTE,
-    create: BRANDS_ROUTE,
-    details: (id) => `${BRANDS_ROUTE}/?id=${id}`,
-    deletes: (id) => `${BRANDS_ROUTE}?ids=${id}`,
-  },
+  // brand: {
+  //   list: BRANDS_ROUTE,
+  //   create: BRANDS_ROUTE,
+  //   details: (id) => `${BRANDS_ROUTE}/?id=${id}`,
+  //   deletes: (id) => `${BRANDS_ROUTE}?ids=${id}`,
+  // },
   // product: {
   //   list: PRODUCT_ROUTE,
   //   create: PRODUCT_ROUTE,
@@ -253,26 +332,12 @@ export const endpoints = {
     details: (id) => `${HOME_ROUTE}/?id=${id}`,
     deletes: (id) => `${HOME_ROUTE}?ids=${id}`,
   },
-  review: {
-    list: REVIEW_ROUTE,
-    create: REVIEW_ROUTE,
-    details: (id) => `${REVIEW_ROUTE}/?id=${id}`,
-    deletes: (id) => `${REVIEW_ROUTE}?ids=${id}`,
-  },
-  advertisement: {
-    list: ADVERTISEMENT_ROUTE,
-    create: ADVERTISEMENT_ROUTE,
-    edit: (id) => `${ADVERTISEMENT_ROUTE}/${id}`,
-    details: (id) => `${ADVERTISEMENT_ROUTE}/?id=${id}`,
-    deletes: (id) => `${ADVERTISEMENT_ROUTE}?ids=${id}`,
-    view: (id) => `${ADVERTISEMENT_RECORD_STATUS}/${id}`,
-  },
-  rewards: {
-    list: REWARDS_ROUTE,
-    create: REWARDS_ROUTE,
-    details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
-    deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
-  },
+  // rewards: {
+  //   list: REWARDS_ROUTE,
+  //   create: REWARDS_ROUTE,
+  //   details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
+  //   deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
+  // },
   Others: {
     city: {
       list: CITY_ROUTE,

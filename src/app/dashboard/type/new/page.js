@@ -3,7 +3,7 @@ import { UserCreateView } from 'src/sections/type/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new Type',
+  title: 'Avoyes: Create Product Type',
 };
 
 export default function UserCreatePage() {

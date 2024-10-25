@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/blog/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Blog List',
+  title: 'Avoyes: Blog List',
 };
 
 export default function UserListPage() {

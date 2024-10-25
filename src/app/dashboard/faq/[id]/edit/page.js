@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/faq/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: FAQ Edit',
+  title: 'Avoyes: FAQ Edit',
 };
 
 export default function UserEditPage({ params }) {

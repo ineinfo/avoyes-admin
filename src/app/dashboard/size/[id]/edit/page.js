@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/size/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Size Edit',
+  title: 'Avoyes: Product Size Edit',
 };
 
 export default function UserEditPage({ params }) {

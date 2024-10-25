@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/tag/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Tag List',
+  title: 'Avoyes: Product Tag List',
 };
 
 export default function UserListPage() {

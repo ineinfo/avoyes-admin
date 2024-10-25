@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/faq/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Create a new FAQ',
+  title: 'Avoyes: Create FAQ',
 };
 
 export default function UserCreatePage() {

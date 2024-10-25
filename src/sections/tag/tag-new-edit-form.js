@@ -46,7 +46,6 @@ export default function ClientNewEditForm({ currentTag }) {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-  const fetchimages = Tags?.image_url ? `${Tags.image_url}` : '';
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
@@ -95,24 +94,6 @@ export default function ClientNewEditForm({ currentTag }) {
     }
   });
 
-  const handleDrop = useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles[0];
-
-      const newFile = Object.assign(file, {
-        preview: URL.createObjectURL(file),
-      });
-
-      if (file) {
-        setValue('image_url', newFile, { shouldValidate: true });
-      }
-    },
-    [setValue]
-  );
-
-  const handleRemoveFile = useCallback(() => {
-    setValue('image_url', null);
-  }, [setValue]);
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>

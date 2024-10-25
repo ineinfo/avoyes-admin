@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/setting/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Change Password',
+  title: 'Avoyes: Change Password',
 };
 
 export default function UserCreatePage() {

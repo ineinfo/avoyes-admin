@@ -3,7 +3,7 @@ import { UserListView } from 'src/sections/size/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Dashboard: Size List',
+  title: 'Avoyes: Product Size List',
 };
 
 export default function UserListPage() {
