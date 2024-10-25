@@ -111,7 +111,7 @@ export function useNavData() {
             ],
             children: [
               {
-                title: t('Category'),
+                title: t('Product Category'),
                 path: paths.dashboard.category.root,
                 icon: ICONS.amenity,
                 children: [
@@ -120,7 +120,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('SubCategory'),
+                title: t('Product SubCategory'),
                 path: paths.dashboard.subcategory.root,
                 icon: ICONS.amenity,
                 children: [
@@ -129,7 +129,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('Color'),
+                title: t('Product Color'),
                 path: paths.dashboard.color.root,
                 icon: ICONS.amenity,
                 children: [
@@ -138,7 +138,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('Size'),
+                title: t('Product Size'),
                 path: paths.dashboard.size.root,
                 icon: ICONS.amenity,
                 children: [
@@ -147,7 +147,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('Material'),
+                title: t('Product Material'),
                 path: paths.dashboard.material.root,
                 icon: ICONS.amenity,
                 children: [
@@ -156,7 +156,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('Type'),
+                title: t('Product Type'),
                 path: paths.dashboard.type.root,
                 icon: ICONS.amenity,
                 children: [
@@ -165,7 +165,7 @@ export function useNavData() {
                 ],
               },
               {
-                title: t('Tag'),
+                title: t('Product Tag'),
                 path: paths.dashboard.tag.root,
                 icon: ICONS.amenity,
                 children: [
@@ -367,24 +367,6 @@ export function useNavData() {
             icon: ICONS.about,
             children: [{ title: t('list'), path: paths.dashboard.aboutus.list }],
           },
-          // {
-          //   title: t('brands partner'),
-          //   path: paths.dashboard.brandpartner.root,
-          //   icon: ICONS.pages,
-          //   children: [{ title: t('list'), path: paths.dashboard.brandpartner.list }],
-          // },
-          // {
-          //   title: t('Manage deliverables'),
-          //   path: paths.dashboard.deliverable.root,
-          //   icon: ICONS.pages,
-          //   children: [{ title: t('list'), path: paths.dashboard.deliverable.list }],
-          // },
-          // {
-          //   title: t('Delivery Details'),
-          //   path: paths.dashboard.deliverydetails.root,
-          //   icon: ICONS.pages,
-          //   children: [{ title: t('list'), path: paths.dashboard.deliverydetails.list }],
-          // },
           {
             title: t('Setting'),
             path: paths.dashboard.setting.root,

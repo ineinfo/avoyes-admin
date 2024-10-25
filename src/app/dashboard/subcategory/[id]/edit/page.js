@@ -8,7 +8,7 @@ import { UserEditView } from 'src/sections/subcategory/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: SubCategory Edit',
+  title: 'Avoyes: Product SubCategory Edit',
 };
 
 export default function UserEditPage({ params }) {

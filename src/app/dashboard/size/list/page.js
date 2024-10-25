@@ -3,7 +3,7 @@ import { UserListView } from 'src/sections/size/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Size List',
+  title: 'Avoyes: Product Size List',
 };
 
 export default function UserListPage() {

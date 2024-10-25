@@ -34,8 +34,8 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
             }}
           />
         </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{rating || ''}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{reviews || ''}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{rating || '--'}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{reviews || '--'}</TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />

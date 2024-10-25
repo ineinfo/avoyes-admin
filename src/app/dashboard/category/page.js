@@ -4,7 +4,7 @@ import { UserListView } from 'src/sections/category/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Category List',
+  title: 'Avoyes: Product Category List',
 };
 
 export default function UserListPage() {

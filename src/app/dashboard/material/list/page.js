@@ -3,7 +3,7 @@ import { UserListView } from 'src/sections/material/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Material List',
+  title: 'Avoyes: Product Material List',
 };
 
 export default function UserListPage() {

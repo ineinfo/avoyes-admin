@@ -65,7 +65,7 @@ export default function UserListView() {
   const { enqueueSnackbar } = useSnackbar();
   const table = useTable();
   const user = useAuthContext();
-  const token = user.user.accessToken;
+  const token = user?.user?.accessToken;
 
   const settings = useSettingsContext();
 

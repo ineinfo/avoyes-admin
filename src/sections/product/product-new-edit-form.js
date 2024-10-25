@@ -152,8 +152,12 @@ export default function ClientNewEditForm({ currentProduct }) {
         await UpdateProduct(Product.id, formData, token);
         enqueueSnackbar('Product updated successfully!', { variant: 'success' });
       } else {
-        await CreateProduct(formData, token);
+        const response = await CreateProduct(formData, token);
+        if(response.status === true){
         enqueueSnackbar('Product created successfully!', { variant: 'success' });
+      }else{
+        enqueueSnackbar(error.response?.data?.message || 'Unknown error', { variant: 'error' });
+      }
       }
       router.push(paths.dashboard.product.list);
       reset();

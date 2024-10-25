@@ -27,7 +27,7 @@ export default function UserEditView({ id }) {
             href: paths.dashboard.list,
           },
           {
-            name: 'Color',
+            name: 'Product Color',
             href: paths.dashboard.color.list,
           },
           { name: `Edit` },

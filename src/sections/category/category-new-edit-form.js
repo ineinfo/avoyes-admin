@@ -94,10 +94,10 @@ export default function ClientNewEditForm({ currentCategory }) {
       });
       if (Category) {
         await UpdateCategory(Category.id, formData, token);
-        enqueueSnackbar('Category updated successfully!', { variant: 'success' });
+        enqueueSnackbar('Product Category updated successfully!', { variant: 'success' });
       } else {
         await CreateCategory(formData, token);
-        enqueueSnackbar('Category created successfully!', { variant: 'success' });
+        enqueueSnackbar('Product Category created successfully!', { variant: 'success' });
       }
       router.push(paths.dashboard.category.list);
       reset();

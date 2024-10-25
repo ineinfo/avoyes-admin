@@ -30,7 +30,7 @@ export default function UserEditView({ id }) {
             href: paths.dashboard.list,
           },
           {
-            name: 'Tag',
+            name: 'Product Tag',
             href: paths.dashboard.tag.list,
           },
           { name: `Edit` },

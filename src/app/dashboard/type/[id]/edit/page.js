@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/type/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Type Edit',
+  title: 'Avoyes: Product Type Edit',
 };
 
 export default function UserEditPage({ params }) {

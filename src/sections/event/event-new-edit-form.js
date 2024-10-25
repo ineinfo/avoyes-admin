@@ -9,7 +9,15 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  CircularProgress,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { useSnackbar } from 'src/components/snackbar';
@@ -30,10 +38,12 @@ import { UsegetEventSpeakers } from 'src/api/eventspeaker';
 
 export default function ClientNewEditForm({ currentEvent }) {
   const Event = Array.isArray(currentEvent) ? currentEvent[0] : currentEvent;
+  console.log(Event, 'EVENT');
   const user = useAuthContext();
   const token = user.user.accessToken;
 
-  const { products: EventCategory, productsLoading: EventCategoryLoading } = UsegetEventCategories();
+  const { products: EventCategory, productsLoading: EventCategoryLoading } =
+    UsegetEventCategories();
   const { products: EventSpeaker, productsLoading: EventSpeakerLoading } = UsegetEventSpeakers();
 
   const router = useRouter();
@@ -56,6 +66,10 @@ export default function ClientNewEditForm({ currentEvent }) {
         const { start_date } = this.parent;
         return !value || !start_date || new Date(value) > new Date(start_date);
       }),
+    cost: Yup.string().required('Cost is required'),
+    organizer: Yup.string().required('Organizer is required'),
+    organizer_contact: Yup.string().required('Organizer Contact is required'),
+    location: Yup.string().required('Location is required'),
     description: Yup.string().required('Description is required'),
     image_url: Yup.mixed().nullable().required('Image is required'),
   });
@@ -66,10 +80,15 @@ export default function ClientNewEditForm({ currentEvent }) {
       short_description: Event?.short_description || '',
       event_category_id: Event?.event_category_id || '',
       event_speaker_id: Event?.event_speaker_id || '',
+
+      start_date: Event?.start_date ? format(new Date(Event.start_date), 'yyyy-MM-dd HH:mm') : '',
+      end_date: Event?.end_date ? format(new Date(Event.end_date), 'yyyy-MM-dd HH:mm') : '',
+      cost: Event?.cost || '',
+      organizer: Event?.organizer || '',
+      organizer_contact: Event?.organizer_contact || '',
+      location: Event?.location || '',
+      isFeatured: Event?.is_featured !== undefined ? String(Event.is_featured) : '',
       description: Event?.description || '',
-      start_date: Event?.start_date ? format(new Date(Event.start_date), 'yyyy-MM-dd') : '',
-      end_date: Event?.end_date ? format(new Date(Event.end_date), 'yyyy-MM-dd') : '',
-      isFeatured: Event?.is_featured !== undefined ? String(Event.is_featured) : '', 
       image_url: fetchimages || null,
     }),
     [Event]
@@ -81,8 +100,8 @@ export default function ClientNewEditForm({ currentEvent }) {
   });
 
   const GENDER = [
-    { value: '1', label: 'True' },
-    { value: '0', label: 'False' },
+    { value: 1, label: 'True' },
+    { value: 0, label: 'False' },
   ];
 
   const {
@@ -100,16 +119,47 @@ export default function ClientNewEditForm({ currentEvent }) {
     reset(defaultValues);
   }, [Event, reset, defaultValues]);
 
+  // const onSubmit = handleSubmit(async (data) => {
+  //   try {
+  //     const formData = new FormData();
+  //     Object.entries(data).forEach(([key, value]) => {
+  //       if (key === 'image_url' && value[0]) {
+  //         formData.append(key, value[0]);
+  //       } else {
+  //         formData.append(key, value);
+  //       }
+  //     });
+  //     if (Event) {
+  //       await UpdateEvent(Event.id, formData, token);
+  //       enqueueSnackbar('Event updated successfully!', { variant: 'success' });
+  //     } else {
+  //       await CreateEvent(formData, token);
+  //       enqueueSnackbar('Event created successfully!', { variant: 'success' });
+  //     }
+  //     router.push(paths.dashboard.event.list);
+  //     reset();
+  //   } catch (error) {
+  //     enqueueSnackbar(error.response?.data?.message || 'Unknown error', { variant: 'error' });
+  //   }
+  // });
+
   const onSubmit = handleSubmit(async (data) => {
     try {
+      const formattedData = {
+        ...data,
+        start_date: data.start_date ? format(new Date(data.start_date), 'yyyy-MM-dd HH:mm') : '',
+        end_date: data.end_date ? format(new Date(data.end_date), 'yyyy-MM-dd HH:mm') : '',
+      };
+
       const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
+      Object.entries(formattedData).forEach(([key, value]) => {
         if (key === 'image_url' && value[0]) {
           formData.append(key, value[0]);
         } else {
           formData.append(key, value);
         }
       });
+
       if (Event) {
         await UpdateEvent(Event.id, formData, token);
         enqueueSnackbar('Event updated successfully!', { variant: 'success' });
@@ -117,6 +167,7 @@ export default function ClientNewEditForm({ currentEvent }) {
         await CreateEvent(formData, token);
         enqueueSnackbar('Event created successfully!', { variant: 'success' });
       }
+
       router.push(paths.dashboard.event.list);
       reset();
     } catch (error) {
@@ -227,7 +278,7 @@ export default function ClientNewEditForm({ currentEvent }) {
                   )}
                 />
               </FormControl>
-              <Controller
+              {/* <Controller
                 name="start_date"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
@@ -245,9 +296,15 @@ export default function ClientNewEditForm({ currentEvent }) {
                     }}
                   />
                 )}
+              /> */}
+              <RHFTextField
+                type="datetime-local"
+                name="start_date"
+                label="Start date"
+                InputLabelProps={{ shrink: true }}
               />
 
-              <Controller
+              {/* <Controller
                 name="end_date"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
@@ -265,11 +322,29 @@ export default function ClientNewEditForm({ currentEvent }) {
                     }}
                   />
                 )}
+              /> */}
+              <RHFTextField
+                type="datetime-local"
+                name="end_date"
+                label="End date"
+                InputLabelProps={{ shrink: true }}
               />
+
+              <RHFTextField name="cost" label="Cost" />
+              <RHFTextField name="organizer" label="Organizer" />
+              <RHFTextField name="organizer_contact" label="Organizer Contact" />
+              <RHFTextField name="location" label="Location" />
               <Box sx={{ gridColumn: 'span 2' }}>
                 <Stack spacing={3}>
-                <RHFRadioGroup row spacing={8} name="isFeatured" options={GENDER} label="Is Featured" />
                   <Stack spacing={1.5}>
+                    <RHFRadioGroup
+                      row
+                      spacing={8}
+                      name="isFeatured"
+                      options={GENDER}
+                      label="Is Featured"
+                    />
+
                     <Typography variant="subtitle1">Description</Typography>
                     <RHFEditor name="description" />
                   </Stack>

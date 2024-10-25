@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/tag/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Tag Edit',
+  title: 'Avoyes: Product Tag Edit',
 };
 
 export default function UserEditPage({ params }) {

@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/material/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Create Material',
+  title: 'Avoyes: Create Product Material',
 };
 
 export default function UserCreatePage() {

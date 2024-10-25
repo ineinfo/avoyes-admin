@@ -50,7 +50,6 @@ export default function OverviewAppView() {
         });
       } catch (error) {
         console.log(error);
-        enqueueSnackbar('Error fetching data', { variant: 'error' });
       }
     };
     fetchData();

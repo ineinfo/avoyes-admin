@@ -282,24 +282,8 @@ export const paths = {
     aboutus: {
       root: `${ROOTS.DASHBOARD}/aboutus`,
       list: `${ROOTS.DASHBOARD}/aboutus/list`,
-      new:  `${ROOTS.DASHBOARD}/aboutus/new`,
+      new: `${ROOTS.DASHBOARD}/aboutus/new`,
     },
-    // brandpartner: {
-    //   root: `${ROOTS.DASHBOARD}/brandpartner`,
-    //   list: `${ROOTS.DASHBOARD}/brandpartner/list`,
-    //   new:  `${ROOTS.DASHBOARD}/brandpartner/new`,
-    // },
-    // deliverable: {
-    //   root: `${ROOTS.DASHBOARD}/deliverable`,
-    //   list: `${ROOTS.DASHBOARD}/deliverable/list`,
-    //   new:  `${ROOTS.DASHBOARD}/deliverable/new`,
-    // },
-    // deliverydetails: {
-    //   root: `${ROOTS.DASHBOARD}/deliverydetails`,
-    //   list: `${ROOTS.DASHBOARD}/deliverydetails/list`,
-    //   new:  `${ROOTS.DASHBOARD}/deliverydetails/new`,
-    // },
-    
     setting: {
       root: `${ROOTS.DASHBOARD}/setting`,
       changepassword: `${ROOTS.DASHBOARD}/setting/changepassword`,

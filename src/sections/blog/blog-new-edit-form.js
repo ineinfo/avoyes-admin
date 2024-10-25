@@ -66,7 +66,7 @@ export default function ClientNewEditForm({ currentBlog }) {
     title: Yup.string().required('Title is required'),
     description: Yup.string().required('Description is required'),
     short_description: Yup.string().required('Short description is required'),
-    tags: Yup.array().min(1, 'Must have at least 1 tags'),
+    // tags: Yup.array().min(1, 'Must have at least 1 tags'),
     category_id: Yup.string().required('Category name is required'),
     blog_date: Yup.string()
       .required('Start date is required')

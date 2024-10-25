@@ -45,8 +45,6 @@ import { DeleteEventCategory, DeleteMultipleEventCategory } from 'src/api/eventc
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
-  { id: 'start_date', label: 'Start Date' },
-  { id: 'end_date', label: 'End Date' },
   { id: '', width: 88 },
 ];
 

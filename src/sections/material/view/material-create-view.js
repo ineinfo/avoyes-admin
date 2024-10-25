@@ -17,14 +17,14 @@ export default function UserCreateView() {
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create a new Material"
+        heading="Create Product Material"
         links={[
           {
             name: 'Dashboard',
             href: paths.dashboard.root,
           },
           {
-            name: 'Material',
+            name: 'Product Material',
             href: paths.dashboard.material.list,
           },
           { name: 'New Material' },

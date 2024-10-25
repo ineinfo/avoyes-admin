@@ -7,7 +7,7 @@ import { UserEditView } from 'src/sections/material/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Material Edit',
+  title: 'Avoyes: Product Material Edit',
 };
 
 export default function UserEditPage({ params }) {

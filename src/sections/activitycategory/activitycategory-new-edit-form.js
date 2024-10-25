@@ -44,7 +44,7 @@ import { CreateActivityCategory, UpdateActivityCategory } from 'src/api/activity
 export default function ClientNewEditForm({ currentActivityCategory }) {
   const ActivityCategory = Array.isArray(currentActivityCategory) ? currentActivityCategory[0] : currentActivityCategory;
   const user = useAuthContext();
-  const token = user.user.accessToken;
+  const token = user?.user?.accessToken;
 
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
