@@ -10,13 +10,26 @@ export const assetsPath = process.env.NEXT_PUBLIC_IMAGE_API_URL;
 export const LOGIN_ROUTE = `${apiUrl}/users/adminlogin`;
 export const AUTH_ROUTE = `${apiUrl}/users/admin-verifytoken`;
 
-// RAW MASTER ENDPOINT
-export const ROLES_ROUTE = `${apiUrlCRM}/roles`;
-export const AMENITIES_ROUTE = `${apiUrlCRM}/amenities`;
-export const PROPERTY_TYPE_ROUTE = `${apiUrlCRM}/propertytype`;
-
-// CATEGORY MODULE
+// PRODUCT CATEGORY MODULE
 export const CATEGORY_ROUTE = `${apiUrl}/product-category`;
+
+// PRODUCT SUBCATEGORY MODULE
+export const SUBCATEGORY_ROUTE = `${apiUrl}/product-subcategory`;
+
+// PRODUCT COLOR MODULE
+export const COLOR_ROUTE = `${apiUrl}/product-colors`;
+
+// PRODUCT SIZE MODULE
+export const SIZE_ROUTE = `${apiUrl}/product-size`;
+
+// PRODUCT MATERIAL MODULE
+export const MATERIAL_ROUTE = `${apiUrl}/product-materials`;
+
+// PRODUCT MATERIAL MODULE
+export const TYPE_ROUTE = `${apiUrl}/product-type`;
+
+// PRODUCT TAG MODULE
+export const TAG_ROUTE = `${apiUrl}/product-tag`;
 
 // FOOD PLACE MODULE
 export const FOOD_PLACE_ROUTE = `${apiUrl}/food-place`;
@@ -30,15 +43,15 @@ export const POPULAR_DISHES_ROUTE = `${apiUrl}/popular-dishes`;
 // CHALLANGES MODULE
 export const CHALLANGES_ROUTE = `${apiUrl}/challenges`;
 
-// PRODUCT MODULE
-export const PRODUCT_ROUTE = `${apiUrl}/products`;
-
 // ACTIVITY MODULE
 export const ACTIVITY_ROUTE = `${apiUrl}/activities`;
-export const ACTIVITY_IMG_REMOVE = `${apiUrl}/activities/image`
+export const ACTIVITY_IMG_REMOVE = `${apiUrl}/activities/image`;
 
 // ACTIVITY CATEGORY MODULE
 export const ACTIVITY_CATEGORY_ROUTE = `${apiUrl}/activitycategory`;
+
+// PRODUCT MODULE
+export const PRODUCT_ROUTE = `${apiUrl}/products`;
 
 // BLOG MODULE
 export const BLOG_ROUTE = `${apiUrl}/blog`;
@@ -52,26 +65,14 @@ export const BLOG_TAGS_ROUTE = `${apiUrl}/blog-tags`;
 // BLOG COMMENT ROUTE
 export const BLOG_COMMENT_ROUTE = `${apiUrl}/blog-comments`;
 
-// SUBCATEGORY MODULE
-export const SUBCATEGORY_ROUTE = `${apiUrl}/product-subcategory`;
-
-// COLOR MODULE
-export const COLOR_ROUTE = `${apiUrl}/product-colors`;
-
-// SIZE MODULE
-export const SIZE_ROUTE = `${apiUrl}/product-size`;
-
-// MATERIAL MODULE
-export const MATERIAL_ROUTE = `${apiUrl}/product-materials`;
-
-// MATERIAL MODULE
-export const TYPE_ROUTE = `${apiUrl}/product-type`;
-
-// TAG MODULE
-export const TAG_ROUTE = `${apiUrl}/product-tag`;
-
 // SOCIALMEDIA MODULE
 export const SOCIAL_MEDIA = `${apiUrl}/socials`;
+
+// BANNER MODULE
+export const BANNER_ROUTE = `${apiUrl}/banner/top`;
+
+// LEFT BOTTOM BANNER MODULE
+export const BOTTOM_BANNER_ROUTE = `${apiUrl}/banner/bottom`;
 
 // EVENT MODULE
 export const EVENT_ROUTE = `${apiUrl}/events`;
@@ -123,15 +124,7 @@ export const HOME_ROUTE = `${apiUrl}/home`;
 export const USERS_ROUTE = `${apiUrl}/users`;
 
 // COUNTRY MODULE
-export const COUNTRY_ROUTE = `${apiUrl}/countries`
-
-// OTHERS MODULE
-export const CITY_ROUTE = `${apiUrl}/others/cities`;
-export const STATE_ROUTE = `${apiUrl}/others/states`;
-export const COUTNRY_ROUTE = `${apiUrl}/others/countries`;
-
-// PROPERTY MASTER
-export const PROPERTIES_ROUTE = `${apiUrl}/properties`;
+export const COUNTRY_ROUTE = `${apiUrl}/countries`;
 
 // CHANGE PASSWORD
 const CHANGE_PASSWORD = `${apiUrl}/users/changepassword`;

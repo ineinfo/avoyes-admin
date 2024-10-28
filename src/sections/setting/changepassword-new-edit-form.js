@@ -121,7 +121,6 @@ export default function UserNewEditForm() {
         enqueueSnackbar(response.error || 'An error occurred', { variant: 'error' });
       }
     } catch (error) {
-      console.log(error, "ERROR");
       const errorMessage = error?.response?.data?.error || 'Unknown error';
       enqueueSnackbar(errorMessage, { variant: 'error' });
     }

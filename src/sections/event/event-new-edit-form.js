@@ -38,7 +38,6 @@ import { UsegetEventSpeakers } from 'src/api/eventspeaker';
 
 export default function ClientNewEditForm({ currentEvent }) {
   const Event = Array.isArray(currentEvent) ? currentEvent[0] : currentEvent;
-  console.log(Event, 'EVENT');
   const user = useAuthContext();
   const token = user.user.accessToken;
 
@@ -87,7 +86,7 @@ export default function ClientNewEditForm({ currentEvent }) {
       organizer: Event?.organizer || '',
       organizer_contact: Event?.organizer_contact || '',
       location: Event?.location || '',
-      isFeatured: Event?.is_featured !== undefined ? String(Event.is_featured) : '',
+      isFeatured: Event?.is_featured || '',
       description: Event?.description || '',
       image_url: fetchimages || null,
     }),
