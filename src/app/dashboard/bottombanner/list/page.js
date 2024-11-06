@@ -1,4 +1,3 @@
-// import { UserListView } from 'src/sections/leads/view';
 import { UserListView } from 'src/sections/bottombanner/view';
 
 // ----------------------------------------------------------------------

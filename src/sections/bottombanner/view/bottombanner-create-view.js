@@ -1,40 +1,40 @@
-'use client';
+// 'use client';
 
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 
-import { paths } from 'src/routes/paths';
+// import { paths } from 'src/routes/paths';
 
-import { useSettingsContext } from 'src/components/settings';
-import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+// import { useSettingsContext } from 'src/components/settings';
+// import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../bottombanner-new-edit-form';
+// import UserNewEditForm from '../pages-new-edit-form';
 
-// ----------------------------------------------------------------------
+// // ----------------------------------------------------------------------
 
-export default function UserCreateView() {
-  const settings = useSettingsContext();
+// export default function UserCreateView() {
+//   const settings = useSettingsContext();
 
-  return (
-    <Container maxWidth={settings.themeStretch ? false : 'lg'}>
-      <CustomBreadcrumbs
-        heading="Create Bottom Banner"
-        links={[
-          {
-            name: 'Dashboard',
-            href: paths.dashboard.root,
-          },
-          {
-            name: 'Bottom Banner',
-            href: paths.dashboard.bottombanner.list,
-          },
-          { name: 'New Bottom Banner' },
-        ]}
-        sx={{
-          mb: { xs: 3, md: 5 },
-        }}
-      />
+//   return (
+//     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
+//       <CustomBreadcrumbs
+//         heading="Create a new Pages"
+//         links={[
+//           {
+//             name: 'Dashboard',
+//             href: paths.dashboard.root,
+//           },
+//           {
+//             name: 'Pages',
+//             href: paths.dashboard.pages.list,
+//           },
+//           { name: 'New Pages' },
+//         ]}
+//         sx={{
+//           mb: { xs: 3, md: 5 },
+//         }}
+//       />
 
-      <UserNewEditForm />
-    </Container>
-  );
-}
+//       <UserNewEditForm />
+//     </Container>
+//   );
+// }

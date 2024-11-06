@@ -23,6 +23,7 @@ import {
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
+
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFEditor,
@@ -32,37 +33,52 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
+import { CreatePages, UpdatePages } from 'src/api/pages';
 import { useAuthContext } from 'src/auth/hooks';
-import { CreateTopBanner, UpdateTopBanner } from 'src/api/topbanner';
 import { CreateBottomBanner, UpdateBottomBanner } from 'src/api/bottombanner';
 
 // ----------------------------------------------------------------------
 
 export default function ClientNewEditForm({ currentBottomBanner }) {
-  const BottomBanner = Array.isArray(currentBottomBanner) ? currentBottomBanner[0] : currentBottomBanner;
+  const BottomBanner = Array.isArray(currentBottomBanner)
+    ? currentBottomBanner[0]
+    : currentBottomBanner;
   const user = useAuthContext();
   const token = user.user.accessToken;
 
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-  const fetchimages = BottomBanner?.image_url ? `${BottomBanner.image_url}` : '';
+  const fetchimages = BottomBanner?.banner_left_image ? `${BottomBanner.banner_left_image}` : '';
+  const fetchimages2 = BottomBanner?.banner_center_image ? `${BottomBanner.banner_center_image}` : '';
+  const fetchimages3 = BottomBanner?.banner_right_image ? `${BottomBanner.banner_right_image}` : '';
 
   const NewClientSchema = Yup.object().shape({
-    title: Yup.string().required('Title is required'),
-    sub_title: Yup.string().required('Sub Title is required'),
-    files: Yup.mixed().nullable().required('Image is required'),
+    banner_left_text: Yup.string().required('Banner Left Text is required'),
+    banner_center_text: Yup.string().required('Banner Center Text is required'),
+    banner_right_text: Yup.string().required('Banner Right Text is required'),
+    banner_left_url: Yup.string().url('Invalid URL format').required('Banner left URL is required'),
+    banner_center_url: Yup.string().url('Invalid URL format').required('Banner center URL is required'),
+    banner_right_url: Yup.string().url('Invalid URL format').required('Banner right URL is required'),
+    banner_left_image: Yup.mixed().nullable().required('Banner Left Image is required'),
+    banner_center_image: Yup.mixed().nullable().required('Banner Center Image is required'),
+    banner_right_image: Yup.mixed().nullable().required('Banner Right Image is required'),
   });
 
   const defaultValues = useMemo(
     () => ({
-      title: BottomBanner?.title || '',
-      sub_title: BottomBanner?.sub_title || '',
-      files: fetchimages || null,
+      banner_left_text: BottomBanner?.banner_left_text || '',
+      banner_center_text: BottomBanner?.banner_center_text || '',
+      banner_right_text: BottomBanner?.banner_right_text || '',
+      banner_left_url: BottomBanner?.banner_left_url || '',
+      banner_center_url: BottomBanner?.banner_center_url || '',
+      banner_right_url: BottomBanner?.banner_right_url || '',
+      banner_left_image: fetchimages || null,
+      banner_center_image: fetchimages2 || null,
+      banner_right_image: fetchimages3 || null,
     }),
     [BottomBanner]
   );
-
   const methods = useForm({
     resolver: yupResolver(NewClientSchema),
     defaultValues,
@@ -87,19 +103,21 @@ export default function ClientNewEditForm({ currentBottomBanner }) {
     try {
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
-        if (key === 'files' && value[0]) {
+        if (key === 'banner_left_image' && value[0]) {
           formData.append(key, value[0]);
-        } else {
+        }else if (key === 'banner_center_image' && value[0]) {
+          formData.append(key, value[0]);
+        } else if (key === 'banner_right_image' && value[0]) {
+          formData.append(key, value[0]);
+        }
+         else {
           formData.append(key, value);
         }
       });
       if (BottomBanner) {
         await UpdateBottomBanner(BottomBanner.id, formData, token);
         enqueueSnackbar('Bottom Banner updated successfully!', { variant: 'success' });
-      } else {
-        await CreateBottomBanner(formData, token);
-        enqueueSnackbar('Bottom Banner created successfully!', { variant: 'success' });
-      }
+      } 
       router.push(paths.dashboard.bottombanner.list);
       reset();
     } catch (error) {
@@ -116,62 +134,162 @@ export default function ClientNewEditForm({ currentBottomBanner }) {
       });
 
       if (file) {
-        setValue('files', newFile, { shouldValidate: true });
+        setValue('banner_left_image', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
+  const handleDropimage2 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('banner_center_image', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
+  const handleDropimage3 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('banner_right_image', newFile, { shouldValidate: true });
       }
     },
     [setValue]
   );
 
   const handleRemoveFile = useCallback(() => {
-    setValue('files', null);
+    setValue('banner_left_image', null);
+  }, [setValue]);
+
+  const handleRemoveFile2 = useCallback(() => {
+    setValue('banner_center_image', null);
+  }, [setValue]);
+
+  const handleRemoveFile3 = useCallback(() => {
+    setValue('banner_right_image', null);
   }, [setValue]);
 
   return (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
-      <Grid container spacing={3}>
-        <Grid xs={12} md={12}>
-          <Card sx={{ p: 3 }}>
-            <Box
-              rowGap={3}
-              columnGap={2}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
+<FormProvider methods={methods} onSubmit={onSubmit}>
+  <Grid container spacing={3}>
+    <Grid item xs={12} md={12}>
+      <Card sx={{ p: 3 }}>
+        
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h6">Banner Left Section</Typography>
+          <Grid container spacing={2} sx={{ mt: 3 }}>
+            <Grid item xs={12} sm={6}>
               <RHFTextField name="banner_left_text" label="Banner Left Text" />
-              <RHFTextField name="banner_left_text" label="Banner Left Text" />
-              <RHFTextField name="banner_left_text" label="Banner Left Text" />
-              <RHFTextField name="banner_left_url" label="Banner Left Url" />
-              <RHFTextField name="banner_left_url" label="Banner Left Url" />
-              <RHFTextField name="banner_left_url" label="Banner Left Url" />
-              <Box sx={{ gridColumn: 'span 2' }}>
-                <RHFUpload
-                  name="files"
-                  maxSize={3145728}
-                  onDrop={handleDrop}
-                  onDelete={handleRemoveFile}
-                />
-                <Typography
-                  variant="caption"
-                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
-                >
-                  Allowed *.jpeg, *.jpg, *.png, *.gif
-                  <br /> max size of 3MB
-                </Typography>
-              </Box>
-            </Box>
-
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <RHFTextField name="banner_left_url" label="Banner Left URL" />
+            </Grid>
+            <Grid item xs={12}>
+              <RHFUpload
+                name="banner_left_image"
+                maxSize={3145728}
+                onDrop={handleDrop}
+                onDelete={handleRemoveFile}
+              />
+              <Typography
+                variant="caption"
+                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+              >
+                Allowed *.jpeg, *.jpg, *.png, *.gif
+                <br /> Banner Left Image
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {!BottomBanner ? 'Create' : 'Update'}
+                Update Left Banner
               </LoadingButton>
-            </Stack>
-          </Card>
-        </Grid>
-      </Grid>
-    </FormProvider>
+            </Grid>
+          </Grid>
+        </Box>
+
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h6">Banner Center Section</Typography>
+          <Grid container spacing={2} sx={{ mt: 3 }}>
+            <Grid item xs={12} sm={6}>
+              <RHFTextField name="banner_center_text" label="Banner Center Text" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <RHFTextField name="banner_center_url" label="Banner Center URL" />
+            </Grid>
+            <Grid item xs={12}>
+              <RHFUpload
+                name="banner_center_image"
+                maxSize={3145728}
+                onDrop={handleDropimage2}
+                onDelete={handleRemoveFile2}
+              />
+              <Typography
+                variant="caption"
+                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+              >
+                Allowed *.jpeg, *.jpg, *.png, *.gif
+                <br /> Banner Center Image
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
+              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                Update Center Banner
+              </LoadingButton>
+            </Grid>
+          </Grid>
+        </Box>
+
+        <Box>
+          <Typography variant="h6">Banner Right Section</Typography>
+          <Grid container spacing={2} sx={{ mt: 3 }}>
+            <Grid item xs={12} sm={6}>
+              <RHFTextField name="banner_right_text" label="Banner Right Text" />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <RHFTextField name="banner_right_url" label="Banner Right URL" />
+            </Grid>
+            <Grid item xs={12}>
+              <RHFUpload
+                name="banner_right_image"
+                maxSize={3145728}
+                onDrop={handleDropimage3}
+                onDelete={handleRemoveFile3}
+              />
+              <Typography
+                variant="caption"
+                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+              >
+                Allowed *.jpeg, *.jpg, *.png, *.gif
+                <br /> Banner Right Image
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
+              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                Update Right Banner
+              </LoadingButton>
+            </Grid>
+          </Grid>
+        </Box>
+        
+      </Card>
+    </Grid>
+  </Grid>
+</FormProvider>
+
+
   );
 }
 

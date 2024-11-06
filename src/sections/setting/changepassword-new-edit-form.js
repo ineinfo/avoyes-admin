@@ -50,6 +50,8 @@ export default function UserNewEditForm() {
   const user = useAuthContext();
   const token = user?.user?.accessToken;
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -61,7 +63,7 @@ export default function UserNewEditForm() {
     }
   };
 
-  const { enqueueSnackbar } = useSnackbar();
+  
 
   const NewUserSchema = Yup.object().shape({
     current_password: Yup.string().required('Current Password is required'),

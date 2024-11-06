@@ -4,7 +4,7 @@ import { UserCreateView } from 'src/sections/category/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Avoyes: Product Create Category',
+  title: 'Avoyes: Create Product Category',
 };
 
 export default function UserCreatePage() {

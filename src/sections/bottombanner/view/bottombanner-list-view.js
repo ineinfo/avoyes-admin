@@ -22,7 +22,6 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { endpoints } from 'src/utils/axios';
 
 import { _roles } from 'src/_mock';
-import { DeleteCategory, DeleteMultiple } from 'src/api/category';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -44,13 +43,11 @@ import {
 import UserTableRow from '../bottombanner-table-row';
 import UserTableToolbar from '../bottombanner-table-toolbar';
 import UserTableFiltersResult from '../bottombanner-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleTopBanners, DeleteTopBanner } from 'src/api/topbanner';
-import { DeleteBottomBanner, DeleteMultipleBottomBanners } from 'src/api/bottombanner';
+import { DeletePages } from 'src/api/pages';
 
 const TABLE_HEAD = [
   { id: 'banner_left_text', label: 'Banner Left Text' },
-  { id: 'banner_center_text', label: 'Banner Centere Text' },
+  { id: 'banner_center_text', label: 'Banner Center Text' },
   { id: 'banner_right_text', label: 'Banner Right Text' },
   { id: '', width: 88 },
 ];
@@ -67,8 +64,6 @@ const defaultFilters = {
 export default function UserListView() {
   const { enqueueSnackbar } = useSnackbar();
   const table = useTable();
-  const user = useAuthContext();
-  const token = user.user.accessToken;
 
   const settings = useSettingsContext();
 
@@ -125,39 +120,35 @@ export default function UserListView() {
     setFilters(defaultFilters);
   }, []);
 
-  const handleDeleteRow = useCallback(
-    async (id) => {
-      try {
-        await DeleteBottomBanner(id, token);
-        const deleteRow = tableData.filter((row) => row.id !== id);
+  // const handleDeleteRow = useCallback(
+  //   async (id) => {
+  //     try {
+  //       await DeletePages(id);
+  //       const deleteRow = tableData.filter((row) => row.id !== id);
 
-        enqueueSnackbar('Delete success!');
+  //       enqueueSnackbar('Delete success!');
 
-        setTableData(deleteRow);
-      } catch (error) {
-        enqueueSnackbar('Delete failed!', { variant: 'error' });
-        console.error(error);
-      }
-    },
-    [enqueueSnackbar, tableData]
-  );
+  //       setTableData(deleteRow);
+  //     } catch (error) {
+  //       enqueueSnackbar('Delete failed!', { variant: 'error' });
+  //       console.error(error);
+  //     }
+  //   },
+  //   [enqueueSnackbar, tableData]
+  // );
 
-  const handleDeleteRows = useCallback(async () => {
-    try {
-      const selectedIds = table.selected;
-      await DeleteMultipleBottomBanners(selectedIds, token);
-      const updatedTableData = tableData.filter((row) => !selectedIds.includes(row.id));
-      enqueueSnackbar('Delete success!');
-      setTableData(updatedTableData);
-      table.onUpdatePageDeleteRows({
-        totalRowsInPage: dataInPage.length,
-        totalRowsFiltered: dataFiltered.length,
-      });
-    } catch (error) {
-      enqueueSnackbar('Delete failed!', { variant: 'error' });
-      console.error(error);
-    }
-  }, [dataFiltered.length, dataInPage.length, enqueueSnackbar, table, tableData]);
+  // const handleDeleteRows = useCallback(() => {
+  //   const deleteRows = tableData.filter((row) => !table.selected.includes(row.id));
+
+  //   enqueueSnackbar('Delete success!');
+
+  //   setTableData(deleteRows);
+
+  //   table.onUpdatePageDeleteRows({
+  //     totalRowsInPage: dataInPage.length,
+  //     totalRowsFiltered: dataFiltered.length,
+  //   });
+  // }, [dataFiltered.length, dataInPage.length, enqueueSnackbar, table, tableData]);
 
   const handleEditRow = useCallback(
     (id) => {
@@ -173,19 +164,19 @@ export default function UserListView() {
           heading="List"
           links={[
             { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'Bottom banner', href: paths.dashboard.bottombanner.list },
+            { name: 'Bottom Banner', href: paths.dashboard.bottombanner.list },
             { name: 'List' },
           ]}
-          action={
-            <Button
-              component={RouterLink}
-              href={paths.dashboard.bottombanner.new}
-              variant="contained"
-              startIcon={<Iconify icon="mingcute:add-line" />}
-            >
-              Create
-            </Button>
-          }
+          // action={
+          //   <Button
+          //     component={RouterLink}
+          //     href={paths.dashboard.pages.new}
+          //     variant="contained"
+          //     startIcon={<Iconify icon="mingcute:add-line" />}
+          //   >
+          //     Create
+          //   </Button>
+          // }
           sx={{
             mb: { xs: 3, md: 5 },
           }}
@@ -204,21 +195,21 @@ export default function UserListView() {
           <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
             <TableSelectedAction
               dense={table.dense}
-              numSelected={table.selected.length}
+              // numSelected={table.selected.length}
               rowCount={dataFiltered.length}
-              onSelectAllRows={(checked) =>
-                table.onSelectAllRows(
-                  checked,
-                  dataFiltered.map((row) => row.id)
-                )
-              }
-              action={
-                <Tooltip title="Delete">
-                  <IconButton color="primary" onClick={confirm.onTrue}>
-                    <Iconify icon="solar:trash-bin-trash-bold" />
-                  </IconButton>
-                </Tooltip>
-              }
+              // onSelectAllRows={(checked) =>
+              //   table.onSelectAllRows(
+              //     checked,
+              //     dataFiltered.map((row) => row.id)
+              //   )
+              // }
+              // action={
+              //   <Tooltip title="Delete">
+              //     <IconButton color="primary" onClick={confirm.onTrue}>
+              //       <Iconify icon="solar:trash-bin-trash-bold" />
+              //     </IconButton>
+              //   </Tooltip>
+              // }
             />
             <Scrollbar>
               <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -229,12 +220,12 @@ export default function UserListView() {
                   rowCount={dataFiltered.length}
                   numSelected={table.selected.length}
                   onSort={table.onSort}
-                  onSelectAllRows={(checked) =>
-                    table.onSelectAllRows(
-                      checked,
-                      dataFiltered.map((row) => row.id)
-                    )
-                  }
+                  // onSelectAllRows={(checked) =>
+                  //   table.onSelectAllRows(
+                  //     checked,
+                  //     dataFiltered.map((row) => row.id)
+                  //   )
+                  // }
                 />
                 <TableBody>
                   {dataFiltered
@@ -248,7 +239,6 @@ export default function UserListView() {
                         row={row}
                         selected={table.selected.includes(row.id)}
                         onSelectRow={() => table.onSelectRow(row.id)}
-                        onDeleteRow={() => handleDeleteRow(row.id)}
                         onEditRow={() => handleEditRow(row.id)}
                       />
                     ))}
@@ -272,7 +262,7 @@ export default function UserListView() {
           />
         </Card>
       </Container>
-      <ConfirmDialog
+      {/* <ConfirmDialog
         open={confirm.value}
         onClose={confirm.onFalse}
         title="Delete"
@@ -293,7 +283,7 @@ export default function UserListView() {
             Delete
           </Button>
         }
-      />
+      /> */}
     </>
   );
 }
@@ -315,12 +305,7 @@ function applyFilter({ inputData, comparator, filters }) {
 
   // Filter by first name or last name
   if (banner_left_text) {
-    inputData = inputData.filter((user) => user.banner_left_text.toLowerCase().includes(banner_left_text.toLowerCase()));
-  }
-  if (description) {
-    inputData = inputData.filter((user) =>
-      user.description.toLowerCase().includes(description.toLowerCase())
-    );
+    inputData = inputData.filter((user) => user?.banner_left_text?.toLowerCase().includes(banner_left_text?.toLowerCase()));
   }
 
   // Filter by status

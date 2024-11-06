@@ -100,7 +100,6 @@ export const DeleteEvent = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.event.details(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -115,7 +114,6 @@ export const DeleteMultipleEvent = async (id, token) => {
   try {
     const response = await axios.delete(endpoints.event.deletes(id), {
       headers: {
-        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });

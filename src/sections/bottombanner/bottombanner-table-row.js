@@ -26,12 +26,9 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
   return (
     <>
       <TableRow hover selected={selected}>
-        <TableCell padding="checkbox">
-          <Checkbox checked={selected} onClick={onSelectRow} />
-        </TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>
           <ListItemText
-            primary={`${banner_left_text || ''}`}
+            primary={`${banner_left_text || '--'}`}
             primaryTypographyProps={{ typography: 'body2' }}
             secondaryTypographyProps={{
               component: 'span',
@@ -39,8 +36,8 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
             }}
           />
         </TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{banner_center_text || '--'}</TableCell>
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{banner_right_text || '--'}</TableCell>
+        <TableCell  sx={{ whiteSpace: 'nowrap' }}>{banner_center_text || '--'}</TableCell>
+        <TableCell  sx={{ whiteSpace: 'nowrap' }}>{banner_right_text || '--'}</TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
@@ -62,7 +59,7 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
           <Iconify icon="solar:pen-bold" />
           Edit
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={() => {
             confirm.onTrue();
             popover.onClose();
@@ -71,10 +68,10 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         >
           <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
+        </MenuItem> */}
       </CustomPopover>
 
-      <ConfirmDialog
+      {/* <ConfirmDialog
         open={confirm.value}
         onClose={confirm.onFalse}
         title="Delete"
@@ -84,7 +81,7 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
             Delete
           </Button>
         }
-      />
+      /> */}
     </>
   );
 }

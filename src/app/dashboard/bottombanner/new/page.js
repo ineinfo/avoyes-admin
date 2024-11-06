@@ -1,12 +1,11 @@
-// import { UserCreateView } from 'src/sections/leads/view';
-import { UserCreateView } from 'src/sections/bottombanner/view';
+// import { UserCreateView } from 'src/sections/pages/view';
 
-// ----------------------------------------------------------------------
+// // ----------------------------------------------------------------------
 
-export const metadata = {
-  title: 'Avoyes: Create Bottom Banner',
-};
+// export const metadata = {
+//   title: 'Dashboard: Create a new Pages',
+// };
 
-export default function UserCreatePage() {
-  return <UserCreateView />;
-}
+// export default function UserCreatePage() {
+//   return <UserCreateView />;
+// }

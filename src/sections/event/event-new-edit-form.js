@@ -50,6 +50,11 @@ export default function ClientNewEditForm({ currentEvent }) {
 
   const fetchimages = Event?.image_url ? `${Event.image_url}` : '';
 
+  const Options = [
+    { value: 1, label: 'true' },
+    { value: 0, label: 'false' },
+  ];
+
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     short_description: Yup.string().required('Title is required'),
@@ -71,6 +76,7 @@ export default function ClientNewEditForm({ currentEvent }) {
     location: Yup.string().required('Location is required'),
     description: Yup.string().required('Description is required'),
     image_url: Yup.mixed().nullable().required('Image is required'),
+    map_url: Yup.string().url('Invalid URL format').required('Map URL is required'),
   });
 
   const defaultValues = useMemo(
@@ -79,14 +85,14 @@ export default function ClientNewEditForm({ currentEvent }) {
       short_description: Event?.short_description || '',
       event_category_id: Event?.event_category_id || '',
       event_speaker_id: Event?.event_speaker_id || '',
-
+      map_url: Event?.map_url || '',
       start_date: Event?.start_date ? format(new Date(Event.start_date), 'yyyy-MM-dd HH:mm') : '',
       end_date: Event?.end_date ? format(new Date(Event.end_date), 'yyyy-MM-dd HH:mm') : '',
       cost: Event?.cost || '',
       organizer: Event?.organizer || '',
       organizer_contact: Event?.organizer_contact || '',
       location: Event?.location || '',
-      isFeatured: Event?.is_featured || '',
+      isFeatured: Event?.is_featured === 1 ? 1 : 0,
       description: Event?.description || '',
       image_url: fetchimages || null,
     }),
@@ -97,11 +103,6 @@ export default function ClientNewEditForm({ currentEvent }) {
     resolver: yupResolver(NewClientSchema),
     defaultValues,
   });
-
-  const GENDER = [
-    { value: 1, label: 'True' },
-    { value: 0, label: 'False' },
-  ];
 
   const {
     reset,
@@ -117,30 +118,6 @@ export default function ClientNewEditForm({ currentEvent }) {
   useEffect(() => {
     reset(defaultValues);
   }, [Event, reset, defaultValues]);
-
-  // const onSubmit = handleSubmit(async (data) => {
-  //   try {
-  //     const formData = new FormData();
-  //     Object.entries(data).forEach(([key, value]) => {
-  //       if (key === 'image_url' && value[0]) {
-  //         formData.append(key, value[0]);
-  //       } else {
-  //         formData.append(key, value);
-  //       }
-  //     });
-  //     if (Event) {
-  //       await UpdateEvent(Event.id, formData, token);
-  //       enqueueSnackbar('Event updated successfully!', { variant: 'success' });
-  //     } else {
-  //       await CreateEvent(formData, token);
-  //       enqueueSnackbar('Event created successfully!', { variant: 'success' });
-  //     }
-  //     router.push(paths.dashboard.event.list);
-  //     reset();
-  //   } catch (error) {
-  //     enqueueSnackbar(error.response?.data?.message || 'Unknown error', { variant: 'error' });
-  //   }
-  // });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -174,6 +151,8 @@ export default function ClientNewEditForm({ currentEvent }) {
     }
   });
 
+
+
   const handleDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0];
@@ -205,10 +184,12 @@ export default function ClientNewEditForm({ currentEvent }) {
               gridTemplateColumns={{
                 xs: 'repeat(1, 1fr)',
                 sm: 'repeat(2, 1fr)',
+                
               }}
             >
               <RHFTextField name="title" label="Title" />
               <RHFTextField name="short_description" label="Short Description" />
+              {/* Event Category */}
               <FormControl fullWidth>
                 <InputLabel>Event Category</InputLabel>
                 <Controller
@@ -243,6 +224,7 @@ export default function ClientNewEditForm({ currentEvent }) {
                   )}
                 />
               </FormControl>
+              {/* Event Speaker */}
               <FormControl fullWidth>
                 <InputLabel>Event Speaker</InputLabel>
                 <Controller
@@ -277,25 +259,6 @@ export default function ClientNewEditForm({ currentEvent }) {
                   )}
                 />
               </FormControl>
-              {/* <Controller
-                name="start_date"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DatePicker
-                    label="Start date"
-                    value={field.value ? new Date(field.value) : null}
-                    onChange={(newValue) => {
-                      field.onChange(newValue ? format(new Date(newValue), 'yyyy-MM-dd') : null);
-                    }}
-                    slotProps={{
-                      textField: {
-                        error: !!error,
-                        helperText: error?.message,
-                      },
-                    }}
-                  />
-                )}
-              /> */}
               <RHFTextField
                 type="datetime-local"
                 name="start_date"
@@ -303,25 +266,6 @@ export default function ClientNewEditForm({ currentEvent }) {
                 InputLabelProps={{ shrink: true }}
               />
 
-              {/* <Controller
-                name="end_date"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DatePicker
-                    label="End date"
-                    value={field.value ? new Date(field.value) : null}
-                    onChange={(newValue) => {
-                      field.onChange(newValue ? format(new Date(newValue), 'yyyy-MM-dd') : null);
-                    }}
-                    slotProps={{
-                      textField: {
-                        error: !!error,
-                        helperText: error?.message,
-                      },
-                    }}
-                  />
-                )}
-              /> */}
               <RHFTextField
                 type="datetime-local"
                 name="end_date"
@@ -333,17 +277,17 @@ export default function ClientNewEditForm({ currentEvent }) {
               <RHFTextField name="organizer" label="Organizer" />
               <RHFTextField name="organizer_contact" label="Organizer Contact" />
               <RHFTextField name="location" label="Location" />
+              <Controller
+                name="isFeatured"
+                control={control}
+                render={({ field }) => (
+                  <RHFRadioGroup {...field} row spacing={8} options={Options} label="Is Featured" />
+                )}
+              />
+              <RHFTextField name="map_url" label="Map Url" />
               <Box sx={{ gridColumn: 'span 2' }}>
                 <Stack spacing={3}>
                   <Stack spacing={1.5}>
-                    <RHFRadioGroup
-                      row
-                      spacing={8}
-                      name="isFeatured"
-                      options={GENDER}
-                      label="Is Featured"
-                    />
-
                     <Typography variant="subtitle1">Description</Typography>
                     <RHFEditor name="description" />
                   </Stack>

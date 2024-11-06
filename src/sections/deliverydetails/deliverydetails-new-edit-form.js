@@ -51,8 +51,8 @@ export default function ClientNewEditForm({ currentDetails }) {
   const NewClientSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
     phone: Yup.string().required('Phone no. is required'),
-    address: Yup.string().required('Email is required'),
-    google_map: Yup.string().required('Email is required'),
+    address: Yup.string().required('Address is required'),
+    google_map: Yup.string().required('Google Map is required'),
   });
 
   const defaultValues = useMemo(

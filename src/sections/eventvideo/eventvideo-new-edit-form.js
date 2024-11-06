@@ -23,7 +23,6 @@ import {
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
-
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFEditor,
@@ -85,14 +84,8 @@ export default function ClientNewEditForm({ currentEventVideo }) {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (currentEventVideo) {
-        await UpdateEventVideo(currentEventVideo.id, data, token);
-        enqueueSnackbar('Event Video updated successfully!', { variant: 'success' });
-      }
-      // else {
-      //   await CreatePages(data);
-      //   enqueueSnackbar('Pages created successfully!', { variant: 'success' });
-      // }
+      await UpdateEventVideo(currentEventVideo.id, data, token);
+      enqueueSnackbar('Event Video updated successfully!', { variant: 'success' });
       router.push(paths.dashboard.eventvideo.list);
       reset();
     } catch (error) {
@@ -104,25 +97,25 @@ export default function ClientNewEditForm({ currentEventVideo }) {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid xs={12} md={8}>
         <Card sx={{ p: 3 }}>
-        <Box
-              rowGap={3}
-              columnGap={2}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
+          <Box
+            rowGap={3}
+            columnGap={2}
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+            }}
+          >
             <RHFTextField name="video_title" label="Title" />
             <RHFTextField name="top_sub_heading" label="Top Sub Heading" />
             <RHFTextField name="video_sub_heading" label="Video Sub Heading" />
             <RHFTextField name="video_url" label="Video Link" />
           </Box>
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {'Update'}
-              </LoadingButton>
-            </Stack>
+          <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              {'Update'}
+            </LoadingButton>
+          </Stack>
         </Card>
       </Grid>
     </FormProvider>
