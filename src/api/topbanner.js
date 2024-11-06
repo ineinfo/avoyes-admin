@@ -6,8 +6,8 @@ import { fetcher, endpoints } from 'src/utils/axios';
 
 // ----------------------------------------------------------------------
 
-export function UsegetEvents() {
-  const URL = endpoints.event.list;
+export function UsegetTopBanners() {
+  const URL = endpoints.topbanner.list;
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
   const memoizedValue = useMemo(
     () => ({
@@ -24,8 +24,8 @@ export function UsegetEvents() {
 
 // ----------------------------------------------------------------------
 
-export function UsegetEvent(productId) {
-  const URL = productId ? endpoints.event.details(productId) : null;
+export function UsegetTopBanner(productId) {
+  const URL = productId ? endpoints.topbanner.details(productId) : null;
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
   const memoizedValue = useMemo(
@@ -43,8 +43,8 @@ export function UsegetEvent(productId) {
 
 // ----------------------------------------------------------------------
 
-export function UseSearchEvent(query) {
-  const URL = query ? [endpoints.event.search, { params: { query } }] : '';
+export function UseSearchTopBanner(query) {
+  const URL = query ? [endpoints.topbanner.search, { params: { query } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,
@@ -64,9 +64,9 @@ export function UseSearchEvent(query) {
   return memoizedValue;
 }
 
-export const CreateEvent = async (data, token) => {
+export const CreateTopBanner = async (data, token) => {
   try {
-    const response = await axios.post(endpoints.event.create, data, {
+    const response = await axios.post(endpoints.topbanner.create, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
@@ -80,9 +80,9 @@ export const CreateEvent = async (data, token) => {
 };
 
 // Update user
-export const UpdateEvent = async (id, data, token) => {
+export const UpdateTopBanner = async (id, data, token) => {
   try {
-    const response = await axios.put(endpoints.event.details(id), data, {
+    const response = await axios.put(endpoints.topbanner.details(id), data, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
@@ -96,9 +96,9 @@ export const UpdateEvent = async (id, data, token) => {
 };
 
 //  delete user
-export const DeleteEvent = async (id, token) => {
+export const DeleteTopBanner = async (id, token) => {
   try {
-    const response = await axios.delete(endpoints.event.details(id), {
+    const response = await axios.delete(endpoints.topbanner.details(id), {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -110,9 +110,9 @@ export const DeleteEvent = async (id, token) => {
   }
 };
 
-export const DeleteMultipleEvent = async (id, token) => {
+export const DeleteMultipleTopBanners = async (id, token) => {
   try {
-    const response = await axios.delete(endpoints.event.deletes(id), {
+    const response = await axios.delete(endpoints.topbanner.deletes(id), {
       headers: {
         Authorization: `Bearer ${token}`,
       },

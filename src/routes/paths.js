@@ -289,5 +289,17 @@ export const paths = {
       changepassword: `${ROOTS.DASHBOARD}/setting/changepassword`,
       profile: `${ROOTS.DASHBOARD}/setting/profile`,
     },
+    topbanner: {
+      root: `${ROOTS.DASHBOARD}/topbanner`,
+      new: `${ROOTS.DASHBOARD}/topbanner/new`,
+      list: `${ROOTS.DASHBOARD}/topbanner/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/topbanner/${id}/edit`,
+    },
+    bottombanner: {
+      root: `${ROOTS.DASHBOARD}/bottombanner`,
+      // new: `${ROOTS.DASHBOARD}/bottombanner/new`,
+      list: `${ROOTS.DASHBOARD}/bottombanner/list`,
+      edit: (id) => `${ROOTS.DASHBOARD}/bottombanner/${id}/edit`,
+    },
   },
 };

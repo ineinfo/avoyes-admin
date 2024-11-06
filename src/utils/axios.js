@@ -54,6 +54,9 @@ import {
   ORDER_STATUS_ROUTE,
   ACTIVITY_CATEGORY_ROUTE,
   ACTIVITY_IMG_REMOVE,
+  BANNER_ROUTE,
+  BANNER_LEFT_ROUTE,
+  BOTTOM_BANNER_ROUTE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -104,21 +107,6 @@ export const endpoints = {
   //   details: '/api/product/details',
   //   search: '/api/product/search',
   // },
-  roles: {
-    list: ROLES_ROUTE,
-    create: ROLES_ROUTE,
-    details: (id) => `${ROLES_ROUTE}/${id}`,
-  },
-  amenity: {
-    list: AMENITIES_ROUTE,
-    create: AMENITIES_ROUTE,
-    details: (id) => `${AMENITIES_ROUTE}/${id}`,
-  },
-  propertytype: {
-    list: PROPERTY_TYPE_ROUTE,
-    create: PROPERTY_TYPE_ROUTE,
-    details: (id) => `${PROPERTY_TYPE_ROUTE}/${id}`,
-  },
   // users: {
   //   list: USER_ROUTE,
   //   create: USER_ROUTE,
@@ -311,6 +299,18 @@ export const endpoints = {
   //   details: (id) => `${PRODUCT_ROUTE}/${id}`,
   //   deletes: (id) => `${PRODUCT_ROUTE}?ids=${id}`,
   // },
+  topbanner: {
+    list: BANNER_ROUTE,
+    create: BANNER_ROUTE,
+    details: (id) => `${BANNER_ROUTE}/${id}`,
+    deletes: (id) => `${BANNER_ROUTE}/${id}`,
+  },
+  bottombanner: {
+    list: BOTTOM_BANNER_ROUTE,
+    create: BOTTOM_BANNER_ROUTE,
+    details: (id) => `${BOTTOM_BANNER_ROUTE}/${id}`,
+    deletes: (id) => `${BOTTOM_BANNER_ROUTE}/${id}`,
+  },
   pages: {
     list: PAGES_ROUTE,
     create: PAGES_ROUTE,
@@ -338,33 +338,6 @@ export const endpoints = {
   //   details: (id) => `${REWARDS_ROUTE}/?id=${id}`,
   //   deletes: (id) => `${REWARDS_ROUTE}?ids=${id}`,
   // },
-  Others: {
-    city: {
-      list: CITY_ROUTE,
-      create: CITY_ROUTE,
-      details: (id) => `${CITY_ROUTE}/?id=${id}`,
-    },
-    state: {
-      list: STATE_ROUTE,
-      create: STATE_ROUTE,
-      details: (id) => `${STATE_ROUTE}/?id=${id}`,
-    },
-    country: {
-      list: COUTNRY_ROUTE,
-      create: COUTNRY_ROUTE,
-      details: (id) => `${COUTNRY_ROUTE}/?id=${id}`,
-    },
-  },
-  propertypage: {
-    list: PROPERTIES_ROUTE,
-    create: PROPERTIES_ROUTE,
-    details: (id) => `${PROPERTIES_ROUTE}/${id}`,
-  },
-  Review: {
-    list: PROPERTIES_ROUTE,
-    create: PROPERTIES_ROUTE,
-    details: (id) => `${PROPERTIES_ROUTE}/${id}`,
-  },
   size: {
     list: SIZE_ROUTE,
     create: SIZE_ROUTE,

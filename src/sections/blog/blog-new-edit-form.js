@@ -64,6 +64,7 @@ export default function ClientNewEditForm({ currentBlog }) {
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
+    author: Yup.string().required('Author name is required'),
     description: Yup.string().required('Description is required'),
     short_description: Yup.string().required('Short description is required'),
     // tags: Yup.array().min(1, 'Must have at least 1 tags'),
@@ -86,6 +87,7 @@ export default function ClientNewEditForm({ currentBlog }) {
       description: Blog?.description || '',
       category_id: Blog?.category_id || '',
       short_description: Blog?.short_description || '',
+      author: Blog?.author || '',
       tags: tagsArray,
       blog_date: Blog?.blog_date ? format(new Date(Blog.blog_date), 'yyyy-MM-dd') : '',
       image_url: fetchimages || null,
@@ -227,6 +229,39 @@ export default function ClientNewEditForm({ currentBlog }) {
                 )}
               />
               <RHFTextField name="short_description" label="Short description" />
+              <RHFAutocomplete
+                name="tags"
+                label="Tags"
+                multiple
+                freeSolo
+                options={propertyTypess.map((option) => option)}
+                getOptionLabel={(option) => option?.title || ''}
+                isOptionEqualToValue={(option, value) => option?.id === value?.id}
+                renderOption={(props, option) => (
+                  <li {...props} key={option?.id}>
+                    {option.title}
+                  </li>
+                )}
+                onChange={(event, value) => {
+                  const uniqueValues = value.filter(
+                    (v, index, self) => index === self.findIndex((t) => t?.id === v?.id)
+                  );
+                  setValue('tags', uniqueValues);
+                }}
+                renderTags={(selected, getTagProps) =>
+                  selected.map((option, index) => (
+                    <Chip
+                      {...getTagProps({ index })}
+                      key={option?.id}
+                      label={option?.title}
+                      size="small"
+                      color="info"
+                      variant="soft"
+                    />
+                  ))
+                }
+              />
+              <RHFTextField name="author" label="Author" />
               <Box sx={{ gridColumn: 'span 2' }}>
                 {/* <RHFAutocomplete
                   name="tags"
@@ -253,38 +288,6 @@ export default function ClientNewEditForm({ currentBlog }) {
                     ))
                   }
                 /> */}
-                <RHFAutocomplete
-                  name="tags"
-                  label="Tags"
-                  multiple
-                  freeSolo
-                  options={propertyTypess.map((option) => option)}
-                  getOptionLabel={(option) => option?.title || ''}
-                  isOptionEqualToValue={(option, value) => option?.id === value?.id}
-                  renderOption={(props, option) => (
-                    <li {...props} key={option?.id}>
-                      {option.title}
-                    </li>
-                  )}
-                  onChange={(event, value) => {
-                    const uniqueValues = value.filter(
-                      (v, index, self) => index === self.findIndex((t) => t?.id === v?.id)
-                    );
-                    setValue('tags', uniqueValues);
-                  }}
-                  renderTags={(selected, getTagProps) =>
-                    selected.map((option, index) => (
-                      <Chip
-                        {...getTagProps({ index })}
-                        key={option?.id}
-                        label={option?.title}
-                        size="small"
-                        color="info"
-                        variant="soft"
-                      />
-                    ))
-                  }
-                />
 
                 <Stack spacing={1.5} sx={{ mt: 3 }}>
                   <Typography variant="subtitle1">Description</Typography>

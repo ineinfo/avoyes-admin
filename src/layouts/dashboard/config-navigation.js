@@ -175,7 +175,6 @@ export function useNavData() {
               },
             ],
           },
-
           {
             title: t('Blog'),
             path: paths.dashboard.blog.root,
@@ -323,6 +322,31 @@ export function useNavData() {
             ],
           },
           {
+            title: t('Banners'),
+            icon: ICONS.file,
+            path: [paths.dashboard.category.root],
+            children: [
+              {
+                title: t('Top Banner'),
+                path: paths.dashboard.topbanner.root,
+                icon: ICONS.amenity,
+                children: [
+                  { title: t('list'), path: paths.dashboard.topbanner.list },
+                  { title: t('create'), path: paths.dashboard.topbanner.new },
+                ],
+              },
+              {
+                title: t('Bottom Banner'),
+                path: paths.dashboard.bottombanner.root,
+                icon: ICONS.amenity,
+                children: [
+                  { title: t('list'), path: paths.dashboard.bottombanner.list },
+                  // { title: t('create'), path: paths.dashboard.bottombanner.new },
+                ],
+              },
+            ],
+          },
+          {
             title: t('Pages'),
             path: paths.dashboard.pages.root,
             icon: ICONS.pages,
@@ -376,6 +400,7 @@ export function useNavData() {
               { title: t('Change Password'), path: paths.dashboard.setting.changepassword },
             ],
           },
+         
         ],
       },
     ],

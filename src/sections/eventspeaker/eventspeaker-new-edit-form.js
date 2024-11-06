@@ -14,7 +14,6 @@ import { useRouter } from 'src/routes/hooks';
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import { useAuthContext } from 'src/auth/hooks';
-import { CreateEventCategory, UpdateEventCategory } from 'src/api/eventcategory';
 import { CreateEventSpeaker, UpdateEventSpeaker } from 'src/api/eventspeaker';
 
 // ----------------------------------------------------------------------
