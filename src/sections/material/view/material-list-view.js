@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteMaterial, DeleteMultipleMaterial } from 'src/api/material';
 import UserTableRow from '../material-table-row';
 import UserTableToolbar from '../material-table-toolbar';
 import UserTableFiltersResult from '../material-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMaterial, DeleteMultipleMaterial } from 'src/api/material';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Material' },

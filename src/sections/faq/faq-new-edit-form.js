@@ -134,6 +134,4 @@ export default function ClientNewEditForm({ currentFAQ }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  FAQ: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

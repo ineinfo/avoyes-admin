@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteChallenge, DeleteMultipleChallenge, FetchChallenges, } from 'src/api/challenges';
 import UserTableRow from '../challenges-table-row';
 import UserTableToolbar from '../challenges-table-toolbar';
 import UserTableFiltersResult from '../challenges-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteChallenge, DeleteMultipleChallenge, FetchChallenges, fetchChallenges } from 'src/api/challenges';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

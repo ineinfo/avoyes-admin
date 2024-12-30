@@ -12,8 +12,8 @@ import { UsegetCategory } from 'src/api/category';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../inquiry-new-edit-form';
 import { UsegetInquiry } from 'src/api/inquiry';
+import UserNewEditForm from '../inquiry-new-edit-form';
 
 // ----------------------------------------------------------------------
 

@@ -33,7 +33,7 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
+import { UpdatePages } from 'src/api/pages';
 
 // ----------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ export default function ClientNewEditForm({ currentDeliverable }) {
             </Stack>
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {'Update'}
+                Update
               </LoadingButton>
             </Stack>
           </Stack>

@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { DeleteMultipleLinks, DeleteSocialMedia } from 'src/api/socialmedia';
+import { useAuthContext } from 'src/auth/hooks';
 import UserTableRow from '../socialmedia-table-row';
 import UserTableToolbar from '../socialmedia-table-toolbar';
 import UserTableFiltersResult from '../socialmedia-table-filters-result';
-import { DeleteMultipleLinks, DeleteSocialMedia } from 'src/api/socialmedia';
-import { useAuthContext } from 'src/auth/hooks';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
@@ -56,7 +56,7 @@ const defaultFilters = {
   name: '',
   role: [],
   status: 'all',
-  title : '',
+  title: '',
 };
 
 // ----------------------------------------------------------------------

@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteFoodType, DeleteMultipleFoodType } from 'src/api/foodtype';
 import UserTableRow from '../foodtype-table-row';
 import UserTableToolbar from '../foodtype-table-toolbar';
 import UserTableFiltersResult from '../foodtype-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteFoodType, DeleteMultipleFoodType } from 'src/api/foodtype';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

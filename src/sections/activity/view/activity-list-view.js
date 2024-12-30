@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteActivity, DeleteMultipleActivity, FetchActivity } from 'src/api/activity';
 import UserTableRow from '../activity-table-row';
 import UserTableToolbar from '../activity-table-toolbar';
 import UserTableFiltersResult from '../activity-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteActivity, DeleteMultipleActivity, FetchActivity } from 'src/api/activity';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

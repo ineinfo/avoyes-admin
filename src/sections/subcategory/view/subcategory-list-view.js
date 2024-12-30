@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { DeleteMultipleSub, DeleteSubCategory } from 'src/api/subcategory';
+import { useAuthContext } from 'src/auth/hooks';
 import UserTableRow from '../subcategory-table-row';
 import UserTableToolbar from '../subcategory-table-toolbar';
 import UserTableFiltersResult from '../subcategory-table-filters-result';
-import { DeleteMultipleSub, DeleteSubCategory } from 'src/api/subcategory';
-import { useAuthContext } from 'src/auth/hooks';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

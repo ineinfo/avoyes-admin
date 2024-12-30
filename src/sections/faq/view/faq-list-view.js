@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteFAQ, DeleteMultipleFAQ } from 'src/api/faq';
 import UserTableRow from '../faq-table-row';
 import UserTableToolbar from '../faq-table-toolbar';
 import UserTableFiltersResult from '../faq-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteFAQ, DeleteMultipleFAQ } from 'src/api/faq';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

@@ -115,10 +115,10 @@ export default function ClientNewEditForm({ currentInquiry }) {
                 sm: 'repeat(2, 1fr)',
               }}
             >
-                  <RHFTextField name="name" label="Name" />
-                  <RHFTextField name="email" label="Email" />
-                  <RHFTextField name="phone" label="Phone no."   type="number" />
-                  <RHFTextField name="message" label="Message" />
+              <RHFTextField name="name" label="Name" />
+              <RHFTextField name="email" label="Email" />
+              <RHFTextField name="phone" label="Phone no." type="number" />
+              <RHFTextField name="message" label="Message" />
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
@@ -133,6 +133,4 @@ export default function ClientNewEditForm({ currentInquiry }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Inquiry: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

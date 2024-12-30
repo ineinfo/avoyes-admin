@@ -3,28 +3,12 @@ import axios from 'axios';
 import { HOST_API } from 'src/config-global';
 
 import {
-  USER_ROUTE,
-  ROLES_ROUTE,
-  LEADS_ROUTE,
-  CLIENTS_ROUTE,
-  AMENITIES_ROUTE,
-  PROPERTY_TYPE_ROUTE,
-  PROPERTIES_ROUTE,
   CATEGORY_ROUTE,
   SUBCATEGORY_ROUTE,
-  BRANDS_ROUTE,
-  CITY_ROUTE,
-  STATE_ROUTE,
-  COUTNRY_ROUTE,
   PRODUCT_ROUTE,
   SOCIAL_MEDIA,
   PAGES_ROUTE,
   HOME_ROUTE,
-  REVIEW_ROUTE,
-  ADVERTISEMENT_ROUTE,
-  ADVERTISEMENT_RECORD_STATUS,
-  USERS_ROUTE,
-  REWARDS_ROUTE,
   COLOR_ROUTE,
   SIZE_ROUTE,
   MATERIAL_ROUTE,
@@ -55,7 +39,6 @@ import {
   ACTIVITY_CATEGORY_ROUTE,
   ACTIVITY_IMG_REMOVE,
   BANNER_ROUTE,
-  BANNER_LEFT_ROUTE,
   BOTTOM_BANNER_ROUTE,
 } from './apiendpoints';
 
@@ -204,7 +187,7 @@ export const endpoints = {
     create: ACTIVITY_ROUTE,
     details: (id) => `${ACTIVITY_ROUTE}/${id}`,
     deletes: (id) => `${ACTIVITY_ROUTE}/${id}`,
-    imgdlt : (iid) => `${ACTIVITY_IMG_REMOVE}/${iid}`
+    imgdlt: (iid) => `${ACTIVITY_IMG_REMOVE}/${iid}`
   },
   activitycategory: {
     list: ACTIVITY_CATEGORY_ROUTE,

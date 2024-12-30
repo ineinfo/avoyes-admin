@@ -11,14 +11,14 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../deliverydetails-new-edit-form';
 import { UsegetDetail } from 'src/api/deliverydetails';
+import UserNewEditForm from '../deliverydetails-new-edit-form';
 
 // ----------------------------------------------------------------------
 
 export default function UserEditView({ id }) {
   const settings = useSettingsContext();
-  const { product: currentDetails} = UsegetDetail(id);
+  const { product: currentDetails } = UsegetDetail(id);
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs

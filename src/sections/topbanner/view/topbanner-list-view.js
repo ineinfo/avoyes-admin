@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteMultipleTopBanners, DeleteTopBanner } from 'src/api/topbanner';
 import UserTableRow from '../topbanner-table-row';
 import UserTableToolbar from '../topbanner-table-toolbar';
 import UserTableFiltersResult from '../topbanner-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleTopBanners, DeleteTopBanner } from 'src/api/topbanner';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

@@ -33,7 +33,7 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
+import { UpdatePages } from 'src/api/pages';
 import { UpdateAboutUs } from 'src/api/aboutus';
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -84,7 +84,7 @@ export default function ClientNewEditForm({ currentAbout }) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (currentAbout) {
-        await UpdateAboutUs( data,token);
+        await UpdateAboutUs(data, token);
         enqueueSnackbar('About Us updated successfully!', { variant: 'success' });
       }
       router.push(paths.dashboard.aboutus.list);
@@ -98,27 +98,27 @@ export default function ClientNewEditForm({ currentAbout }) {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid xs={12} md={8}>
         <Card sx={{ p: 3 }}>
-        <Box
-              rowGap={3}
-              columnGap={2}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
+          <Box
+            rowGap={3}
+            columnGap={2}
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+            }}
+          >
             <RHFTextField name="title" label="Title" />
             <RHFTextField name="short_description" label="Short Description" />
-            </Box>
-            <Stack spacing={1.5} sx={{ mt: 3 }}>
-              <Typography variant="subtitle2">Description</Typography>
-              <RHFEditor simple name="description" />
-            </Stack>
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {'Update'}
-              </LoadingButton>
-            </Stack>
+          </Box>
+          <Stack spacing={1.5} sx={{ mt: 3 }}>
+            <Typography variant="subtitle2">Description</Typography>
+            <RHFEditor simple name="description" />
+          </Stack>
+          <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              Update
+            </LoadingButton>
+          </Stack>
         </Card>
       </Grid>
     </FormProvider>

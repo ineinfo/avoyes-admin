@@ -99,6 +99,4 @@ export default function ClientNewEditForm({ currentEventSpeaker }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  EventSpeaker: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

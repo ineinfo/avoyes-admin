@@ -11,9 +11,8 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../bottombanner-new-edit-form';
-import { UsegetPage } from 'src/api/pages';
 import { UsegetBottomBanner } from 'src/api/bottombanner';
+import UserNewEditForm from '../bottombanner-new-edit-form';
 
 // ----------------------------------------------------------------------
 

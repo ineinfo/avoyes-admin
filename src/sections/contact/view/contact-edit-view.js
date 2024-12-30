@@ -11,16 +11,16 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../contact-new-edit-form';
 import { UsegetPage } from 'src/api/pages';
 import { UsegetAbout } from 'src/api/aboutus';
 import { UsegetContact } from 'src/api/contact';
+import UserNewEditForm from '../contact-new-edit-form';
 
 // ----------------------------------------------------------------------
 
 export default function UserEditView({ id }) {
   const settings = useSettingsContext();
-  const { product: currentContact} = UsegetContact(id);
+  const { product: currentContact } = UsegetContact(id);
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs

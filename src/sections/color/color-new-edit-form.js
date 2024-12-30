@@ -126,6 +126,4 @@ export default function ClientNewEditForm({ currentColor }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Color: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

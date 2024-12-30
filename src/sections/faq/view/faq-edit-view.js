@@ -10,14 +10,14 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../faq-new-edit-form';
 import { UsegetFAQ } from 'src/api/faq';
+import UserNewEditForm from '../faq-new-edit-form';
 
 // ----------------------------------------------------------------------
 
 export default function UserEditView({ id }) {
   const settings = useSettingsContext();
-  const { product: currentFAQ} = UsegetFAQ(id);
+  const { product: currentFAQ } = UsegetFAQ(id);
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs

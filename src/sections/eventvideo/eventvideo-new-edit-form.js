@@ -32,7 +32,7 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
+import { UpdatePages } from 'src/api/pages';
 import { UpdateEventVideo } from 'src/api/eventvideo';
 import { useAuthContext } from 'src/auth/hooks';
 
@@ -113,7 +113,7 @@ export default function ClientNewEditForm({ currentEventVideo }) {
           </Box>
           <Stack alignItems="flex-end" sx={{ mt: 3 }}>
             <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-              {'Update'}
+              Update
             </LoadingButton>
           </Stack>
         </Card>

@@ -53,9 +53,9 @@ export default function ClientNewEditForm({ currentActivity }) {
 
   const fetchimages = Activity?.files
     ? Activity.files.map((img) => ({
-        iid: img.iid,
-        preview: img.file,
-      }))
+      iid: img.iid,
+      preview: img.file,
+    }))
     : [];
 
   const { products: propertyTypes, productsLoading: propertyTypesLoading } =
@@ -66,21 +66,28 @@ export default function ClientNewEditForm({ currentActivity }) {
     hosted_by: Yup.string().required('Hosted by name is required'),
     start_datetime: Yup.string()
       .required('Start date is required')
-      .test('is-valid-date', 'Start date is not valid', (value) => !isNaN(Date.parse(value))),
+      .test('is-valid-date', 'Start date is not valid', (value) =>
+        value && !Number.isNaN(Date.parse(value))
+      ),
     end_datetime: Yup.string()
       .required('End date is required')
-      .test('is-valid-date', 'End date is not valid', (value) => !isNaN(Date.parse(value)))
-      .test('is-after-start', 'End date must be after start date', function (value) {
-        const { start_datetime } = this.parent;
+      .test('is-valid-date', 'End date is not valid', (value) =>
+        value && !Number.isNaN(Date.parse(value))
+      )
+      .test('is-after-start', 'End date must be after start date', (value) => {
+        // Using Yup.ref to reference the start_datetime field
+        const start_datetime = Yup.ref('start_datetime'); // Reference to 'start_datetime'
         return !value || !start_datetime || new Date(value) > new Date(start_datetime);
       }),
     country_id: Yup.string().required('Country name is required'),
     activity_id: Yup.string().required('Activity Category name is required'),
     pincode: Yup.string().required('PinCode is required'),
-    location: Yup.string().required('Loaction is required'),
+    location: Yup.string().required('Location is required'),
     description: Yup.string().required('Description is required'),
-    files: Yup.array().min(1, 'Images is required'),
+    files: Yup.array().min(1, 'Images are required'),
   });
+
+
 
   const defaultValues = useMemo(
     () => ({
@@ -180,7 +187,7 @@ export default function ClientNewEditForm({ currentActivity }) {
     [setValue, values.files]
   );
 
- 
+
   const handleRemoveFile = useCallback(
     async (inputFile) => {
       let updatedFiles = values.files;

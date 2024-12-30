@@ -33,7 +33,6 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
 import { UpdateAboutUs } from 'src/api/aboutus';
 import { useAuthContext } from 'src/auth/hooks';
 import { UpdateContact } from 'src/api/contact';
@@ -85,7 +84,7 @@ export default function ClientNewEditForm({ currentBrand }) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (currentBrand) {
-        await UpdateBrandPartner( data,token);
+        await UpdateBrandPartner(data, token);
         enqueueSnackbar('Brand Partner updated successfully!', { variant: 'success' });
       }
       router.push(paths.dashboard.contact.list);
@@ -99,22 +98,22 @@ export default function ClientNewEditForm({ currentBrand }) {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid xs={12} md={8}>
         <Card sx={{ p: 3 }}>
-        <Box
-              rowGap={3}
-              columnGap={2}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
+          <Box
+            rowGap={3}
+            columnGap={2}
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+            }}
+          >
             <RHFTextField name="title" label="Title" />
-            </Box>
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {'Update'}
-              </LoadingButton>
-            </Stack>
+          </Box>
+          <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              Update
+            </LoadingButton>
+          </Stack>
         </Card>
       </Grid>
     </FormProvider>

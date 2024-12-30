@@ -7,11 +7,11 @@ import { _appAuthors, _appRelated, _appFeatured, _appInvoices, _appInstalled } f
 
 import { useSettingsContext } from 'src/components/settings';
 
-import AppWidgetSummary from '../app-widget-summary';
 import { useAuthContext } from 'src/auth/hooks';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { DASHBOARD_COUNT } from 'src/api/dashboard';
+import AppWidgetSummary from '../app-widget-summary';
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ export default function OverviewAppView() {
     totalPendingOrders: 0,
     totalProgressOrders: 0,
     totalCompletedOrders: 0,
-    
+
   });
   const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
@@ -53,7 +53,7 @@ export default function OverviewAppView() {
       }
     };
     fetchData();
-  }, [enqueueSnackbar,token]);
+  }, [enqueueSnackbar, token]);
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>

@@ -128,6 +128,4 @@ export default function ClientNewEditForm({ currentComment }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Comment: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

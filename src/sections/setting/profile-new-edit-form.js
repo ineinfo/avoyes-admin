@@ -38,7 +38,6 @@ import { assetsPath, FetchProfile, UpdateProfile } from 'src/utils/apiendpoints'
 import { useAuthContext } from 'src/auth/hooks';
 import { usePopover } from 'src/components/custom-popover';
 import { DatePicker } from '@mui/x-date-pickers';
-import { AuthContext } from 'src/auth/context/jwt';
 import { JOB_EXPERIENCE_OPTIONS } from 'src/_mock';
 import { format } from 'date-fns';
 
@@ -132,7 +131,7 @@ export default function ProfileNewEditForm() {
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      const response = await UpdateProfile(formData,token);
+      const response = await UpdateProfile(formData, token);
       if (response.status) {
         enqueueSnackbar(response.message);
         const updatedProfile = await FetchProfile(token);
@@ -233,7 +232,7 @@ export default function ProfileNewEditForm() {
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained">
-                {'Update'}
+                Update
               </LoadingButton>
             </Stack>
           </Card>
@@ -243,6 +242,5 @@ export default function ProfileNewEditForm() {
   );
 }
 
-ProfileNewEditForm.propTypes = {
-  currentUser: PropTypes.object,
-};
+ProfileNewEditForm.propTypes = {};
+

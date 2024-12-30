@@ -33,7 +33,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Iconify from 'src/components/iconify';
-import { CHANGE_PASSWORD, ChangePassword } from 'src/utils/apiendpoints';
+import { ChangePassword } from 'src/utils/apiendpoints';
 import { useAuthContext } from 'src/auth/hooks';
 import { usePopover } from 'src/components/custom-popover';
 import { error } from 'src/theme/palette';
@@ -57,13 +57,13 @@ export default function UserNewEditForm() {
       await logout();
       popover.onClose();
       router.replace('/auth/jwt/login');
-    } catch (error) {
-      console.error(error);
+    } catch (error2) {
+      console.error(error2);
       enqueueSnackbar('Unable to logout!', { variant: 'error' });
     }
   };
 
-  
+
 
   const NewUserSchema = Yup.object().shape({
     current_password: Yup.string().required('Current Password is required'),
@@ -113,7 +113,7 @@ export default function UserNewEditForm() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      
+
       const response = await ChangePassword(data, token);
       if (response?.status === true) {
         enqueueSnackbar(response.message, { variant: 'success' });
@@ -122,13 +122,13 @@ export default function UserNewEditForm() {
       } else {
         enqueueSnackbar(response.error || 'An error occurred', { variant: 'error' });
       }
-    } catch (error) {
-      const errorMessage = error?.response?.data?.error || 'Unknown error';
+    } catch (error1) {
+      const errorMessage = error1?.response?.data?.error || 'Unknown error';
       enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   });
-  
-  
+
+
 
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
@@ -195,7 +195,7 @@ export default function UserNewEditForm() {
             </Box>
             <Grid xs={12} md={12} sx={{ display: 'flex', justifyContent: 'end' }} spacing={3}>
               <LoadingButton type="submit" size="medium" variant="contained" loading={isSubmitting}>
-                {'Change'}
+                Change
               </LoadingButton>
             </Grid>
           </Card>
@@ -205,6 +205,4 @@ export default function UserNewEditForm() {
   );
 }
 
-UserNewEditForm.propTypes = {
-  currentUser: PropTypes.object,
-};
+UserNewEditForm.propTypes = {};

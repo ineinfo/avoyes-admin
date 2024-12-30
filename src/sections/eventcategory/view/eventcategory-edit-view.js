@@ -5,8 +5,8 @@ import Container from '@mui/material/Container';
 import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import UserNewEditForm from '../eventcategory-new-edit-form';
 import { UsegetEventCategory } from 'src/api/eventcategory';
+import UserNewEditForm from '../eventcategory-new-edit-form';
 
 // ----------------------------------------------------------------------
 

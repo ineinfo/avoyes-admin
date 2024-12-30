@@ -9,8 +9,8 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../size-new-edit-form';
 import { UsegetSize } from 'src/api/size';
+import UserNewEditForm from '../size-new-edit-form';
 
 // ----------------------------------------------------------------------
 

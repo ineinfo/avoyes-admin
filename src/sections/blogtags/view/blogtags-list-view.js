@@ -40,12 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteBlogTags, DeleteMultipleBlogTags } from 'src/api/blogtags';
 import UserTableRow from '../blogtags-table-row';
 import UserTableToolbar from '../blogtags-table-toolbar';
 import UserTableFiltersResult from '../blogtags-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteBlog, DeleteMultipleblog } from 'src/api/blog';
-import { DeleteBlogTags, DeleteMultipleBlogTags } from 'src/api/blogtags';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

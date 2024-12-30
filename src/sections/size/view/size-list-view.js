@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { DeleteMultipleSize, DeleteSize } from 'src/api/size';
+import { useAuthContext } from 'src/auth/hooks';
 import UserTableRow from '../size-table-row';
 import UserTableToolbar from '../size-table-toolbar';
 import UserTableFiltersResult from '../size-table-filters-result';
-import { DeleteMultipleSize, DeleteSize } from 'src/api/size';
-import { useAuthContext } from 'src/auth/hooks';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Size' },

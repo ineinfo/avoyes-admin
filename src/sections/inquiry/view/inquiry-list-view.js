@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteInquiry, DeleteMultipleInquiry } from 'src/api/inquiry';
 import UserTableRow from '../inquiry-table-row';
 import UserTableToolbar from '../inquiry-table-toolbar';
 import UserTableFiltersResult from '../inquiry-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteInquiry, DeleteMultipleInquiry } from 'src/api/inquiry';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name' },

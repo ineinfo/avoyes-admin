@@ -46,7 +46,7 @@ export default function ClientNewEditForm({ currentTopBanner }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchimages = TopBanner?.image_url ? `${TopBanner.image_url}` : '';
-  console.log(fetchimages,"IMAGEs")
+  console.log(fetchimages, "IMAGEs")
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
@@ -172,5 +172,6 @@ export default function ClientNewEditForm({ currentTopBanner }) {
 }
 
 ClientNewEditForm.propTypes = {
-  TopBanner: PropTypes.object,
+  currentTopBanner: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
+

@@ -119,6 +119,4 @@ export default function ClientNewEditForm({ currentBlogCategory }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  BlogCategory: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

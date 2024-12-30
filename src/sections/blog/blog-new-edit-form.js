@@ -71,7 +71,7 @@ export default function ClientNewEditForm({ currentBlog }) {
     category_id: Yup.string().required('Category name is required'),
     blog_date: Yup.string()
       .required('Start date is required')
-      .test('is-valid-date', 'Start date is not valid', (value) => !isNaN(Date.parse(value))),
+      .test('is-valid-date', 'Start date is not valid', (value) => !Number.isNaN(Date.parse(value))),
     image_url: Yup.mixed().nullable().required('Image is required'),
   });
 

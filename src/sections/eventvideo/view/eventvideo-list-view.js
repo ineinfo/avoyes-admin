@@ -43,7 +43,6 @@ import {
 import UserTableRow from '../eventvideo-table-row';
 import UserTableToolbar from '../eventvideo-table-toolbar';
 import UserTableFiltersResult from '../eventvideo-table-filters-result';
-import { DeletePages } from 'src/api/pages';
 
 const TABLE_HEAD = [
   { id: 'video_title', label: 'Title' },
@@ -196,19 +195,19 @@ export default function UserListView() {
               dense={table.dense}
               // numSelected={table.selected.length}
               rowCount={dataFiltered.length}
-              // onSelectAllRows={(checked) =>
-              //   table.onSelectAllRows(
-              //     checked,
-              //     dataFiltered.map((row) => row.id)
-              //   )
-              // }
-              // action={
-              //   <Tooltip title="Delete">
-              //     <IconButton color="primary" onClick={confirm.onTrue}>
-              //       <Iconify icon="solar:trash-bin-trash-bold" />
-              //     </IconButton>
-              //   </Tooltip>
-              // }
+            // onSelectAllRows={(checked) =>
+            //   table.onSelectAllRows(
+            //     checked,
+            //     dataFiltered.map((row) => row.id)
+            //   )
+            // }
+            // action={
+            //   <Tooltip title="Delete">
+            //     <IconButton color="primary" onClick={confirm.onTrue}>
+            //       <Iconify icon="solar:trash-bin-trash-bold" />
+            //     </IconButton>
+            //   </Tooltip>
+            // }
             />
             <Scrollbar>
               <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -219,12 +218,12 @@ export default function UserListView() {
                   rowCount={dataFiltered.length}
                   numSelected={table.selected.length}
                   onSort={table.onSort}
-                  // onSelectAllRows={(checked) =>
-                  //   table.onSelectAllRows(
-                  //     checked,
-                  //     dataFiltered.map((row) => row.id)
-                  //   )
-                  // }
+                // onSelectAllRows={(checked) =>
+                //   table.onSelectAllRows(
+                //     checked,
+                //     dataFiltered.map((row) => row.id)
+                //   )
+                // }
                 />
                 <TableBody>
                   {dataFiltered

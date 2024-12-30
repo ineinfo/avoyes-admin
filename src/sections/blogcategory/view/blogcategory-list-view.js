@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteBlogCategory, DeleteMultipleBlogCategory } from 'src/api/blogcategory';
 import UserTableRow from '../blogcategory-table-row';
 import UserTableToolbar from '../blogcategory-table-toolbar';
 import UserTableFiltersResult from '../blogcategory-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteBlogCategory, DeleteMultipleBlogCategory } from 'src/api/blogcategory';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

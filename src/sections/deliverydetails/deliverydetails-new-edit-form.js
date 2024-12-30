@@ -33,7 +33,6 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
 import { UpdateAboutUs } from 'src/api/aboutus';
 import { useAuthContext } from 'src/auth/hooks';
 import { UpdateContact } from 'src/api/contact';
@@ -88,7 +87,7 @@ export default function ClientNewEditForm({ currentDetails }) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (currentDetails) {
-        await UpdateDeliveryDetails( data,token);
+        await UpdateDeliveryDetails(data, token);
         enqueueSnackbar('Contact Us updated successfully!', { variant: 'success' });
       }
       router.push(paths.dashboard.contact.list);
@@ -102,25 +101,25 @@ export default function ClientNewEditForm({ currentDetails }) {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Grid xs={12} md={8}>
         <Card sx={{ p: 3 }}>
-        <Box
-              rowGap={3}
-              columnGap={2}
-              display="grid"
-              gridTemplateColumns={{
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              }}
-            >
+          <Box
+            rowGap={3}
+            columnGap={2}
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+            }}
+          >
             <RHFTextField name="email" label="Email" />
             <RHFTextField name="phone" label="Phone no." />
             <RHFTextField name="address" label="Address" />
             <RHFTextField name="google_map" label="Google Map" />
-            </Box>
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {'Update'}
-              </LoadingButton>
-            </Stack>
+          </Box>
+          <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              Update
+            </LoadingButton>
+          </Stack>
         </Card>
       </Grid>
     </FormProvider>

@@ -40,12 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { FetchOrderDetails } from 'src/api/orderhistory';
+import { useAuthContext } from 'src/auth/hooks';
 import UserTableRow from '../orderhistory-table-row';
 import UserTableToolbar from '../orderhistory-table-toolbar';
 import UserTableFiltersResult from '../orderhistory-table-filters-result';
-import { DeletePages } from 'src/api/pages';
-import { FetchOrderDetails } from 'src/api/orderhistory';
-import { useAuthContext } from 'src/auth/hooks';
 
 const TABLE_HEAD = [
   { id: 'order_number', label: 'Order Number' },
@@ -215,19 +214,19 @@ export default function UserListView() {
               dense={table.dense}
               // numSelected={table.selected.length}
               rowCount={dataFiltered.length}
-              // onSelectAllRows={(checked) =>
-              //   table.onSelectAllRows(
-              //     checked,
-              //     dataFiltered.map((row) => row.id)
-              //   )
-              // }
-              // action={
-              //   <Tooltip title="Delete">
-              //     <IconButton color="primary" onClick={confirm.onTrue}>
-              //       <Iconify icon="solar:trash-bin-trash-bold" />
-              //     </IconButton>
-              //   </Tooltip>
-              // }
+            // onSelectAllRows={(checked) =>
+            //   table.onSelectAllRows(
+            //     checked,
+            //     dataFiltered.map((row) => row.id)
+            //   )
+            // }
+            // action={
+            //   <Tooltip title="Delete">
+            //     <IconButton color="primary" onClick={confirm.onTrue}>
+            //       <Iconify icon="solar:trash-bin-trash-bold" />
+            //     </IconButton>
+            //   </Tooltip>
+            // }
             />
             <Scrollbar>
               <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -238,12 +237,12 @@ export default function UserListView() {
                   rowCount={dataFiltered.length}
                   numSelected={table.selected.length}
                   onSort={table.onSort}
-                  // onSelectAllRows={(checked) =>
-                  //   table.onSelectAllRows(
-                  //     checked,
-                  //     dataFiltered.map((row) => row.id)
-                  //   )
-                  // }
+                // onSelectAllRows={(checked) =>
+                //   table.onSelectAllRows(
+                //     checked,
+                //     dataFiltered.map((row) => row.id)
+                //   )
+                // }
                 />
                 <TableBody>
                   {dataFiltered

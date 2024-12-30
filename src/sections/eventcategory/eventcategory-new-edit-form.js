@@ -99,6 +99,4 @@ export default function ClientNewEditForm({ currentEventCategory }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  EventCategory: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

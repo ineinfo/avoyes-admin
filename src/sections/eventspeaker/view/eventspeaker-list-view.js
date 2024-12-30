@@ -36,13 +36,13 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import UserTableRow from '../eventspeaker-table-row';
-import UserTableToolbar from '../eventspeaker-table-toolbar';
-import UserTableFiltersResult from '../eventspeaker-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
 import { DeleteEvent, DeleteMultipleEvent } from 'src/api/event';
 import { DeleteEventCategory, DeleteMultipleEventCategory } from 'src/api/eventcategory';
 import { DeleteEventSpeaker, DeleteMultipleEventSpeaker } from 'src/api/eventspeaker';
+import { useAuthContext } from 'src/auth/hooks';
+import UserTableRow from '../eventspeaker-table-row';
+import UserTableToolbar from '../eventspeaker-table-toolbar';
+import UserTableFiltersResult from '../eventspeaker-table-filters-result';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

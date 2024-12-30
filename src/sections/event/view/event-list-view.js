@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteEvent, DeleteMultipleEvent } from 'src/api/event';
 import UserTableRow from '../event-table-row';
 import UserTableToolbar from '../event-table-toolbar';
 import UserTableFiltersResult from '../event-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteEvent, DeleteMultipleEvent } from 'src/api/event';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

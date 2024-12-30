@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteMultipleTags, DeleteTag } from 'src/api/tag';
 import UserTableRow from '../tag-table-row';
 import UserTableToolbar from '../tag-table-toolbar';
 import UserTableFiltersResult from '../tag-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleTags, DeleteTag } from 'src/api/tag';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

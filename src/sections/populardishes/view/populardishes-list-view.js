@@ -40,12 +40,12 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import UserTableRow from '../populardishes-table-row';
-import UserTableToolbar from '../populardishes-table-toolbar';
-import UserTableFiltersResult from '../populardishes-table-filters-result';
 import { useAuthContext } from 'src/auth/hooks';
 import { DeleteFoodPlace, DeleteMultipleFoodPlace } from 'src/api/foodplace';
 import { DeleteMultiplePopularDishes, DeletePopularDishes } from 'src/api/populardishes';
+import UserTableRow from '../populardishes-table-row';
+import UserTableToolbar from '../populardishes-table-toolbar';
+import UserTableFiltersResult from '../populardishes-table-filters-result';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

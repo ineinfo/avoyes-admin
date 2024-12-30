@@ -62,13 +62,15 @@ export default function ClientNewEditForm({ currentEvent }) {
     event_speaker_id: Yup.string().required('Event Speaker is required'),
     start_date: Yup.string()
       .required('Start date is required')
-      .test('is-valid-date', 'Start date is not valid', (value) => !isNaN(Date.parse(value))),
+      .test('is-valid-date', 'Start date is not valid', (value) => !Number.isNaN(Date.parse(value))),
     end_date: Yup.string()
       .required('End date is required')
-      .test('is-valid-date', 'End date is not valid', (value) => !isNaN(Date.parse(value)))
-      .test('is-after-start', 'End date must be after start date', function (value) {
-        const { start_date } = this.parent;
-        return !value || !start_date || new Date(value) > new Date(start_date);
+      .test('is-valid-date', 'End date is not valid', (value) =>
+        value && !Number.isNaN(Date.parse(value))
+      )
+      .test('is-after-start', 'End date must be after start date', (value) => {
+        const start_date = Yup.ref('start_date'); // Reference to 'start_date'
+        return value && start_date && new Date(value) > new Date(start_date);
       }),
     cost: Yup.string().required('Cost is required'),
     organizer: Yup.string().required('Organizer is required'),
@@ -184,7 +186,7 @@ export default function ClientNewEditForm({ currentEvent }) {
               gridTemplateColumns={{
                 xs: 'repeat(1, 1fr)',
                 sm: 'repeat(2, 1fr)',
-                
+
               }}
             >
               <RHFTextField name="title" label="Title" />

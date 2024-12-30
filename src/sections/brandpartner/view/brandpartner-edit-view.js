@@ -9,14 +9,14 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../brandpartner-new-edit-form';
 import { UsegetPartner } from 'src/api/brandpartner';
+import UserNewEditForm from '../brandpartner-new-edit-form';
 
 // ----------------------------------------------------------------------
 
 export default function UserEditView({ id }) {
   const settings = useSettingsContext();
-  const { product: currentBrand} = UsegetPartner(id);
+  const { product: currentBrand } = UsegetPartner(id);
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs

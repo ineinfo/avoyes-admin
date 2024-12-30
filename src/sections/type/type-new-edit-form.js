@@ -127,5 +127,6 @@ export default function ClientNewEditForm({ currentType }) {
 }
 
 ClientNewEditForm.propTypes = {
-  Type: PropTypes.object,
+  currentType: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
+

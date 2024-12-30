@@ -121,7 +121,7 @@ export default function ClientNewEditForm({ currentOrder }) {
               <TableCell sx={{ typography: 'subtitle2' }}>Amount</TableCell>
             </TableRow>
           </TableHead>
-  
+
           <TableBody>
             {currentOrder?.order_items?.length > 0 ? (
               currentOrder.order_items.map((item, index) => (
@@ -147,7 +147,7 @@ export default function ClientNewEditForm({ currentOrder }) {
       </Scrollbar>
     </TableContainer>
   );
-  
+
 
   return (
     // <Box sx={{ p: 3 }}>
@@ -182,7 +182,7 @@ export default function ClientNewEditForm({ currentOrder }) {
     // </Box>
     <Box sx={{ p: 3 }}>
       <Grid container spacing={3}>
-      <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <Card sx={{ p: 3 }}>
             <Typography variant="h6">User Info</Typography>
             <Divider sx={{ my: 2 }} />
@@ -283,7 +283,7 @@ export default function ClientNewEditForm({ currentOrder }) {
             </Grid>
           </Card>
         </Grid>
-       
+
 
         <Grid item xs={12} md={12}>
           <Card sx={{ p: 3 }}>
@@ -293,7 +293,7 @@ export default function ClientNewEditForm({ currentOrder }) {
             <Divider sx={{ my: 2 }} />
             <FormProvider methods={methods} onSubmit={onSubmit} >
               <Grid item xs={12} md={12} sx={{ mt: 3 }}>
-              {/* <Box
+                {/* <Box
               rowGap={3}
               columnGap={2}
               display="grid"
@@ -302,7 +302,7 @@ export default function ClientNewEditForm({ currentOrder }) {
                 sm: 'repeat(2, 1fr)',
               }}
             > */}
-            <Box sx={{ gridColumn: 'span 2', mt : 3}}>
+                <Box sx={{ gridColumn: 'span 2', mt: 3 }}>
                   <Stack spacing={3}>
                     <Stack spacing={1.5}>
                       <FormControl fullWidth>
@@ -338,7 +338,7 @@ export default function ClientNewEditForm({ currentOrder }) {
                 </Box>
                 <Stack alignItems="flex-end" sx={{ mt: 3 }}>
                   <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                    {'Update'}
+                    Update
                   </LoadingButton>
                 </Stack>
               </Grid>

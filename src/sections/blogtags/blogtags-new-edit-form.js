@@ -151,6 +151,4 @@ export default function ClientNewEditForm({ currentTag }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Tags: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

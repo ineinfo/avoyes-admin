@@ -7,7 +7,6 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import SettingNewEditForm from '../changepassword-new-edit-form';
 import UserNewEditForm from '../changepassword-new-edit-form';
 
 // ----------------------------------------------------------------------

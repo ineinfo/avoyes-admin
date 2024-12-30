@@ -9,8 +9,8 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../challenges-new-edit-form';
 import { UsegetChallenge } from 'src/api/challenges';
+import UserNewEditForm from '../challenges-new-edit-form';
 
 // ----------------------------------------------------------------------
 

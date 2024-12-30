@@ -153,11 +153,11 @@ export default function ClientNewEditForm({ currentProduct }) {
         enqueueSnackbar('Product updated successfully!', { variant: 'success' });
       } else {
         const response = await CreateProduct(formData, token);
-        if(response.status === true){
-        enqueueSnackbar('Product created successfully!', { variant: 'success' });
-      }else{
-        enqueueSnackbar(error.response?.data?.message || 'Unknown error', { variant: 'error' });
-      }
+        if (response.status === true) {
+          enqueueSnackbar('Product created successfully!', { variant: 'success' });
+        } else {
+          enqueueSnackbar(response?.data?.message || 'Unknown error', { variant: 'error' });
+        }
       }
       router.push(paths.dashboard.product.list);
       reset();

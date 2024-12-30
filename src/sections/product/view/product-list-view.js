@@ -41,11 +41,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteMultipleProduct, DeleteProduct } from 'src/api/product';
 import UserTableRow from '../product-table-row';
 import UserTableToolbar from '../product-table-toolbar';
 import UserTableFiltersResult from '../product-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleProduct, DeleteProduct } from 'src/api/product';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

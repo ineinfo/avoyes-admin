@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteColor, DeleteMultipleColor } from 'src/api/color';
 import UserTableRow from '../color-table-row';
 import UserTableToolbar from '../color-table-toolbar';
 import UserTableFiltersResult from '../color-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteColor, DeleteMultipleColor } from 'src/api/color';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Color' },

@@ -11,9 +11,8 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../aboutus-new-edit-form';
-import { UsegetPage } from 'src/api/pages';
 import { UsegetAbout } from 'src/api/aboutus';
+import UserNewEditForm from '../aboutus-new-edit-form';
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +44,4 @@ export default function UserEditView() {
   );
 }
 
-UserEditView.propTypes = {
-  id: PropTypes.string,
-};
+UserEditView.propTypes = {};

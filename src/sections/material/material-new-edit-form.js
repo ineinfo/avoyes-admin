@@ -131,6 +131,4 @@ export default function ClientNewEditForm({ currentMaterial }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Material: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

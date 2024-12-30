@@ -8,7 +8,8 @@ import { AUTH_ROUTE, LOGIN_ROUTE } from 'src/utils/apiendpoints';
 
 import { AuthContext } from './auth-context';
 import { setSession, isValidToken } from './utils';
-import ProfileNewEditForm from 'src/sections/setting/profile-new-edit-form';
+
+
 
 // ----------------------------------------------------------------------
 /**

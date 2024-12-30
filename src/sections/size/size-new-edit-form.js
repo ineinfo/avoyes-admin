@@ -131,5 +131,6 @@ export default function ClientNewEditForm({ currentSize }) {
 }
 
 ClientNewEditForm.propTypes = {
-  Size: PropTypes.object,
+  currentSize: PropTypes.object,
 };
+

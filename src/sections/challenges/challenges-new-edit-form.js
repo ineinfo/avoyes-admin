@@ -52,17 +52,34 @@ export default function ClientNewEditForm({ currentChallenges }) {
     title: Yup.string().required('Title is required'),
     subtitle: Yup.string().required('Description is required'),
     start_date: Yup.string()
-    .required('Start date is required')
-    .test('is-valid-date', 'Start date is not valid', (value) => !isNaN(Date.parse(value))),
-  end_date: Yup.string()
-    .required('End date is required')
-    .test('is-valid-date', 'End date is not valid', (value) => !isNaN(Date.parse(value)))
-    .test('is-after-start', 'End date must be after start date', function (value) {
-      const { start_date } = this.parent;
-      return !value || !start_date || new Date(value) > new Date(start_date);
-    }),
-    files: Yup.mixed().nullable().required('Image is required'),
+      .required('Start date is required')
+      .test('is-valid-date', 'Start date is not valid', (value) =>
+        value && !Number.isNaN(Date.parse(value))
+      ),
+    end_date: Yup.string()
+      .required('End date is required')
+      .test('is-valid-date', 'End date is not valid', (value) =>
+        value && !Number.isNaN(Date.parse(value))
+      )
+      .test('is-after-start', 'End date must be after start date', (value) => {
+        // Use Yup.ref() to create a reference to the start_date field
+        const start_date = Yup.ref('start_date'); // Reference to 'start_date'
+
+        // We can resolve the reference in the validation function directly
+        return value && start_date && new Date(value) > new Date(start_date);
+      }),
+    files: Yup.mixed()
+      .nullable()
+      .required('Image is required')
+      .test('file-size', 'File size is too large', (value) =>
+        !value || (value.size && value.size <= 5 * 1024 * 1024) // Max 5 MB
+      )
+      .test('file-type', 'Unsupported file format', (value) =>
+        !value || ['image/jpeg', 'image/png'].includes(value.type)
+      ),
   });
+
+
 
   const defaultValues = useMemo(
     () => ({
@@ -86,7 +103,7 @@ export default function ClientNewEditForm({ currentChallenges }) {
     watch,
     control,
     handleSubmit,
-    formState: { isSubmitting },  
+    formState: { isSubmitting },
   } = methods;
 
   const values = watch();
@@ -152,9 +169,9 @@ export default function ClientNewEditForm({ currentChallenges }) {
                 sm: 'repeat(2, 1fr)',
               }}
             >
-                  <RHFTextField name="title" label="Title" />
-                  <RHFTextField name="subtitle" label="Subtitle" />
-                  <Controller
+              <RHFTextField name="title" label="Title" />
+              <RHFTextField name="subtitle" label="Subtitle" />
+              <Controller
                 name="start_date"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
@@ -222,6 +239,4 @@ export default function ClientNewEditForm({ currentChallenges }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  Challenges: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

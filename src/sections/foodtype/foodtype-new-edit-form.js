@@ -145,6 +145,4 @@ export default function ClientNewEditForm({ currentFoodType }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  FoodType: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

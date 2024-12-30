@@ -33,7 +33,6 @@ import FormProvider, {
 } from 'src/components/hook-form';
 import { fData } from 'src/utils/format-number';
 import { assetsPath } from 'src/utils/apiendpoints';
-import { CreatePages, UpdatePages } from 'src/api/pages';
 import { useAuthContext } from 'src/auth/hooks';
 import { CreateBottomBanner, UpdateBottomBanner } from 'src/api/bottombanner';
 
@@ -105,19 +104,19 @@ export default function ClientNewEditForm({ currentBottomBanner }) {
       Object.entries(data).forEach(([key, value]) => {
         if (key === 'banner_left_image' && value[0]) {
           formData.append(key, value[0]);
-        }else if (key === 'banner_center_image' && value[0]) {
+        } else if (key === 'banner_center_image' && value[0]) {
           formData.append(key, value[0]);
         } else if (key === 'banner_right_image' && value[0]) {
           formData.append(key, value[0]);
         }
-         else {
+        else {
           formData.append(key, value);
         }
       });
       if (BottomBanner) {
         await UpdateBottomBanner(BottomBanner.id, formData, token);
         enqueueSnackbar('Bottom Banner updated successfully!', { variant: 'success' });
-      } 
+      }
       router.push(paths.dashboard.bottombanner.list);
       reset();
     } catch (error) {
@@ -183,116 +182,114 @@ export default function ClientNewEditForm({ currentBottomBanner }) {
   }, [setValue]);
 
   return (
-<FormProvider methods={methods} onSubmit={onSubmit}>
-  <Grid container spacing={3}>
-    <Grid item xs={12} md={12}>
-      <Card sx={{ p: 3 }}>
-        
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="h6">Banner Left Section</Typography>
-          <Grid container spacing={2} sx={{ mt: 3 }}>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_left_text" label="Banner Left Text" />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_left_url" label="Banner Left URL" />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFUpload
-                name="banner_left_image"
-                maxSize={3145728}
-                onDrop={handleDrop}
-                onDelete={handleRemoveFile}
-              />
-              <Typography
-                variant="caption"
-                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
-              >
-                Allowed *.jpeg, *.jpg, *.png, *.gif
-                <br /> Banner Left Image
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                Update Left Banner
-              </LoadingButton>
-            </Grid>
-          </Grid>
-        </Box>
+    <FormProvider methods={methods} onSubmit={onSubmit}>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={12}>
+          <Card sx={{ p: 3 }}>
 
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="h6">Banner Center Section</Typography>
-          <Grid container spacing={2} sx={{ mt: 3 }}>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_center_text" label="Banner Center Text" />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_center_url" label="Banner Center URL" />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFUpload
-                name="banner_center_image"
-                maxSize={3145728}
-                onDrop={handleDropimage2}
-                onDelete={handleRemoveFile2}
-              />
-              <Typography
-                variant="caption"
-                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
-              >
-                Allowed *.jpeg, *.jpg, *.png, *.gif
-                <br /> Banner Center Image
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                Update Center Banner
-              </LoadingButton>
-            </Grid>
-          </Grid>
-        </Box>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6">Banner Left Section</Typography>
+              <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_left_text" label="Banner Left Text" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_left_url" label="Banner Left URL" />
+                </Grid>
+                <Grid item xs={12}>
+                  <RHFUpload
+                    name="banner_left_image"
+                    maxSize={3145728}
+                    onDrop={handleDrop}
+                    onDelete={handleRemoveFile}
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                  >
+                    Allowed *.jpeg, *.jpg, *.png, *.gif
+                    <br /> Banner Left Image
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
+                  <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                    Update Left Banner
+                  </LoadingButton>
+                </Grid>
+              </Grid>
+            </Box>
 
-        <Box>
-          <Typography variant="h6">Banner Right Section</Typography>
-          <Grid container spacing={2} sx={{ mt: 3 }}>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_right_text" label="Banner Right Text" />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <RHFTextField name="banner_right_url" label="Banner Right URL" />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFUpload
-                name="banner_right_image"
-                maxSize={3145728}
-                onDrop={handleDropimage3}
-                onDelete={handleRemoveFile3}
-              />
-              <Typography
-                variant="caption"
-                sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
-              >
-                Allowed *.jpeg, *.jpg, *.png, *.gif
-                <br /> Banner Right Image
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                Update Right Banner
-              </LoadingButton>
-            </Grid>
-          </Grid>
-        </Box>
-        
-      </Card>
-    </Grid>
-  </Grid>
-</FormProvider>
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h6">Banner Center Section</Typography>
+              <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_center_text" label="Banner Center Text" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_center_url" label="Banner Center URL" />
+                </Grid>
+                <Grid item xs={12}>
+                  <RHFUpload
+                    name="banner_center_image"
+                    maxSize={3145728}
+                    onDrop={handleDropimage2}
+                    onDelete={handleRemoveFile2}
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                  >
+                    Allowed *.jpeg, *.jpg, *.png, *.gif
+                    <br /> Banner Center Image
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
+                  <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                    Update Center Banner
+                  </LoadingButton>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Box>
+              <Typography variant="h6">Banner Right Section</Typography>
+              <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_right_text" label="Banner Right Text" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <RHFTextField name="banner_right_url" label="Banner Right URL" />
+                </Grid>
+                <Grid item xs={12}>
+                  <RHFUpload
+                    name="banner_right_image"
+                    maxSize={3145728}
+                    onDrop={handleDropimage3}
+                    onDelete={handleRemoveFile3}
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{ mt: 1, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                  >
+                    Allowed *.jpeg, *.jpg, *.png, *.gif
+                    <br /> Banner Right Image
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
+                  <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                    Update Right Banner
+                  </LoadingButton>
+                </Grid>
+              </Grid>
+            </Box>
+
+          </Card>
+        </Grid>
+      </Grid>
+    </FormProvider>
 
 
   );
 }
 
-ClientNewEditForm.propTypes = {
-  BottomBanner: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

@@ -146,29 +146,29 @@ export default function ClientNewEditForm({ currentActivityCategory }) {
       <Grid container spacing={3}>
         <Grid xs={12} md={12}>
           <Card sx={{ p: 3 }}>
-              <Box sx={{ gridColumn: 'span 2' }}>
-                <Stack spacing={3}>
-                  <Stack spacing={1.5}>
+            <Box sx={{ gridColumn: 'span 2' }}>
+              <Stack spacing={3}>
+                <Stack spacing={1.5}>
                   <RHFTextField name="title" label="Title" />
-                  </Stack>
                 </Stack>
-              </Box>
-             
-              <Box sx={{ gridColumn: 'span 2', mt : 3}}>
-                <RHFUpload
-                  name="files"
-                  maxSize={3145728}
-                  onDrop={handleDrop}
-                  onDelete={handleRemoveFile}
-                />
-                <Typography
-                  variant="caption"
-                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
-                >
-                  Allowed *.jpeg, *.jpg, *.png, *.gif
-                  <br /> max size of 3MB
-                </Typography>
-              </Box>
+              </Stack>
+            </Box>
+
+            <Box sx={{ gridColumn: 'span 2', mt: 3 }}>
+              <RHFUpload
+                name="files"
+                maxSize={3145728}
+                onDrop={handleDrop}
+                onDelete={handleRemoveFile}
+              />
+              <Typography
+                variant="caption"
+                sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+              >
+                Allowed *.jpeg, *.jpg, *.png, *.gif
+                <br /> max size of 3MB
+              </Typography>
+            </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
@@ -182,6 +182,4 @@ export default function ClientNewEditForm({ currentActivityCategory }) {
   );
 }
 
-ClientNewEditForm.propTypes = {
-  ActivityCategory: PropTypes.object,
-};
+ClientNewEditForm.propTypes = {};

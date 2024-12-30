@@ -33,11 +33,11 @@ import {
   TableSelectedAction,
   TablePaginationCustom,
 } from 'src/components/table';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteFoodPlace, DeleteMultipleFoodPlace } from 'src/api/foodplace';
 import UserTableRow from '../foodplace-table-row';
 import UserTableToolbar from '../foodplace-table-toolbar';
 import UserTableFiltersResult from '../foodplace-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteFoodPlace, DeleteMultipleFoodPlace } from 'src/api/foodplace';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

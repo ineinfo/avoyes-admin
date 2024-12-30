@@ -40,11 +40,11 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteMultipleType, DeleteType } from 'src/api/type';
 import UserTableRow from '../type-table-row';
 import UserTableToolbar from '../type-table-toolbar';
 import UserTableFiltersResult from '../type-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleType, DeleteType } from 'src/api/type';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },

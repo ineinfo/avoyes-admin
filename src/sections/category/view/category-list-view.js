@@ -41,10 +41,10 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
+import { useAuthContext } from 'src/auth/hooks';
 import UserTableRow from '../category-table-row';
 import UserTableToolbar from '../category-table-toolbar';
 import UserTableFiltersResult from '../category-table-filters-result';
-import { useAuthContext } from 'src/auth/hooks';
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
