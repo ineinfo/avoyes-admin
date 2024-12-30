@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/system/Unstable_Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -245,7 +245,7 @@ export default function WalktourView() {
           <Grid xs={12} md={8}>
             <EcommerceWelcome
               id="demo__1"
-              title={`Congratulations! \n Jaydon Frankie`}  
+              title={`Congratulations! \n Jaydon Frankie`}
               description="Best seller of the month You have done 57.6% more sales today."
               img={<MotivationIllustration />}
               action={

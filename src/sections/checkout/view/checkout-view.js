@@ -1,7 +1,7 @@
 'use client';
 
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/system/Unstable_Grid';
 import Typography from '@mui/material/Typography';
 
 import { PRODUCT_CHECKOUT_STEPS } from 'src/_mock/_product';
@@ -38,7 +38,7 @@ export default function CheckoutView() {
         <CheckoutOrderComplete
           open={checkout.completed}
           onReset={checkout.onReset}
-          onDownloadPDF={() => {}}
+          onDownloadPDF={() => { }}
         />
       ) : (
         <>

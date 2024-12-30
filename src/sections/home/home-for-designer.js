@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/system/Unstable_Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
@@ -72,11 +72,10 @@ export default function HomeForDesigner() {
         width: 0.5,
         objectFit: 'cover',
         position: 'absolute',
-        boxShadow: `-80px 80px 80px ${
-          theme.palette.mode === 'light'
+        boxShadow: `-80px 80px 80px ${theme.palette.mode === 'light'
             ? alpha(theme.palette.grey[500], 0.48)
             : alpha(theme.palette.common.black, 0.24)
-        }`,
+          }`,
       }}
     />
   );
