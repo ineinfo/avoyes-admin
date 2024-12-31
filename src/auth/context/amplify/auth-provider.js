@@ -63,6 +63,21 @@ const reducer = (state, action) => {
 
 // ----------------------------------------------------------------------
 
+const defaultAuthContext = {
+  user: null,
+  method: 'amplify',
+  loading: true,
+  authenticated: false,
+  unauthenticated: true,
+  login: () => { },
+  logout: () => { },
+  register: () => { },
+  newPassword: () => { },
+  forgotPassword: () => { },
+  confirmRegister: () => { },
+  resendCodeRegister: () => { },
+};
+
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -225,7 +240,11 @@ export function AuthProvider({ children }) {
     ]
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 AuthProvider.propTypes = {

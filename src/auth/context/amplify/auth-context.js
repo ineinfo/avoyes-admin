@@ -4,4 +4,19 @@ import { createContext } from 'react';
 
 // ----------------------------------------------------------------------
 
-export const AuthContext = createContext({});
+const defaultAuthContext = {
+    user: null,
+    method: 'amplify',
+    loading: true,
+    authenticated: false,
+    unauthenticated: true,
+    login: () => { },
+    logout: () => { },
+    register: () => { },
+    newPassword: () => { },
+    forgotPassword: () => { },
+    confirmRegister: () => { },
+    resendCodeRegister: () => { },
+};
+
+export const AuthContext = createContext(defaultAuthContext);
