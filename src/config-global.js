@@ -7,13 +7,13 @@ export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
 export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API;
 
 export const FIREBASE_API = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  apiKey: 'AIzaSyD-1Q1J9Q1J9Q1J9Q1J9Q1J9Q1J9Q1J9Q1',
+  authDomain: 'devias-kit-pro.firebaseapp.com',
+  projectId: 'devias-kit-pro',
+  storageBucket: 'devias-kit-pro.appspot.com',
+  messagingSenderId: '1060180287957',
+  appId: '1:1060180287957:web:9b7b2e3b6f8e7b7b9b7b2e',
+  measurementId: 'G-6R2VZD6Z6Z',
 };
 
 export const AMPLIFY_API = {
