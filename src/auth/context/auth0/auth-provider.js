@@ -41,12 +41,14 @@ function AuthProviderWrapper({ children }) {
 
   const memoizedValue = useMemo(
     () => ({
-      user: {
-        ...user,
-        displayName: user?.name,
-        photoURL: user?.picture,
-        role: 'admin',
-      },
+      user: user
+        ? {
+          ...user,
+          displayName: user.name,
+          photoURL: user.picture,
+          role: 'admin',
+        }
+        : null,
       method: 'auth0',
       loading: status === 'loading',
       authenticated: status === 'authenticated',
