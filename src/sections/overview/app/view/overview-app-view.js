@@ -1,16 +1,17 @@
 'use client';
 
+import { useSnackbar } from 'notistack';
+import { useState, useEffect } from 'react';
+
+import Grid from '@mui/system/Unstable_Grid';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/system/Unstable_Grid';
-import { _appAuthors, _appRelated, _appFeatured, _appInvoices, _appInstalled } from 'src/_mock';
+
+import { useAuthContext } from 'src/auth/hooks';
+import { DASHBOARD_COUNT } from 'src/api/dashboard';
 
 import { useSettingsContext } from 'src/components/settings';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { useSnackbar } from 'notistack';
-import { useEffect, useState } from 'react';
-import { DASHBOARD_COUNT } from 'src/api/dashboard';
 import AppWidgetSummary from '../app-widget-summary';
 
 // ----------------------------------------------------------------------

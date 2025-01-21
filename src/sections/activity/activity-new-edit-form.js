@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -12,33 +12,27 @@ import Grid from '@mui/system/Unstable_Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
   Select,
-  Checkbox,
   MenuItem,
   InputLabel,
+  Typography,
   FormControl,
   FormHelperText,
-  Typography,
   CircularProgress,
 } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
+import { useAuthContext } from 'src/auth/hooks';
+import { UsegetActivityCategories } from 'src/api/activitycategory';
+import { COUNTRIES, CreateActivity, UpdateActivity, DeleteImageRemoval } from 'src/api/activity';
+
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
-  RHFAutocomplete,
   RHFEditor,
-  RHFTextField,
   RHFUpload,
-  RHFUploadAvatar,
+  RHFTextField,
 } from 'src/components/hook-form';
-import { fData } from 'src/utils/format-number';
-import { assetsPath } from 'src/utils/apiendpoints';
-import { useAuthContext } from 'src/auth/hooks';
-import { COUNTRIES, CreateActivity, DeleteImageRemoval, UpdateActivity } from 'src/api/activity';
-import { DatePicker } from '@mui/x-date-pickers';
-import { countries } from 'src/assets/data';
-import { UsegetActivityCategories } from 'src/api/activitycategory';
 
 // ----------------------------------------------------------------------
 
@@ -74,9 +68,8 @@ export default function ClientNewEditForm({ currentActivity }) {
       .test('is-valid-date', 'End date is not valid', (value) =>
         value && !Number.isNaN(Date.parse(value))
       )
-      .test('is-after-start', 'End date must be after start date', (value) => {
-        // Using Yup.ref to reference the start_datetime field
-        const start_datetime = Yup.ref('start_datetime'); // Reference to 'start_datetime'
+      .test('is-after-start', 'End date must be after start date', (value, context) => {
+        const { start_datetime } = context.parent;
         return !value || !start_datetime || new Date(value) > new Date(start_datetime);
       }),
     country_id: Yup.string().required('Country name is required'),
@@ -85,6 +78,7 @@ export default function ClientNewEditForm({ currentActivity }) {
     location: Yup.string().required('Location is required'),
     description: Yup.string().required('Description is required'),
     files: Yup.array().min(1, 'Images are required'),
+    map_url: Yup.string().required('Map URL is required').url('Map URL must be a valid URL'),
   });
 
 
@@ -105,6 +99,7 @@ export default function ClientNewEditForm({ currentActivity }) {
       pincode: Activity?.pincode || '',
       description: Activity?.description || '',
       files: fetchimages || null,
+      map_url: Activity?.map_url || '',
     }),
     [Activity]
   );
@@ -306,6 +301,7 @@ export default function ClientNewEditForm({ currentActivity }) {
               </FormControl>
               <RHFTextField name="location" label="Location" />
               <RHFTextField name="pincode" label="Pin Code" type="number" />
+              <RHFTextField name="map_url" label="Map URL" />
               <Box sx={{ gridColumn: 'span 2' }}>
                 <Stack spacing={3}>
                   <Stack spacing={1.5}>

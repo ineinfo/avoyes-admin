@@ -340,7 +340,9 @@ export function useNavData() {
                 path: paths.dashboard.bottombanner.root,
                 icon: ICONS.amenity,
                 children: [
-                  { title: t('list'), path: paths.dashboard.bottombanner.list },
+                  { title: t('left'), path: paths.dashboard.bottombanner.left },
+                  { title: t('center'), path: paths.dashboard.bottombanner.center },
+                  { title: t('right'), path: paths.dashboard.bottombanner.right },
                   // { title: t('create'), path: paths.dashboard.bottombanner.new },
                 ],
               },
@@ -400,7 +402,7 @@ export function useNavData() {
               { title: t('Change Password'), path: paths.dashboard.setting.changepassword },
             ],
           },
-         
+
         ],
       },
     ],

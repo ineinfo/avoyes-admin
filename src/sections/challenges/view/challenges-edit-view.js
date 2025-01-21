@@ -6,10 +6,11 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
+import { UsegetChallenge } from 'src/api/challenges';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetChallenge } from 'src/api/challenges';
 import UserNewEditForm from '../challenges-new-edit-form';
 
 // ----------------------------------------------------------------------

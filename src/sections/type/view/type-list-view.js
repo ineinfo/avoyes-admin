@@ -22,6 +22,8 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { endpoints } from 'src/utils/axios';
 
 import { _roles } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteType, DeleteMultipleType } from 'src/api/type';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -40,8 +42,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleType, DeleteType } from 'src/api/type';
 import UserTableRow from '../type-table-row';
 import UserTableToolbar from '../type-table-toolbar';
 import UserTableFiltersResult from '../type-table-filters-result';

@@ -1,38 +1,40 @@
 import * as Yup from 'yup';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/system/Unstable_Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
-  CircularProgress,
+  Select,
+  MenuItem,
+  InputLabel,
+  Typography,
   FormControl,
   FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
+  CircularProgress,
 } from '@mui/material';
+
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
+
+import { useAuthContext } from 'src/auth/hooks';
+import { CreateEvent, UpdateEvent } from 'src/api/event';
+import { UsegetEventSpeakers } from 'src/api/eventspeaker';
+import { UsegetEventCategories } from 'src/api/eventcategory';
+
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFEditor,
-  RHFRadioGroup,
-  RHFTextField,
   RHFUpload,
-  RHFUploadAvatar,
+  RHFTextField,
+  RHFRadioGroup,
 } from 'src/components/hook-form';
-import { useAuthContext } from 'src/auth/hooks';
-import { CreateEvent, UpdateEvent } from 'src/api/event';
-import { DatePicker } from '@mui/x-date-pickers';
-import { UsegetEventCategories } from 'src/api/eventcategory';
-import { UsegetEventSpeakers } from 'src/api/eventspeaker';
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +50,7 @@ export default function ClientNewEditForm({ currentEvent }) {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-  const fetchimages = Event?.image_url ? `${Event.image_url}` : '';
+  const fetchimages = Event?.image_url ? Event.image_url : '';
 
   const Options = [
     { value: 1, label: 'true' },

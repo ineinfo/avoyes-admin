@@ -1,45 +1,26 @@
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import { useMemo, useCallback, useContext, useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { format } from 'date-fns';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
 import Grid from '@mui/system/Unstable_Grid';
-import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
-import FormControlLabel from '@mui/material/FormControlLabel';
 
-import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
-import { fData } from 'src/utils/format-number';
+import { assetsPath, FetchProfile, UpdateProfile } from 'src/utils/apiendpoints';
 
-import { countries } from 'src/assets/data';
+import { useAuthContext } from 'src/auth/hooks';
 
-import Label from 'src/components/label';
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
-  RHFSwitch,
   RHFTextField,
-  RHFUploadAvatar,
-  RHFAutocomplete,
   RHFRadioGroup,
 } from 'src/components/hook-form';
-import { useBoolean } from 'src/hooks/use-boolean';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import Iconify from 'src/components/iconify';
-import { assetsPath, FetchProfile, UpdateProfile } from 'src/utils/apiendpoints';
-import { useAuthContext } from 'src/auth/hooks';
-import { usePopover } from 'src/components/custom-popover';
-import { DatePicker } from '@mui/x-date-pickers';
-import { JOB_EXPERIENCE_OPTIONS } from 'src/_mock';
-import { format } from 'date-fns';
 
 // ----------------------------------------------------------------------
 

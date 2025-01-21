@@ -6,10 +6,11 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
+import { UsegetEvent } from 'src/api/event';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetEvent } from 'src/api/event';
 import UserNewEditForm from '../event-new-edit-form';
 
 // ----------------------------------------------------------------------

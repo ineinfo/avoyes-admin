@@ -6,10 +6,11 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
+import { UsegetPartner } from 'src/api/brandpartner';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetPartner } from 'src/api/brandpartner';
 import UserNewEditForm from '../brandpartner-new-edit-form';
 
 // ----------------------------------------------------------------------

@@ -107,19 +107,6 @@ export default function UserListView() {
     [table]
   );
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(endpoints.orderhistory.list);
-  //       setTableData(response.data.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //       enqueueSnackbar('Failed to load data', { variant: 'error' });
-  //     }
-  //   };
-  //   fetchData();
-  // }, [enqueueSnackbar]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -136,36 +123,6 @@ export default function UserListView() {
   const handleResetFilters = useCallback(() => {
     setFilters(defaultFilters);
   }, []);
-
-  // const handleDeleteRow = useCallback(
-  //   async (id) => {
-  //     try {
-  //       await DeletePages(id);
-  //       const deleteRow = tableData.filter((row) => row.id !== id);
-
-  //       enqueueSnackbar('Delete success!');
-
-  //       setTableData(deleteRow);
-  //     } catch (error) {
-  //       enqueueSnackbar('Delete failed!', { variant: 'error' });
-  //       console.error(error);
-  //     }
-  //   },
-  //   [enqueueSnackbar, tableData]
-  // );
-
-  // const handleDeleteRows = useCallback(() => {
-  //   const deleteRows = tableData.filter((row) => !table.selected.includes(row.id));
-
-  //   enqueueSnackbar('Delete success!');
-
-  //   setTableData(deleteRows);
-
-  //   table.onUpdatePageDeleteRows({
-  //     totalRowsInPage: dataInPage.length,
-  //     totalRowsFiltered: dataFiltered.length,
-  //   });
-  // }, [dataFiltered.length, dataInPage.length, enqueueSnackbar, table, tableData]);
 
   const handleEditRow = useCallback(
     (id) => {
@@ -184,16 +141,6 @@ export default function UserListView() {
             { name: 'Order Details', href: paths.dashboard.orderhistory.list },
             { name: 'List' },
           ]}
-          // action={
-          //   <Button
-          //     component={RouterLink}
-          //     href={paths.dashboard.pages.new}
-          //     variant="contained"
-          //     startIcon={<Iconify icon="mingcute:add-line" />}
-          //   >
-          //     Create
-          //   </Button>
-          // }
           sx={{
             mb: { xs: 3, md: 5 },
           }}
@@ -212,21 +159,7 @@ export default function UserListView() {
           <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
             <TableSelectedAction
               dense={table.dense}
-              // numSelected={table.selected.length}
               rowCount={dataFiltered.length}
-            // onSelectAllRows={(checked) =>
-            //   table.onSelectAllRows(
-            //     checked,
-            //     dataFiltered.map((row) => row.id)
-            //   )
-            // }
-            // action={
-            //   <Tooltip title="Delete">
-            //     <IconButton color="primary" onClick={confirm.onTrue}>
-            //       <Iconify icon="solar:trash-bin-trash-bold" />
-            //     </IconButton>
-            //   </Tooltip>
-            // }
             />
             <Scrollbar>
               <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 960 }}>
@@ -237,12 +170,6 @@ export default function UserListView() {
                   rowCount={dataFiltered.length}
                   numSelected={table.selected.length}
                   onSort={table.onSort}
-                // onSelectAllRows={(checked) =>
-                //   table.onSelectAllRows(
-                //     checked,
-                //     dataFiltered.map((row) => row.id)
-                //   )
-                // }
                 />
                 <TableBody>
                   {dataFiltered
@@ -279,28 +206,6 @@ export default function UserListView() {
           />
         </Card>
       </Container>
-      {/* <ConfirmDialog
-        open={confirm.value}
-        onClose={confirm.onFalse}
-        title="Delete"
-        content={
-          <>
-            Are you sure want to delete <strong> {table.selected.length} </strong> items?
-          </>
-        }
-        action={
-          <Button
-            variant="contained"
-            color="error"
-            onClick={() => {
-              handleDeleteRows();
-              confirm.onFalse();
-            }}
-          >
-            Delete
-          </Button>
-        }
-      /> */}
     </>
   );
 }

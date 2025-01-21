@@ -1,41 +1,45 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/system/Unstable_Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
+  Chip,
   Select,
   MenuItem,
   InputLabel,
+  Typography,
   FormControl,
   FormHelperText,
-  Typography,
   CircularProgress,
-  Chip,
 } from '@mui/material';
+
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
-import { useSnackbar } from 'src/components/snackbar';
-import FormProvider, {
-  RHFAutocomplete,
-  RHFEditor,
-  RHFTextField,
-  RHFUpload,
-} from 'src/components/hook-form';
-import { useAuthContext } from 'src/auth/hooks';
-import { CreateProduct, UpdateProduct } from 'src/api/product';
-import { UsegetCategories } from 'src/api/category';
-import { UsegetColors } from 'src/api/color';
+
 import { UsegetTags } from 'src/api/tag';
 import { UsegetTypes } from 'src/api/type';
 import { UsegetSizes } from 'src/api/size';
+import { UsegetColors } from 'src/api/color';
+import { useAuthContext } from 'src/auth/hooks';
 import { UsegetMaterials } from 'src/api/material';
+import { UsegetCategories } from 'src/api/category';
 import { UsegetSubCategories } from 'src/api/subcategory';
+import { CreateProduct, UpdateProduct } from 'src/api/product';
+
+import { useSnackbar } from 'src/components/snackbar';
+import FormProvider, {
+  RHFEditor,
+  RHFUpload,
+  RHFTextField,
+  RHFAutocomplete,
+} from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 

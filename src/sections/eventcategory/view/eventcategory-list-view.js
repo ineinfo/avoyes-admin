@@ -12,13 +12,19 @@ import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import IconButton from '@mui/material/IconButton';
 import TableContainer from '@mui/material/TableContainer';
+
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
+
 import { useBoolean } from 'src/hooks/use-boolean';
+
 import { endpoints } from 'src/utils/axios';
+
 import { _roles } from 'src/_mock';
-import { DeleteCategory, DeleteMultiple } from 'src/api/category';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteEventCategory, DeleteMultipleEventCategory } from 'src/api/eventcategory';
+
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import { useSnackbar } from 'src/components/snackbar';
@@ -36,8 +42,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteEventCategory, DeleteMultipleEventCategory } from 'src/api/eventcategory';
 import UserTableRow from '../eventcategory-table-row';
 import UserTableToolbar from '../eventcategory-table-toolbar';
 import UserTableFiltersResult from '../eventcategory-table-filters-result';

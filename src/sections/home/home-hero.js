@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import { m, useScroll } from 'framer-motion';
 import { useRef, useState, useEffect, useCallback } from 'react';
 
@@ -6,8 +7,6 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/system/Unstable_Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 
@@ -20,8 +19,7 @@ import { HEADER } from 'src/layouts/config-layout';
 import { bgBlur, bgGradient, textGradient } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
-import { varFade, MotionContainer } from 'src/components/animate';
-import { useRouter } from 'next/navigation';
+import { varFade } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 

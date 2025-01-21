@@ -1,9 +1,8 @@
 import * as Yup from 'yup';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -12,24 +11,23 @@ import Grid from '@mui/system/Unstable_Grid';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
   Select,
-  Checkbox,
   MenuItem,
   InputLabel,
+  Typography,
   FormControl,
   FormHelperText,
-  Typography,
   CircularProgress,
 } from '@mui/material';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
-import { useSnackbar } from 'src/components/snackbar';
-import FormProvider, { RHFEditor, RHFTextField, RHFUpload } from 'src/components/hook-form';
-import { CreateSubCategory, UpdateSubCategory, UsegetSubCategories } from 'src/api/subcategory';
-import { UsegetCategories } from 'src/api/category';
-import { assetsPath } from 'src/utils/apiendpoints';
 import { useAuthContext } from 'src/auth/hooks';
+import { UsegetCategories } from 'src/api/category';
+import { CreateSubCategory, UpdateSubCategory } from 'src/api/subcategory';
+
+import { useSnackbar } from 'src/components/snackbar';
+import FormProvider, { RHFEditor, RHFUpload, RHFTextField } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 

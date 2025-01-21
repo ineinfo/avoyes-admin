@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -19,9 +18,9 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { endpoints } from 'src/utils/axios';
-
 import { _roles } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteChallenge, FetchChallenges, DeleteMultipleChallenge, } from 'src/api/challenges';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -40,8 +39,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteChallenge, DeleteMultipleChallenge, FetchChallenges, } from 'src/api/challenges';
 import UserTableRow from '../challenges-table-row';
 import UserTableToolbar from '../challenges-table-toolbar';
 import UserTableFiltersResult from '../challenges-table-filters-result';

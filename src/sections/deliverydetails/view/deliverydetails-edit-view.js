@@ -8,10 +8,11 @@ import { paths } from 'src/routes/paths';
 
 // import { UsegetLead } from 'src/api/leads';
 
+import { UsegetDetail } from 'src/api/deliverydetails';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetDetail } from 'src/api/deliverydetails';
 import UserNewEditForm from '../deliverydetails-new-edit-form';
 
 // ----------------------------------------------------------------------

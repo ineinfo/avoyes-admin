@@ -1,40 +1,30 @@
 import * as Yup from 'yup';
 import { format } from 'date-fns';
-import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/system/Unstable_Grid';
-import LoadingButton from '@mui/lab/LoadingButton';
 import {
-  Select,
-  Checkbox,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  FormHelperText,
   Typography,
 } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
-import { useSnackbar } from 'src/components/snackbar';
-import FormProvider, {
-  RHFEditor,
-  RHFTextField,
-  RHFUpload,
-  RHFUploadAvatar,
-} from 'src/components/hook-form';
-import { fData } from 'src/utils/format-number';
-import { assetsPath } from 'src/utils/apiendpoints';
 import { useAuthContext } from 'src/auth/hooks';
 import { CreateChallenge, UpdateChallenge } from 'src/api/challenges';
-import { DatePicker } from '@mui/x-date-pickers';
+
+import { useSnackbar } from 'src/components/snackbar';
+import FormProvider, {
+  RHFUpload,
+  RHFTextField,
+} from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -61,12 +51,9 @@ export default function ClientNewEditForm({ currentChallenges }) {
       .test('is-valid-date', 'End date is not valid', (value) =>
         value && !Number.isNaN(Date.parse(value))
       )
-      .test('is-after-start', 'End date must be after start date', (value) => {
-        // Use Yup.ref() to create a reference to the start_date field
-        const start_date = Yup.ref('start_date'); // Reference to 'start_date'
-
-        // We can resolve the reference in the validation function directly
-        return value && start_date && new Date(value) > new Date(start_date);
+      .test('is-after-start', 'End date must be after start date', (value, context) => {
+        const { start_date } = context.parent; // Access start_date from the context
+        return value && new Date(value) > new Date(start_date);
       }),
     files: Yup.mixed()
       .nullable()

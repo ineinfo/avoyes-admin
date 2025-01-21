@@ -1,50 +1,42 @@
 import * as Yup from 'yup';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useMemo, useEffect, useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/system/Unstable_Grid';
+import { DatePicker } from '@mui/x-date-pickers';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {
   Select,
-  Checkbox,
   MenuItem,
   InputLabel,
+  Typography,
   FormControl,
   FormHelperText,
-  Typography,
   CircularProgress,
 } from '@mui/material';
 
-import Chip from '@mui/material/Chip';
-
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
-import { CreateCategory, UpdateCategory, UsegetCategories } from 'src/api/category';
+
+import { useAuthContext } from 'src/auth/hooks';
+import { UsegetBlogTags } from 'src/api/blogtags';
+import { CreateBlog, UpdateBlog } from 'src/api/blog';
+import { UsegetBlogCategories } from 'src/api/blogcategory';
 
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
-  RHFAutocomplete,
   RHFEditor,
-  RHFTextField,
   RHFUpload,
-  RHFUploadAvatar,
+  RHFTextField,
+  RHFAutocomplete,
 } from 'src/components/hook-form';
-import { fData } from 'src/utils/format-number';
-import { assetsPath } from 'src/utils/apiendpoints';
-import { useAuthContext } from 'src/auth/hooks';
-import { DatePicker } from '@mui/x-date-pickers';
-import { CreateBlog, UpdateBlog } from 'src/api/blog';
-import { UsegetBlogCategories } from 'src/api/blogcategory';
-import { UsegetBlogTags } from 'src/api/blogtags';
-import { _tags } from 'src/_mock';
-import axios from 'axios';
-import { endpoints } from 'src/utils/axios';
 
 // ----------------------------------------------------------------------
 

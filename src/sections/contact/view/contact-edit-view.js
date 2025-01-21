@@ -8,12 +8,11 @@ import { paths } from 'src/routes/paths';
 
 // import { UsegetLead } from 'src/api/leads';
 
+import { UsegetContact } from 'src/api/contact';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetPage } from 'src/api/pages';
-import { UsegetAbout } from 'src/api/aboutus';
-import { UsegetContact } from 'src/api/contact';
 import UserNewEditForm from '../contact-new-edit-form';
 
 // ----------------------------------------------------------------------

@@ -8,10 +8,11 @@ import { paths } from 'src/routes/paths';
 
 // import { UsegetLead } from 'src/api/leads';
 
+import { UsegetPage } from 'src/api/pages';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetPage } from 'src/api/pages';
 import UserNewEditForm from '../pages-new-edit-form';
 
 // ----------------------------------------------------------------------

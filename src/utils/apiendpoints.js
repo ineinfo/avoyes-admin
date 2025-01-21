@@ -72,7 +72,10 @@ export const SOCIAL_MEDIA = `${apiUrl}/socials`;
 export const BANNER_ROUTE = `${apiUrl}/banner/top`;
 
 // LEFT BOTTOM BANNER MODULE
-export const BOTTOM_BANNER_ROUTE = `${apiUrl}/banner/bottom`;
+export const BOTTOM_BANNER_LEFT_ROUTE = `${apiUrl}/banner/1`;
+export const BOTTOM_BANNER_CENTER_ROUTE = `${apiUrl}/banner/2`;
+export const BOTTOM_BANNER_RIGHT_ROUTE = `${apiUrl}/banner/3`;
+export const BOTTOM_BANNER_ROUTE = `${apiUrl}/banner`;
 
 // EVENT MODULE
 export const EVENT_ROUTE = `${apiUrl}/events`;

@@ -7,12 +7,11 @@ import Container from '@mui/material/Container';
 import { paths } from 'src/routes/paths';
 
 // import { UsegetLead } from 'src/api/leads';
-import { UsegetCategory } from 'src/api/category';
+import { UsegetFoodType } from 'src/api/foodtype';
 
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetFoodType } from 'src/api/foodtype';
 import UserNewEditForm from '../foodtype-new-edit-form';
 
 // ----------------------------------------------------------------------

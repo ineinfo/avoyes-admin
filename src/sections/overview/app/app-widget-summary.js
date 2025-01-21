@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography';
 
 import { fNumber, fPercent } from 'src/utils/format-number';
 
-import Chart from 'src/components/chart';
-import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 

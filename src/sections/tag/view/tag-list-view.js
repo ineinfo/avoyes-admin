@@ -22,7 +22,8 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { endpoints } from 'src/utils/axios';
 
 import { _roles } from 'src/_mock';
-import { DeleteCategory, DeleteMultiple } from 'src/api/category';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeleteTag, DeleteMultipleTags } from 'src/api/tag';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -41,8 +42,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteMultipleTags, DeleteTag } from 'src/api/tag';
 import UserTableRow from '../tag-table-row';
 import UserTableToolbar from '../tag-table-toolbar';
 import UserTableFiltersResult from '../tag-table-filters-result';

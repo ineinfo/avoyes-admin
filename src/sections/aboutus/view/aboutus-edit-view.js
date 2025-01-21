@@ -1,6 +1,5 @@
 'use client';
 
-import PropTypes from 'prop-types';
 
 import Container from '@mui/material/Container';
 
@@ -8,10 +7,11 @@ import { paths } from 'src/routes/paths';
 
 // import { UsegetLead } from 'src/api/leads';
 
+import { UsegetAbout } from 'src/api/aboutus';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetAbout } from 'src/api/aboutus';
 import UserNewEditForm from '../aboutus-new-edit-form';
 
 // ----------------------------------------------------------------------

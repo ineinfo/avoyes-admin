@@ -6,13 +6,12 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
+import { UsegetProduct } from 'src/api/product';
 // import { UsegetLead } from 'src/api/leads';
-import { UsegetCategory } from 'src/api/category';
 
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetProduct } from 'src/api/product';
 import UserNewEditForm from '../product-new-edit-form';
 
 // ----------------------------------------------------------------------

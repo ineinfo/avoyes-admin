@@ -22,6 +22,8 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { endpoints } from 'src/utils/axios';
 
 import { _roles } from 'src/_mock';
+import { useAuthContext } from 'src/auth/hooks';
+import { DeletePopularDishes, DeleteMultiplePopularDishes } from 'src/api/populardishes';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -40,9 +42,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteFoodPlace, DeleteMultipleFoodPlace } from 'src/api/foodplace';
-import { DeleteMultiplePopularDishes, DeletePopularDishes } from 'src/api/populardishes';
 import UserTableRow from '../populardishes-table-row';
 import UserTableToolbar from '../populardishes-table-toolbar';
 import UserTableFiltersResult from '../populardishes-table-filters-result';

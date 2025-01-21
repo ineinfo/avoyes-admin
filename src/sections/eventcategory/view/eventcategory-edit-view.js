@@ -1,11 +1,16 @@
 'use client';
 
 import PropTypes from 'prop-types';
+
 import Container from '@mui/material/Container';
+
 import { paths } from 'src/routes/paths';
+
+import { UsegetEventCategory } from 'src/api/eventcategory';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import { UsegetEventCategory } from 'src/api/eventcategory';
+
 import UserNewEditForm from '../eventcategory-new-edit-form';
 
 // ----------------------------------------------------------------------

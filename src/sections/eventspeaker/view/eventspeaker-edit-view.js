@@ -1,11 +1,16 @@
 'use client';
 
 import PropTypes from 'prop-types';
+
 import Container from '@mui/material/Container';
+
 import { paths } from 'src/routes/paths';
+
+import { UsegetEventSpeaker } from 'src/api/eventspeaker';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
-import { UsegetEventSpeaker } from 'src/api/eventspeaker';
+
 import UserNewEditForm from '../eventspeaker-new-edit-form';
 
 // ----------------------------------------------------------------------

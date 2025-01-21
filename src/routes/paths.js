@@ -298,7 +298,9 @@ export const paths = {
     bottombanner: {
       root: `${ROOTS.DASHBOARD}/bottombanner`,
       // new: `${ROOTS.DASHBOARD}/bottombanner/new`,
-      list: `${ROOTS.DASHBOARD}/bottombanner/list`,
+      left: `${ROOTS.DASHBOARD}/bottombanner/left`,
+      center: `${ROOTS.DASHBOARD}/bottombanner/center`,
+      right: `${ROOTS.DASHBOARD}/bottombanner/right`,
       edit: (id) => `${ROOTS.DASHBOARD}/bottombanner/${id}/edit`,
     },
   },

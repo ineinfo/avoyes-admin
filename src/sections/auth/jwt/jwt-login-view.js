@@ -1,8 +1,8 @@
 'use client';
 
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useState, useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Link from '@mui/material/Link';
@@ -17,11 +17,11 @@ import { useRouter, useSearchParams } from 'src/routes/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { useAuthContext } from 'src/auth/hooks';
+import { AuthContext } from 'src/auth/context/jwt';
 import { PATH_AFTER_LOGIN } from 'src/config-global';
 
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
-import { AuthContext } from 'src/auth/context/jwt';
 
 // ----------------------------------------------------------------------
 

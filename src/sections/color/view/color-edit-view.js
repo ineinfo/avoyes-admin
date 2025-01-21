@@ -6,10 +6,11 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
+import { UsegetColor } from 'src/api/color';
+
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import { UsegetColor } from 'src/api/color';
 import UserNewEditForm from '../color-new-edit-form';
 
 // ----------------------------------------------------------------------

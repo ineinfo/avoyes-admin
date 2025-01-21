@@ -1,6 +1,5 @@
 'use client';
 
-import axios from 'axios';
 import isEqual from 'lodash/isEqual';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -19,10 +18,9 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
-import { endpoints } from 'src/utils/axios';
-
 import { _roles } from 'src/_mock';
-import { DeleteCategory, DeleteMultiple } from 'src/api/category';
+import { useAuthContext } from 'src/auth/hooks';
+import { FetchActivity, DeleteActivity, DeleteMultipleActivity } from 'src/api/activity';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -41,8 +39,6 @@ import {
   TablePaginationCustom,
 } from 'src/components/table';
 
-import { useAuthContext } from 'src/auth/hooks';
-import { DeleteActivity, DeleteMultipleActivity, FetchActivity } from 'src/api/activity';
 import UserTableRow from '../activity-table-row';
 import UserTableToolbar from '../activity-table-toolbar';
 import UserTableFiltersResult from '../activity-table-filters-result';
