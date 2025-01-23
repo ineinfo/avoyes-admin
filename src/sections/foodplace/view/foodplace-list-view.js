@@ -50,6 +50,7 @@ const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
   { id: 'rating', label: 'Rating' },
   { id: 'reviews', label: 'Reviews' },
+  { id: 'reservations', label: 'Bookings' },
   { id: '', width: 88 },
 ];
 

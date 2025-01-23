@@ -7,12 +7,19 @@ import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import Iconify from 'src/components/iconify';
 import { ConfirmDialog } from 'src/components/custom-dialog';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
+import { useState } from 'react';
+import ReservationModal from './reservation-modal';
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +27,15 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
   const { title, rating, reviews } = row;
   const confirm = useBoolean();
   const popover = usePopover();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   return (
     <>
@@ -39,6 +55,11 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         </TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{rating || '--'}</TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{reviews || '--'}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>
+          <IconButton color={popover.open ? 'inherit' : 'default'} onClick={handleOpenModal}>
+            <Iconify icon="fluent-color:calendar-clock-16" width="32" height="32" />
+          </IconButton>
+        </TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
@@ -83,6 +104,8 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
           </Button>
         }
       />
+
+      <ReservationModal open={openModal} onClose={handleCloseModal} row={row} />
     </>
   );
 }
