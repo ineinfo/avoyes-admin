@@ -44,20 +44,34 @@ export default function ClientNewEditForm({ currentFoodPlace }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchimages = FoodPlace?.image_url ? `${FoodPlace.image_url}` : '';
+  const fetchimages2 = FoodPlace?.image_url2 ? `${FoodPlace.image_url}` : '';
+  const fetchimages3 = FoodPlace?.image_url3 ? `${FoodPlace.image_url3}` : '';
+  const fetchimages4 = FoodPlace?.image_url4 ? `${FoodPlace.image_url4}` : '';
+  const fetchimages5 = FoodPlace?.image_url5 ? `${FoodPlace.image_url5}` : '';
 
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     location: Yup.string().required('Location is required'),
     food_type_id: Yup.string().required('Food Type is required'),
+    map_url: Yup.string().required('Map URL is required'),
     image_url: Yup.mixed().nullable().required('Image is required'),
+    image_url2: Yup.mixed().nullable().required('Image is required'),
+    image_url3: Yup.mixed().nullable().required('Image is required'),
+    image_url4: Yup.mixed().nullable().required('Image is required'),
+    image_url5: Yup.mixed().nullable().required('Image is required'),
   });
 
   const defaultValues = useMemo(
     () => ({
       title: FoodPlace?.title || '',
       location: FoodPlace?.location || '',
+      map_url: FoodPlace?.map_url || '',
       food_type_id: FoodPlace?.food_type_id || '',
       image_url: fetchimages || null,
+      image_url2: fetchimages2 || null,
+      image_url3: fetchimages3 || null,
+      image_url4: fetchimages4 || null,
+      image_url5: fetchimages5 || null,
     }),
     [FoodPlace]
   );
@@ -85,6 +99,14 @@ export default function ClientNewEditForm({ currentFoodPlace }) {
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
         if (key === 'image_url' && value[0]) {
+          formData.append(key, value[0]);
+        } else if (key === 'image_url2' && value[0]) {
+          formData.append(key, value[0]);
+        } else if (key === 'image_url3' && value[0]) {
+          formData.append(key, value[0]);
+        } else if (key === 'image_url4' && value[0]) {
+          formData.append(key, value[0]);
+        } else if (key === 'image_url5' && value[0]) {
           formData.append(key, value[0]);
         } else {
           formData.append(key, value);
@@ -119,8 +141,84 @@ export default function ClientNewEditForm({ currentFoodPlace }) {
     [setValue]
   );
 
+  const handleDrop2 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('image_url2', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
+  const handleDrop3 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('image_url3', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
+  const handleDrop4 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('image_url4', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
+  const handleDrop5 = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+
+      const newFile = Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      });
+
+      if (file) {
+        setValue('image_url5', newFile, { shouldValidate: true });
+      }
+    },
+    [setValue]
+  );
+
   const handleRemoveFile = useCallback(() => {
     setValue('image_url', null);
+  }, [setValue]);
+
+  const handleRemoveFile2 = useCallback(() => {
+    setValue('image_url2', null);
+  }, [setValue]);
+
+  const handleRemoveFile3 = useCallback(() => {
+    setValue('image_url3', null);
+  }, [setValue]);
+
+  const handleRemoveFile4 = useCallback(() => {
+    setValue('image_url4', null);
+  }, [setValue]);
+
+  const handleRemoveFile5 = useCallback(() => {
+    setValue('image_url5', null);
   }, [setValue]);
 
   return (
@@ -172,17 +270,78 @@ export default function ClientNewEditForm({ currentFoodPlace }) {
                 />
               </FormControl>
               <RHFTextField name="title" label="Title" />
-              <Box sx={{ gridColumn: 'span 2' }}>
-                <Stack spacing={3}>
-                  <RHFTextField name="location" label="Location" />
-                </Stack>
-              </Box>
-              <Box sx={{ gridColumn: 'span 2' }}>
+              <Stack spacing={3}>
+                <RHFTextField name="location" label="Location" />
+              </Stack>
+              <Stack spacing={3}>
+                <RHFTextField name="map_url" label="Map URL" />
+              </Stack>
+              <Box sx={{ gridColumn: 'span 1' }}>
                 <RHFUpload
                   name="image_url"
                   maxSize={3145728}
                   onDrop={handleDrop}
                   onDelete={handleRemoveFile}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of 3MB
+                </Typography>
+              </Box>
+              <Box sx={{ gridColumn: 'span 1' }}>
+                <RHFUpload
+                  name="image_url2"
+                  maxSize={3145728}
+                  onDrop={handleDrop2}
+                  onDelete={handleRemoveFile2}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of 3MB
+                </Typography>
+              </Box>
+              <Box sx={{ gridColumn: 'span 1' }}>
+                <RHFUpload
+                  name="image_url3"
+                  maxSize={3145728}
+                  onDrop={handleDrop3}
+                  onDelete={handleRemoveFile3}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of 3MB
+                </Typography>
+              </Box>
+              <Box sx={{ gridColumn: 'span 1' }}>
+                <RHFUpload
+                  name="image_url4"
+                  maxSize={3145728}
+                  onDrop={handleDrop4}
+                  onDelete={handleRemoveFile4}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of 3MB
+                </Typography>
+              </Box>
+              <Box sx={{ gridColumn: 'span 1' }}>
+                <RHFUpload
+                  name="image_url5"
+                  maxSize={3145728}
+                  onDrop={handleDrop5}
+                  onDelete={handleRemoveFile5}
                 />
                 <Typography
                   variant="caption"

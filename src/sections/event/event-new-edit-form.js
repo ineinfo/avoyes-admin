@@ -70,9 +70,9 @@ export default function ClientNewEditForm({ currentEvent }) {
       .test('is-valid-date', 'End date is not valid', (value) =>
         value && !Number.isNaN(Date.parse(value))
       )
-      .test('is-after-start', 'End date must be after start date', (value) => {
-        const start_date = Yup.ref('start_date'); // Reference to 'start_date'
-        return value && start_date && new Date(value) > new Date(start_date);
+      .test('is-after-start', 'End date must be after start date', (value, context) => {
+        const { start_date } = context.parent; // Reference to 'start_date'
+        return value && new Date(value) > new Date(start_date);
       }),
     cost: Yup.string().required('Cost is required'),
     organizer: Yup.string().required('Organizer is required'),
@@ -90,8 +90,8 @@ export default function ClientNewEditForm({ currentEvent }) {
       event_category_id: Event?.event_category_id || '',
       event_speaker_id: Event?.event_speaker_id || '',
       map_url: Event?.map_url || '',
-      start_date: Event?.start_date ? format(new Date(Event.start_date), 'yyyy-MM-dd HH:mm') : '',
-      end_date: Event?.end_date ? format(new Date(Event.end_date), 'yyyy-MM-dd HH:mm') : '',
+      start_date: Event?.start_date ? new Date(Event.start_date).toISOString().slice(0, 16) : '',
+      end_date: Event?.end_date ? new Date(Event.end_date).toISOString().slice(0, 16) : '',
       cost: Event?.cost || '',
       organizer: Event?.organizer || '',
       organizer_contact: Event?.organizer_contact || '',
