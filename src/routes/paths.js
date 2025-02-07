@@ -242,6 +242,7 @@ export const paths = {
     challenges: {
       root: `${ROOTS.DASHBOARD}/challenges`,
       new: `${ROOTS.DASHBOARD}/challenges/new`,
+      video: `${ROOTS.DASHBOARD}/challenges/video`,
       list: `${ROOTS.DASHBOARD}/challenges/list`,
       edit: (id) => `${ROOTS.DASHBOARD}/challenges/${id}/edit`,
     },
