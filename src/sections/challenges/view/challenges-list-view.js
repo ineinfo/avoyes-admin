@@ -47,6 +47,7 @@ const TABLE_HEAD = [
   { id: 'title', label: 'Title' },
   { id: 'start_date', label: 'Start Date' },
   { id: 'end_date', label: 'End Date' },
+  { id: 'people', label: 'Peoples' },
   { id: '', width: 88 },
 ];
 
