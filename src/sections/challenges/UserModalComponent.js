@@ -5,7 +5,6 @@ import Iconify from 'src/components/iconify';
 function UserModalComponent({ row, onClose }) {
     return (
         <Box sx={{ p: 2, bgcolor: 'background.paper', borderRadius: 1, boxShadow: 24, minWidth: '40vw', mx: 'auto', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute' }}>
-            {/* Close button */}
             <Stack direction="row" justifyContent="flex-end">
                 <IconButton onClick={onClose}>
                     <Iconify icon="bi:x" width={24} height={24} />
@@ -14,7 +13,6 @@ function UserModalComponent({ row, onClose }) {
 
             <Typography variant="h6" gutterBottom>Users</Typography>
 
-            {/* Users Table */}
             <TableContainer component={Paper}>
                 <Table size="small">
                     <TableHead>
