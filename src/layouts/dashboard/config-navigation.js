@@ -343,6 +343,7 @@ export function useNavData() {
                   { title: t('left'), path: paths.dashboard.bottombanner.left },
                   { title: t('center'), path: paths.dashboard.bottombanner.center },
                   { title: t('right'), path: paths.dashboard.bottombanner.right },
+                  { title: t('overlay'), path: paths.dashboard.bottombanner.overlay },
                   // { title: t('create'), path: paths.dashboard.bottombanner.new },
                 ],
               },

@@ -10,8 +10,8 @@ export const metadata = {
   title: 'Avoyes: Order Details View',
 };
 
-export default function UserEditPage({ params }) {
-  const { id } = params;
+export default async function UserEditPage({ params }) {
+  const { id } = await params;
 
   return <UserEditView id={id} />;
 }

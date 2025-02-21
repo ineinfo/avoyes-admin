@@ -301,6 +301,7 @@ export const paths = {
       left: `${ROOTS.DASHBOARD}/bottombanner/left`,
       center: `${ROOTS.DASHBOARD}/bottombanner/center`,
       right: `${ROOTS.DASHBOARD}/bottombanner/right`,
+      overlay: `${ROOTS.DASHBOARD}/bottombanner/overlay`,
       edit: (id) => `${ROOTS.DASHBOARD}/bottombanner/${id}/edit`,
     },
   },

@@ -43,6 +43,7 @@ import {
   BOTTOM_BANNER_LEFT_ROUTE,
   BOTTOM_BANNER_CENTER_ROUTE,
   BOTTOM_BANNER_RIGHT_ROUTE,
+  BOTTOM_BANNER_OVERLAY_ROUTE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -295,6 +296,7 @@ export const endpoints = {
     left: BOTTOM_BANNER_LEFT_ROUTE,
     center: BOTTOM_BANNER_CENTER_ROUTE,
     right: BOTTOM_BANNER_RIGHT_ROUTE,
+    overlay: BOTTOM_BANNER_OVERLAY_ROUTE,
     create: BOTTOM_BANNER_ROUTE,
     details: (id) => `${BOTTOM_BANNER_ROUTE}/${id}`,
     deletes: (id) => `${BOTTOM_BANNER_ROUTE}/${id}`,
