@@ -29,7 +29,7 @@ import FormProvider, {
 // ----------------------------------------------------------------------
 
 export default function ClientNewEditForm({ currentChallenges }) {
-  const Challenges = Array.isArray(currentChallenges) ? currentChallenges[0] : currentChallenges;
+  const Challenges = Array.isArray(currentChallenges) ? currentChallenges[0] : currentChallenges?.challenge;
   const user = useAuthContext();
   const token = user?.user?.accessToken;
 
@@ -66,7 +66,7 @@ export default function ClientNewEditForm({ currentChallenges }) {
       ),
   });
 
-
+  console.log("object", currentChallenges)
 
   const defaultValues = useMemo(
     () => ({
@@ -83,6 +83,7 @@ export default function ClientNewEditForm({ currentChallenges }) {
     resolver: yupResolver(NewClientSchema),
     defaultValues,
   });
+
 
   const {
     reset,
