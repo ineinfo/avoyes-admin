@@ -42,6 +42,8 @@ export const POPULAR_DISHES_ROUTE = `${apiUrl}/popular-dishes`;
 
 // CHALLANGES MODULE
 export const CHALLANGES_ROUTE = `${apiUrl}/challenges`;
+export const CHALLANGES_GETVIDEO_ROUTE = `${apiUrl}/challengesvideo/get`;
+export const CHALLANGES_UPDATEVIDEO_ROUTE = `${apiUrl}/challengesvideo/update`;
 
 // ACTIVITY MODULE
 export const ACTIVITY_ROUTE = `${apiUrl}/activities`;

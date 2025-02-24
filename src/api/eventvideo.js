@@ -43,6 +43,25 @@ export function UsegetEventVideo(productId) {
 
 // ----------------------------------------------------------------------
 
+export function UsegetChallengeVideo() {
+  const URL = endpoints.challenges.getVideo
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+  const memoizedValue = useMemo(
+    () => ({
+      product: data?.data,
+      productLoading: isLoading,
+      productError: error,
+      productValidating: isValidating,
+    }),
+    [(data?.data, error, isLoading, isValidating)]
+  );
+
+  return memoizedValue;
+}
+
+// ----------------------------------------------------------------------
+
 export function UseSearchEventVideo(query) {
   const URL = query ? [endpoints.eventvideo.search, { params: { query } }] : '';
 
@@ -67,17 +86,31 @@ export function UseSearchEventVideo(query) {
 // Update user
 export const UpdateEventVideo = async (id, data, token) => {
   try {
-  const response = await axios.put(endpoints.eventvideo.details(id), data, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-} catch (error) {
-  console.error('Error update property:', error);
-  return null;
-}
+    const response = await axios.put(endpoints.eventvideo.details(id), data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error update property:', error);
+    return null;
+  }
 };
 
 
+export const UpdateChallengeVideo = async (data, token) => {
+  try {
+    const response = await axios.put(endpoints.challenges.updateVideo, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error update property:', error);
+    return null;
+  }
+};

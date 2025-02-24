@@ -44,6 +44,8 @@ import {
   BOTTOM_BANNER_CENTER_ROUTE,
   BOTTOM_BANNER_RIGHT_ROUTE,
   BOTTOM_BANNER_OVERLAY_ROUTE,
+  CHALLANGES_GETVIDEO_ROUTE,
+  CHALLANGES_UPDATEVIDEO_ROUTE,
 } from './apiendpoints';
 
 // ----------------------------------------------------------------------
@@ -220,6 +222,8 @@ export const endpoints = {
   challenges: {
     list: CHALLANGES_ROUTE,
     create: CHALLANGES_ROUTE,
+    getVideo: CHALLANGES_GETVIDEO_ROUTE,
+    updateVideo: CHALLANGES_UPDATEVIDEO_ROUTE,
     details: (id) => `${CHALLANGES_ROUTE}/${id}`,
     deletes: (id) => `${CHALLANGES_ROUTE}/${id}`,
   },

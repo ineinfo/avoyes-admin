@@ -301,6 +301,7 @@ export function useNavData() {
             children: [
               { title: t('list'), path: paths.dashboard.challenges.list },
               { title: t('create'), path: paths.dashboard.challenges.new },
+              { title: t('video'), path: paths.dashboard.challenges.video },
             ],
           },
           {
