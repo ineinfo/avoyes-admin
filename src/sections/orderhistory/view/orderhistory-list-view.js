@@ -69,7 +69,7 @@ export default function UserListView() {
   const settings = useSettingsContext();
 
   const user = useAuthContext();
-  const token = user.user.accessToken;
+  const token = user.user?.accessToken;
 
   const router = useRouter();
 

@@ -24,6 +24,21 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
   const confirm = useBoolean();
   const popover = usePopover();
 
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case 1:
+        return { text: 'Pending', color: 'error' };
+      case 2:
+        return { text: 'In Progress', color: 'warning' };
+      case 3:
+        return { text: 'Completed', color: 'success' };
+      default:
+        return { text: 'Unknown', color: 'default' };
+    }
+  };
+
+  const status = getStatusLabel(order_status);
+
   return (
     <>
       <TableRow hover selected={selected}>
@@ -39,18 +54,10 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         </TableCell>
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{order_amount || ''}</TableCell>
         <TableCell>
-        <Label
-          variant="soft"
-          color={
-            (order_status === 'Completed' && 'success') ||
-            (order_status === 'Pending' && 'error') ||
-            (order_status === 'In Progress' && 'warning') ||
-            'default'
-          }
-        >
-          {order_status}
-        </Label>
-      </TableCell>
+          <Label variant="soft" color={status.color}>
+            {status.text}
+          </Label>
+        </TableCell>
         <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
           <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
