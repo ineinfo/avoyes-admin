@@ -68,7 +68,7 @@ export const CreateFoodType = async (data, token) => {
   try {
     const response = await axios.post(endpoints.foodtype.create, data, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -84,7 +84,7 @@ export const UpdateFoodType = async (id, data, token) => {
   try {
     const response = await axios.put(endpoints.foodtype.details(id), data, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });

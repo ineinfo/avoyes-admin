@@ -18,7 +18,9 @@ import { CreateFoodType, UpdateFoodType } from 'src/api/foodtype';
 import { useSnackbar } from 'src/components/snackbar';
 import FormProvider, {
   RHFTextField,
+  RHFUpload,
 } from 'src/components/hook-form';
+import { Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -30,7 +32,7 @@ export default function ClientNewEditForm({ currentFoodType }) {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-
+  const fetchimages = FoodType?.image_url ? `${FoodType.image_url}` : '';
   const NewClientSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
   });
@@ -38,6 +40,7 @@ export default function ClientNewEditForm({ currentFoodType }) {
   const defaultValues = useMemo(
     () => ({
       title: FoodType?.title || '',
+      image_url: fetchimages || null,
     }),
     [FoodType]
   );
@@ -64,6 +67,14 @@ export default function ClientNewEditForm({ currentFoodType }) {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key === 'image_url' && value[0]) {
+          formData.append(key, value[0]);
+        } else {
+          formData.append(key, value);
+        }
+      });
       if (FoodType) {
         await UpdateFoodType(FoodType.id, data, token);
         enqueueSnackbar('FoodType updated successfully!', { variant: 'success' });
@@ -115,6 +126,21 @@ export default function ClientNewEditForm({ currentFoodType }) {
                 <Stack spacing={3}>
                   <RHFTextField name="title" label="Title" />
                 </Stack>
+              </Box>
+              <Box sx={{ gridColumn: 'span 2' }}>
+                <RHFUpload
+                  name="image_url"
+                  maxSize={3145728}
+                  onDrop={handleDrop}
+                  onDelete={handleRemoveFile}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{ mt: 2, display: 'block', textAlign: 'center', color: 'text.secondary' }}
+                >
+                  Allowed *.jpeg, *.jpg, *.png, *.gif
+                  <br /> max size of 3MB
+                </Typography>
               </Box>
             </Box>
 
